@@ -1,0 +1,6 @@
+.dashed-line {
+  flex: 1;
+  min-height: 2rem;
+  border-left: 2px dashed rgba(255, 255, 255, 0.4);
+  width: 0;
+}
