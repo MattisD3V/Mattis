@@ -1,0 +1,2630 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mattis Da Costa Faro — Développeur Full Stack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Outfit", sans-serif;
+        background: #020c07;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      nav {
+        font-family: "Nunito", sans-serif;
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #020c07;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #10b981;
+        border-radius: 99px;
+      }
+
+      /* Animations */
+      @keyframes fadeSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(32px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes glowDot {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6);
+        }
+        50% {
+          box-shadow: 0 0 0 8px rgba(52, 211, 153, 0);
+        }
+      }
+      @keyframes floatY {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      @keyframes rotateSlow {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes shimmer {
+        0% {
+          background-position: -200% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+
+      .anim-in {
+        animation: fadeSlideUp 0.7s cubic-bezier(0.22, 0.68, 0, 1.2) both;
+      }
+      .d1 {
+        animation-delay: 0.08s;
+      }
+      .d2 {
+        animation-delay: 0.18s;
+      }
+      .d3 {
+        animation-delay: 0.28s;
+      }
+      .d4 {
+        animation-delay: 0.38s;
+      }
+      .d5 {
+        animation-delay: 0.48s;
+      }
+      .d6 {
+        animation-delay: 0.58s;
+      }
+      .glow-dot {
+        animation: glowDot 2s ease-in-out infinite;
+      }
+      .float {
+        animation: floatY 5s ease-in-out infinite;
+      }
+      .ring-spin {
+        animation: rotateSlow 18s linear infinite;
+      }
+      .ring-spin-r {
+        animation: rotateSlow 12s linear infinite reverse;
+      }
+      .shimmer-text {
+        background: linear-gradient(90deg, #34d399, #a7f3d0, #34d399);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shimmer 3s linear infinite;
+      }
+
+      /* Navbar scroll effect */
+      #topbar {
+        transition:
+          background 0.3s,
+          border-color 0.3s,
+          backdrop-filter 0.3s;
+        border-bottom: 1px solid transparent;
+      }
+      #topbar.scrolled {
+        background: rgba(2, 12, 7, 0.92);
+        border-color: rgba(16, 185, 129, 0.12);
+        backdrop-filter: blur(16px);
+      }
+
+      /* Timeline */
+      .tl-track {
+        position: absolute;
+        left: 9px;
+        top: 20px;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          #10b981,
+          rgba(16, 185, 129, 0.1)
+        );
+      }
+
+      /* Card hover */
+      .proj-card {
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+      }
+      .proj-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 24px 56px rgba(16, 185, 129, 0.14);
+        border-color: rgba(52, 211, 153, 0.4) !important;
+      }
+
+      /* Mobile menu */
+      #mob-nav {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.35s ease,
+          opacity 0.35s ease;
+        opacity: 0;
+      }
+      #mob-nav.open {
+        max-height: 400px;
+        opacity: 1;
+      }
+
+      /* Section fade-in via observer */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Active nav link */
+      .nav-a {
+        color: #94a3b8;
+        transition: color 0.2s;
+        font-weight: 700;
+        font-size: 0.8rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .nav-a:hover,
+      .nav-a.active {
+        color: #34d399;
+      }
+
+      /* Gradient border card */
+      .gb-card {
+        background:
+          linear-gradient(#0d1f14, #0d1f14) padding-box,
+          linear-gradient(
+              135deg,
+              rgba(52, 211, 153, 0.3),
+              rgba(20, 184, 166, 0.1)
+            )
+            border-box;
+        border: 1px solid transparent;
+      }
+
+      /* Skill pill */
+      .skill-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        border-radius: 99px;
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(52, 211, 153, 0.25);
+        color: #6ee7b7;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+    </style>
+  </head>
+  <body class="text-white">
+    <!-- ═══════════════════════════════ NAVBAR ═══════════════════════════════ -->
+    <header id="topbar" class="fixed top-0 inset-x-0 z-50">
+      <div
+        class="max-w-6xl mx-auto px-5 md:px-8 flex items-center justify-between h-16"
+      >
+        <!-- Logo -->
+        <a href="#hero" class="flex items-center gap-2.5 group">
+          <div
+            class="w-9 h-9 rounded-xl bg-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:bg-emerald-400 transition-colors"
+          >
+            <span class="text-slate-950 font-black text-sm">M</span>
+          </div>
+          <span
+            style="font-family: &quot;Nunito&quot;, sans-serif"
+            class="font-extrabold text-white text-sm hidden sm:block"
+            >Mattis<span class="text-emerald-400">-DCF</span></span
+          >
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="#about" class="nav-a">À propos</a>
+          <a href="#skills" class="nav-a">Compétences</a>
+          <a href="#parcours" class="nav-a">Parcours</a>
+          <a href="#portfolio" class="nav-a">Portfolio</a>
+          <a href="#nxdev" class="nav-a">NX-DEV</a>
+          <a
+            href="#contact"
+            class="ml-2 px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs tracking-widest uppercase transition-all hover:shadow-lg hover:shadow-emerald-500/25"
+            >Contact</a
+          >
+        </nav>
+
+        <!-- Burger -->
+        <button
+          id="burger"
+          class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/5 transition"
+          aria-label="Menu"
+        >
+          <span
+            class="w-5 h-0.5 bg-slate-300 rounded transition-all"
+            id="b1"
+          ></span>
+          <span
+            class="w-5 h-0.5 bg-slate-300 rounded transition-all"
+            id="b2"
+          ></span>
+          <span
+            class="w-4 h-0.5 bg-slate-300 rounded transition-all self-end"
+            id="b3"
+          ></span>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div
+        id="mob-nav"
+        class="md:hidden"
+        style="
+          background: rgba(2, 12, 7, 0.97);
+          border-top: 1px solid rgba(16, 185, 129, 0.1);
+        "
+      >
+        <div class="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1">
+          <a
+            href="#about"
+            class="nav-a block py-2.5 px-3 rounded-lg hover:bg-white/5"
+            >À propos</a
+          >
+          <a
+            href="#skills"
+            class="nav-a block py-2.5 px-3 rounded-lg hover:bg-white/5"
+            >Compétences</a
+          >
+          <a
+            href="#parcours"
+            class="nav-a block py-2.5 px-3 rounded-lg hover:bg-white/5"
+            >Parcours</a
+          >
+          <a
+            href="#portfolio"
+            class="nav-a block py-2.5 px-3 rounded-lg hover:bg-white/5"
+            >Portfolio</a
+          >
+          <a
+            href="#nxdev"
+            class="nav-a block py-2.5 px-3 rounded-lg hover:bg-white/5"
+            >NX-DEV</a
+          >
+          <a
+            href="#contact"
+            class="nav-a block py-2.5 px-3 rounded-lg hover:bg-white/5"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+    <section
+      id="hero"
+      class="relative min-h-screen flex items-center overflow-hidden pt-16"
+    >
+      <!-- BG layers -->
+      <div
+        class="absolute inset-0"
+        style="
+          background: radial-gradient(
+            ellipse 80% 60% at 60% 40%,
+            rgba(5, 46, 22, 0.7) 0%,
+            rgba(2, 12, 7, 1) 70%
+          );
+        "
+      ></div>
+      <div
+        class="absolute inset-0"
+        style="
+          background: radial-gradient(
+            ellipse 50% 40% at 10% 80%,
+            rgba(20, 184, 166, 0.07) 0%,
+            transparent 70%
+          );
+        "
+      ></div>
+
+      <!-- Spinning rings (desktop only) -->
+      <div
+        class="absolute top-16 right-8 w-80 h-80 rounded-full border border-emerald-500/8 ring-spin pointer-events-none hidden lg:block"
+      ></div>
+      <div
+        class="absolute top-28 right-20 w-56 h-56 rounded-full border border-teal-400/6 ring-spin-r pointer-events-none hidden lg:block"
+      ></div>
+      <div
+        class="absolute top-40 right-32 w-32 h-32 rounded-full border border-emerald-300/5 ring-spin pointer-events-none hidden lg:block"
+      ></div>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-5 md:px-8 w-full py-20">
+        <div class="flex flex-col lg:flex-row items-center gap-14 lg:gap-20">
+          <!-- Photo col -->
+          <div class="flex flex-col items-center gap-5 shrink-0">
+            <!-- Avatar ring -->
+            <div class="relative anim-in d1">
+              <div
+                class="absolute -inset-3 rounded-full"
+                style="
+                  background: conic-gradient(
+                    from 0deg,
+                    #10b981,
+                    #14b8a6,
+                    #10b981
+                  );
+                  animation: rotateSlow 4s linear infinite;
+                  filter: blur(8px);
+                  opacity: 0.4;
+                "
+              ></div>
+              <div
+                class="relative w-44 h-44 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-emerald-400/50 shadow-2xl"
+              >
+                <img
+                  src="Assets/Images/Mattis.jpg"
+                  alt="Mattis Da Costa Faro"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+
+            <!-- Dispo badge -->
+            <div
+              class="anim-in d2 flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-400/30"
+              style="background: rgba(16, 185, 129, 0.08)"
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-emerald-400 glow-dot inline-block"
+              ></span>
+              <span
+                class="text-emerald-300 text-xs font-extrabold tracking-widest uppercase"
+                >Disponible</span
+              >
+            </div>
+
+            <!-- Socials -->
+            <div class="anim-in d3 flex gap-2.5">
+              <a
+                href="https://github.com/MattisD3V"
+                title="GitHub"
+                class="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 text-slate-400 hover:text-emerald-400 hover:border-emerald-400/40 transition-all"
+                style="background: rgba(255, 255, 255, 0.03)"
+                ><i class="fa-brands fa-github text-sm"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/mattis-da-costa-faro/"
+                title="LinkedIn"
+                class="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 text-slate-400 hover:text-emerald-400 hover:border-emerald-400/40 transition-all"
+                style="background: rgba(255, 255, 255, 0.03)"
+                ><i class="fa-brands fa-linkedin text-sm"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Text col -->
+          <div class="flex flex-col gap-6 text-center lg:text-left max-w-2xl">
+            <div class="anim-in d1">
+              <span
+                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-emerald-300 text-xs font-extrabold tracking-widest uppercase border border-emerald-400/25"
+                style="background: rgba(16, 185, 129, 0.07)"
+              >
+                <i class="fa-solid fa-code text-[10px]"></i> Développeur Full
+                Stack
+              </span>
+            </div>
+
+            <h1
+              class="anim-in d2 text-4xl sm:text-5xl md:text-6xl font-black leading-[1.1]"
+            >
+              Mattis<br />
+              <span class="shimmer-text">Da Costa Faro</span>
+            </h1>
+
+            <p class="anim-in d3 text-slate-300 text-lg leading-relaxed">
+              Bonjour ! J'ai <strong class="text-white">23 ans</strong> et je
+              suis développeur passionné par la création de sites et
+              d'applications web. Diplômé d'un
+              <span class="text-emerald-400 font-bold"
+                >BAC+3 Concepteur Développeur d'Applications</span
+              >
+              — et un jour, je créerai des jeux vidéo.
+            </p>
+
+            <!-- Skill pills -->
+            <div
+              class="anim-in d4 flex flex-wrap gap-2 justify-center lg:justify-start"
+            >
+              <span class="skill-pill"
+                ><i class="fa-brands fa-html5 text-orange-400"></i
+                >HTML/CSS</span
+              >
+              <span class="skill-pill"
+                ><i class="fa-brands fa-js text-yellow-400"></i>JavaScript</span
+              >
+              <span class="skill-pill"
+                ><i class="fa-brands fa-react text-cyan-400"></i>React</span
+              >
+              <span class="skill-pill"
+                ><i class="fa-brands fa-node-js text-emerald-400"></i
+                >Node.js</span
+              >
+              <span class="skill-pill"
+                ><i class="fa-solid fa-database text-emerald-300"></i
+                >SQL/NoSQL</span
+              >
+              <span class="skill-pill"
+                ><i class="fa-solid fa-gamepad text-violet-400"></i>Game
+                Dev</span
+              >
+            </div>
+
+            <!-- CTA -->
+            <div
+              class="anim-in d5 flex flex-wrap gap-3 justify-center lg:justify-start"
+            >
+              <a
+                href="#portfolio"
+                class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-sm transition-all hover:-translate-y-0.5 shadow-xl shadow-emerald-500/20"
+              >
+                Voir mes projets <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+              <a
+                href="#contact"
+                class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl border border-emerald-400/25 text-slate-200 font-bold text-sm hover:border-emerald-400/60 hover:text-emerald-300 transition-all hover:-translate-y-0.5"
+                style="background: rgba(255, 255, 255, 0.03)"
+              >
+                Me contacter
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll hint -->
+      <div
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
+      >
+        <span
+          class="text-[10px] font-bold tracking-widest uppercase text-slate-600"
+          >Scroll</span
+        >
+        <i
+          class="fa-solid fa-chevron-down text-emerald-500 text-xs animate-bounce"
+        ></i>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ À PROPOS ═══════════════════════════════ -->
+    <section
+      id="about"
+      class="relative py-24 px-5 md:px-8 overflow-hidden"
+      style="background: #040f08"
+    >
+      <div
+        class="absolute right-0 top-0 w-96 h-96 pointer-events-none"
+        style="
+          background: radial-gradient(
+            circle,
+            rgba(16, 185, 129, 0.06),
+            transparent 70%
+          );
+        "
+      ></div>
+
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-14 reveal">
+          <p
+            class="text-emerald-400 text-xs font-extrabold tracking-widest uppercase mb-3"
+          >
+            Qui suis-je ?
+          </p>
+          <h2 class="text-3xl md:text-4xl font-black mb-4">À propos de moi</h2>
+          <div
+            class="w-12 h-0.5 mx-auto"
+            style="background: linear-gradient(to right, #10b981, #14b8a6)"
+          ></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="reveal gb-card rounded-2xl p-6 flex flex-col gap-3">
+            <div
+              class="w-11 h-11 rounded-xl flex items-center justify-center"
+              style="
+                background: rgba(16, 185, 129, 0.12);
+                border: 1px solid rgba(52, 211, 153, 0.2);
+              "
+            >
+              <i class="fa-solid fa-user text-emerald-400"></i>
+            </div>
+            <h3 class="font-extrabold text-white text-base">Profil</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              23 ans, basé à Alès (France). Développeur Full Stack passionné,
+              fondateur de NX-DEV. J'aime créer des expériences digitales
+              soignées, de la conception à la mise en ligne.
+            </p>
+          </div>
+
+          <div
+            class="reveal gb-card rounded-2xl p-6 flex flex-col gap-3"
+            style="animation-delay: 0.12s"
+          >
+            <div
+              class="w-11 h-11 rounded-xl flex items-center justify-center"
+              style="
+                background: rgba(16, 185, 129, 0.12);
+                border: 1px solid rgba(52, 211, 153, 0.2);
+              "
+            >
+              <i class="fa-solid fa-graduation-cap text-emerald-400"></i>
+            </div>
+            <h3 class="font-extrabold text-white text-base">Formation</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              BAC+3 Concepteur Développeur d'Applications (ALT, Rennes). Ancien
+              étudiant en cuisine et chimie reconverti avec succès dans
+              l'informatique.
+            </p>
+          </div>
+
+          <div
+            class="reveal gb-card rounded-2xl p-6 flex flex-col gap-3"
+            style="animation-delay: 0.24s"
+          >
+            <div
+              class="w-11 h-11 rounded-xl flex items-center justify-center"
+              style="
+                background: rgba(16, 185, 129, 0.12);
+                border: 1px solid rgba(52, 211, 153, 0.2);
+              "
+            >
+              <i class="fa-solid fa-gamepad text-emerald-400"></i>
+            </div>
+            <h3 class="font-extrabold text-white text-base">Passion</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Passionné de jeux vidéo depuis toujours, mon objectif est d'en
+              créer un jour. Je travaille à maîtriser Unity / Unreal et le
+              développement de jeux en parallèle du web.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ COMPÉTENCES ═══════════════════════════════ -->
+    <section
+      id="skills"
+      class="relative py-24 px-5 md:px-8 overflow-hidden"
+      style="background: #020c07"
+    >
+      <div
+        class="absolute left-0 bottom-0 w-80 h-80 pointer-events-none"
+        style="
+          background: radial-gradient(
+            circle,
+            rgba(20, 184, 166, 0.05),
+            transparent 70%
+          );
+        "
+      ></div>
+
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-14 reveal">
+          <p
+            class="text-emerald-400 text-xs font-extrabold tracking-widest uppercase mb-3"
+          >
+            Stack technique
+          </p>
+          <h2 class="text-3xl md:text-4xl font-black mb-4">Compétences</h2>
+          <div
+            class="w-12 h-0.5 mx-auto"
+            style="background: linear-gradient(to right, #10b981, #14b8a6)"
+          ></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Front-End -->
+          <div
+            class="reveal rounded-2xl p-6 flex flex-col gap-5"
+            style="
+              background: rgba(16, 185, 129, 0.06);
+              border: 1px solid rgba(16, 185, 129, 0.2);
+            "
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-xl flex items-center justify-center"
+                style="background: rgba(16, 185, 129, 0.15)"
+              >
+                <i class="fa-solid fa-paintbrush text-emerald-400 text-sm"></i>
+              </div>
+              <h3 class="font-extrabold text-white">Front-End</h3>
+            </div>
+            <div class="flex flex-col gap-3">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300 font-semibold">HTML / CSS</span
+                  ><span class="text-emerald-400 font-bold">90%</span>
+                </div>
+                <div
+                  class="h-1.5 rounded-full"
+                  style="background: rgba(255, 255, 255, 0.08)"
+                >
+                  <div
+                    class="h-full rounded-full"
+                    style="
+                      width: 90%;
+                      background: linear-gradient(to right, #10b981, #34d399);
+                    "
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300 font-semibold">JavaScript</span
+                  ><span class="text-emerald-400 font-bold">80%</span>
+                </div>
+                <div
+                  class="h-1.5 rounded-full"
+                  style="background: rgba(255, 255, 255, 0.08)"
+                >
+                  <div
+                    class="h-full rounded-full"
+                    style="
+                      width: 80%;
+                      background: linear-gradient(to right, #10b981, #34d399);
+                    "
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300 font-semibold"
+                    >React / Vue.js</span
+                  ><span class="text-emerald-400 font-bold">75%</span>
+                </div>
+                <div
+                  class="h-1.5 rounded-full"
+                  style="background: rgba(255, 255, 255, 0.08)"
+                >
+                  <div
+                    class="h-full rounded-full"
+                    style="
+                      width: 75%;
+                      background: linear-gradient(to right, #10b981, #34d399);
+                    "
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300 font-semibold">Tailwind CSS</span
+                  ><span class="text-emerald-400 font-bold">85%</span>
+                </div>
+                <div
+                  class="h-1.5 rounded-full"
+                  style="background: rgba(255, 255, 255, 0.08)"
+                >
+                  <div
+                    class="h-full rounded-full"
+                    style="
+                      width: 85%;
+                      background: linear-gradient(to right, #10b981, #34d399);
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Back-End -->
+          <div
+            class="reveal rounded-2xl p-6 flex flex-col gap-5"
+            style="
+              background: rgba(20, 184, 166, 0.06);
+              border: 1px solid rgba(20, 184, 166, 0.2);
+              animation-delay: 0.1s;
+            "
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-xl flex items-center justify-center"
+                style="background: rgba(20, 184, 166, 0.15)"
+              >
+                <i class="fa-solid fa-server text-teal-400 text-sm"></i>
+              </div>
+              <h3 class="font-extrabold text-white">Back-End</h3>
+            </div>
+            <div class="flex flex-col gap-3">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300 font-semibold">Node.js</span
+                  ><span class="text-teal-400 font-bold">75%</span>
+                </div>
+                <div
+                  class="h-1.5 rounded-full"
+                  style="background: rgba(255, 255, 255, 0.08)"
+                >
+                  <div
+                    class="h-full rounded-full"
+                    style="
+                      width: 75%;
+                      background: linear-gradient(to right, #14b8a6, #2dd4bf);
+                    "
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300 font-semibold">Prisma</span
+                  ><span class="text-teal-400 font-bold">70%</span>
+                </div>
+                <div
+                  class="h-1.5 rounded-full"
+                  style="background: rgba(255, 255, 255, 0.08)"
+                >
+                  <div
+                    class="h-full rounded-full"
+                    style="
+                      width: 70%;
+                      background: linear-gradient(to right, #14b8a6, #2dd4bf);
+                    "
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300 font-semibold"
+                    >MySQL / MongoDB</span
+                  ><span class="text-teal-400 font-bold">80%</span>
+                </div>
+                <div
+                  class="h-1.5 rounded-full"
+                  style="background: rgba(255, 255, 255, 0.08)"
+                >
+                  <div
+                    class="h-full rounded-full"
+                    style="
+                      width: 80%;
+                      background: linear-gradient(to right, #14b8a6, #2dd4bf);
+                    "
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300 font-semibold">REST APIs</span
+                  ><span class="text-teal-400 font-bold">78%</span>
+                </div>
+                <div
+                  class="h-1.5 rounded-full"
+                  style="background: rgba(255, 255, 255, 0.08)"
+                >
+                  <div
+                    class="h-full rounded-full"
+                    style="
+                      width: 78%;
+                      background: linear-gradient(to right, #14b8a6, #2dd4bf);
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Autres -->
+          <div
+            class="reveal rounded-2xl p-6 flex flex-col gap-4"
+            style="
+              background: rgba(255, 255, 255, 0.03);
+              border: 1px solid rgba(255, 255, 255, 0.07);
+              animation-delay: 0.2s;
+            "
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-xl flex items-center justify-center"
+                style="background: rgba(255, 255, 255, 0.07)"
+              >
+                <i class="fa-solid fa-toolbox text-slate-300 text-sm"></i>
+              </div>
+              <h3 class="font-extrabold text-white">Outils & Autres</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1.5 rounded-lg text-[11px] font-bold text-slate-300"
+                style="
+                  background: rgba(255, 255, 255, 0.06);
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                "
+                ><i class="fa-brands fa-git-alt text-orange-400 mr-1"></i
+                >Git</span
+              >
+              <span
+                class="px-3 py-1.5 rounded-lg text-[11px] font-bold text-slate-300"
+                style="
+                  background: rgba(255, 255, 255, 0.06);
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                "
+                ><i class="fa-brands fa-docker text-blue-400 mr-1"></i
+                >Docker</span
+              >
+              <span
+                class="px-3 py-1.5 rounded-lg text-[11px] font-bold text-slate-300"
+                style="
+                  background: rgba(255, 255, 255, 0.06);
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                "
+                ><i class="fa-brands fa-figma text-pink-400 mr-1"></i
+                >Figma</span
+              >
+              <span
+                class="px-3 py-1.5 rounded-lg text-[11px] font-bold text-slate-300"
+                style="
+                  background: rgba(255, 255, 255, 0.06);
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                "
+                ><i class="fa-solid fa-terminal text-emerald-400 mr-1"></i
+                >Linux</span
+              >
+              <span
+                class="px-3 py-1.5 rounded-lg text-[11px] font-bold text-slate-300"
+                style="
+                  background: rgba(255, 255, 255, 0.06);
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                "
+                ><i class="fa-brands fa-unity text-slate-300 mr-1"></i
+                >Unity</span
+              >
+              <span
+                class="px-3 py-1.5 rounded-lg text-[11px] font-bold text-slate-300"
+                style="
+                  background: rgba(255, 255, 255, 0.06);
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                "
+                ><i class="fa-solid fa-c text-blue-300 mr-1"></i>C#</span
+              >
+              <span
+                class="px-3 py-1.5 rounded-lg text-[11px] font-bold text-slate-300"
+                style="
+                  background: rgba(255, 255, 255, 0.06);
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                "
+                ><i class="fa-brands fa-java text-red-400 mr-1"></i>Java</span
+              >
+              <span
+                class="px-3 py-1.5 rounded-lg text-[11px] font-bold text-slate-300"
+                style="
+                  background: rgba(255, 255, 255, 0.06);
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                "
+                ><i class="fa-brands fa-python text-yellow-400 mr-1"></i
+                >Python</span
+              >
+              <span
+                class="px-3 py-1.5 rounded-lg text-[11px] font-bold text-slate-300"
+                style="
+                  background: rgba(255, 255, 255, 0.06);
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                "
+                ><i class="fa-brands fa-aws text-orange-300 mr-1"></i>AWS</span
+              >
+              <span
+                class="px-3 py-1.5 rounded-lg text-[11px] font-bold text-slate-300"
+                style="
+                  background: rgba(255, 255, 255, 0.06);
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                "
+                ><i class="fa-solid fa-code-branch text-violet-400 mr-1"></i
+                >Agile</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ PARCOURS ═══════════════════════════════ -->
+    <section
+      id="parcours"
+      class="relative py-24 px-5 md:px-8 overflow-hidden"
+      style="background: #040f08"
+    >
+      <div
+        class="absolute top-0 right-0 w-96 h-96 pointer-events-none"
+        style="
+          background: radial-gradient(
+            circle,
+            rgba(16, 185, 129, 0.04),
+            transparent 70%
+          );
+        "
+      ></div>
+
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-14 reveal">
+          <p
+            class="text-emerald-400 text-xs font-extrabold tracking-widest uppercase mb-3"
+          >
+            Mon histoire
+          </p>
+          <h2 class="text-3xl md:text-4xl font-black mb-4">
+            Parcours & Expériences
+          </h2>
+          <div
+            class="w-12 h-0.5 mx-auto mb-5"
+            style="background: linear-gradient(to right, #10b981, #14b8a6)"
+          ></div>
+          <p class="text-slate-400 text-sm leading-relaxed max-w-lg mx-auto">
+            Un chemin atypique — de la cuisine et la chimie au développement web
+            — qui forge un développeur polyvalent, curieux et déterminé.
+          </p>
+        </div>
+
+        <div class="relative reveal">
+          <div class="tl-track"></div>
+
+          <!-- items -->
+          <div class="flex gap-5 mb-5 pl-0.5">
+            <div
+              class="w-5 h-5 rounded-full shrink-0 mt-0.5 z-10"
+              style="background: #1e3a2a; border: 2px solid #2d5a3d"
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-4 hover:border-emerald-500/20 transition-colors"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+              "
+            >
+              <h3 class="text-sm font-bold text-white">
+                Stage de 3ème — Cuisine
+              </h3>
+              <p class="text-xs text-emerald-400 mt-0.5 font-semibold">
+                Décembre 2016 · 2 semaines · Le Mandajors, Alès
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-5 mb-5 pl-0.5">
+            <div
+              class="w-5 h-5 rounded-full shrink-0 mt-0.5 z-10"
+              style="background: #1e3a2a; border: 2px solid #2d5a3d"
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-4 hover:border-emerald-500/20 transition-colors"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+              "
+            >
+              <h3 class="text-sm font-bold text-white">
+                Bac Pro Cuisine — Seconde professionnelle
+              </h3>
+              <p class="text-xs text-emerald-400 mt-0.5 font-semibold">
+                Sept. 2017 – Juin 2018 · Lycée Marie Curie, Saint-Jean-du-Gard
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-5 mb-5 pl-0.5">
+            <div
+              class="w-5 h-5 rounded-full shrink-0 mt-0.5 z-10"
+              style="background: #1e3a2a; border: 2px solid #2d5a3d"
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-4 hover:border-emerald-500/20 transition-colors"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+              "
+            >
+              <h3 class="text-sm font-bold text-white">Stage — Cuisine × 2</h3>
+              <p class="text-xs text-emerald-400 mt-0.5 font-semibold">
+                Déc. 2017 &amp; Mai–Juin 2018 · L'Atelier des Épicuriens + Le
+                Bistrot, Alès
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-5 mb-5 pl-0.5">
+            <div
+              class="w-5 h-5 rounded-full shrink-0 mt-0.5 z-10"
+              style="background: #1e3a2a; border: 2px solid #2d5a3d"
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-4 hover:border-emerald-500/20 transition-colors"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+              "
+            >
+              <h3 class="text-sm font-bold text-white">
+                Bac Pro Chimie — Seconde &amp; Première professionnelles
+              </h3>
+              <p class="text-xs text-emerald-400 mt-0.5 font-semibold">
+                Sept. 2018 – Jan. 2020 · Lycée Jean-Baptiste Dumas, Alès
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-5 mb-5 pl-0.5">
+            <div
+              class="w-5 h-5 rounded-full shrink-0 mt-0.5 z-10"
+              style="background: #1e3a2a; border: 2px solid #2d5a3d"
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-4 hover:border-emerald-500/20 transition-colors"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+              "
+            >
+              <h3 class="text-sm font-bold text-white">Stage — Chimie × 2</h3>
+              <p class="text-xs text-emerald-400 mt-0.5 font-semibold">
+                Mai–Juin 2019 &amp; Jan. 2020 · Sika + Lycée J.-B. Dumas, Alès
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-5 mb-5 pl-0.5">
+            <div
+              class="w-5 h-5 rounded-full shrink-0 mt-0.5 z-10"
+              style="background: #1e3a2a; border: 2px solid #2d5a3d"
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-4 hover:border-emerald-500/20 transition-colors"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+              "
+            >
+              <h3 class="text-sm font-bold text-white">
+                Dispositif Garantie Jeunes
+              </h3>
+              <p class="text-xs text-emerald-400 mt-0.5 font-semibold">
+                Oct. 2020 – Oct. 2021 · Mission Locale, Alès
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-5 mb-5 pl-0.5">
+            <div
+              class="w-5 h-5 rounded-full shrink-0 mt-0.5 z-10"
+              style="background: #1e3a2a; border: 2px solid #2d5a3d"
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-4 hover:border-emerald-500/20 transition-colors"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+              "
+            >
+              <h3 class="text-sm font-bold text-white">
+                Stage — Vente (magasin de cartes) × 2
+              </h3>
+              <p class="text-xs text-emerald-400 mt-0.5 font-semibold">
+                Nov. 2020 &amp; Mars 2021 · Le Panthéon, Alès
+              </p>
+            </div>
+          </div>
+
+          <!-- FORMATION highlight -->
+          <div class="flex gap-5 mb-5 pl-0.5">
+            <div
+              class="w-5 h-5 rounded-full shrink-0 mt-0.5 z-10 shadow-lg"
+              style="
+                background: #10b981;
+                box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+              "
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-5"
+              style="
+                background: rgba(16, 185, 129, 0.08);
+                border: 1px solid rgba(16, 185, 129, 0.3);
+              "
+            >
+              <span
+                class="text-[9px] font-black tracking-widest uppercase px-2 py-0.5 rounded-full text-emerald-200"
+                style="background: rgba(16, 185, 129, 0.2)"
+                >Formation</span
+              >
+              <h3 class="text-sm font-extrabold text-white mt-2">
+                Formation Développeur Web &amp; Web Mobile
+              </h3>
+              <p class="text-xs text-emerald-400 mt-0.5 font-semibold">
+                Juin – Oct. 2021 · ADRAR Formation, Montpellier
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-5 mb-5 pl-0.5">
+            <div
+              class="w-5 h-5 rounded-full shrink-0 mt-0.5 z-10"
+              style="background: #1e3a2a; border: 2px solid #2d5a3d"
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-4 hover:border-emerald-500/20 transition-colors"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+              "
+            >
+              <h3 class="text-sm font-bold text-white">
+                Dispositif Garantie Jeunes (renouvellement)
+              </h3>
+              <p class="text-xs text-emerald-400 mt-0.5 font-semibold">
+                Oct. 2021 – Juil. 2023 · Mission Locale, Alès
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-5 mb-5 pl-0.5">
+            <div
+              class="w-5 h-5 rounded-full shrink-0 mt-0.5 z-10"
+              style="background: #1e3a2a; border: 2px solid #2d5a3d"
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-4 hover:border-emerald-500/20 transition-colors"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+              "
+            >
+              <h3 class="text-sm font-bold text-white">
+                Stage — Vente (friperies) × 2
+              </h3>
+              <p class="text-xs text-emerald-400 mt-0.5 font-semibold">
+                Jan. 2022 &amp; Juil. 2022 · Le Hangar + So Frip, Alès
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-5 mb-5 pl-0.5">
+            <div
+              class="w-5 h-5 rounded-full shrink-0 mt-0.5 z-10"
+              style="background: #1e3a2a; border: 2px solid #2d5a3d"
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-4 hover:border-emerald-500/20 transition-colors"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+              "
+            >
+              <h3 class="text-sm font-bold text-white">
+                Mission intérim — Cuisine
+              </h3>
+              <p class="text-xs text-emerald-400 mt-0.5 font-semibold">
+                Nov. 2022 · 3 jours · La Cuisine Solidaire, Alès
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-5 mb-5 pl-0.5">
+            <div
+              class="w-5 h-5 rounded-full shrink-0 mt-0.5 z-10"
+              style="background: #1e3a2a; border: 2px solid #2d5a3d"
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-4 hover:border-emerald-500/20 transition-colors"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+              "
+            >
+              <h3 class="text-sm font-bold text-white">
+                Emploi — Cuisine &amp; École de la Deuxième Chance
+              </h3>
+              <p class="text-xs text-emerald-400 mt-0.5 font-semibold">
+                Août 2023 – Fév. 2024 · Tacos Avenue + E2C, Alès
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-5 mb-5 pl-0.5">
+            <div
+              class="w-5 h-5 rounded-full shrink-0 mt-0.5 z-10"
+              style="background: #1e3a2a; border: 2px solid #2d5a3d"
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-4 hover:border-emerald-500/20 transition-colors"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+              "
+            >
+              <h3 class="text-sm font-bold text-white">
+                Stages E2C — Vente, Fleuriste, Son &amp; Lumière × 4
+              </h3>
+              <p class="text-xs text-emerald-400 mt-0.5 font-semibold">
+                Sept.–Déc. 2023 · Inter Dépôt, Casa di Fiori, Pelousse Paradise,
+                Myosotis Flora
+              </p>
+            </div>
+          </div>
+
+          <!-- EMPLOI highlight -->
+          <div class="flex gap-5 mb-5 pl-0.5">
+            <div
+              class="w-5 h-5 rounded-full shrink-0 mt-0.5 z-10 shadow-lg"
+              style="
+                background: #10b981;
+                box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+              "
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-5"
+              style="
+                background: rgba(16, 185, 129, 0.08);
+                border: 1px solid rgba(16, 185, 129, 0.3);
+              "
+            >
+              <span
+                class="text-[9px] font-black tracking-widest uppercase px-2 py-0.5 rounded-full text-emerald-200"
+                style="background: rgba(16, 185, 129, 0.2)"
+                >Emploi</span
+              >
+              <h3 class="text-sm font-extrabold text-white mt-2">
+                Développeur Full Stack — CDD 6 mois
+              </h3>
+              <p class="text-xs text-emerald-400 mt-0.5 font-semibold">
+                Jan. – Juin 2024 · Dynamic Cloud Studios, Alès
+              </p>
+            </div>
+          </div>
+
+          <!-- FORMATION CDA highlight -->
+          <div class="flex gap-5 mb-5 pl-0.5">
+            <div
+              class="w-5 h-5 rounded-full shrink-0 mt-0.5 z-10 shadow-lg"
+              style="
+                background: #10b981;
+                box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+              "
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-5"
+              style="
+                background: rgba(16, 185, 129, 0.08);
+                border: 1px solid rgba(16, 185, 129, 0.3);
+              "
+            >
+              <span
+                class="text-[9px] font-black tracking-widest uppercase px-2 py-0.5 rounded-full text-emerald-200"
+                style="background: rgba(16, 185, 129, 0.2)"
+                >Formation BAC+3</span
+              >
+              <h3 class="text-sm font-extrabold text-white mt-2">
+                Concepteur Développeur d'Applications
+              </h3>
+              <p class="text-xs text-emerald-400 mt-0.5 font-semibold">
+                Août 2024 – Déc. 2025 · ALT, Rennes
+              </p>
+            </div>
+          </div>
+
+          <!-- AUJOURD'HUI -->
+          <div class="flex gap-5 pl-0.5">
+            <div
+              class="w-6 h-6 -ml-0.5 rounded-full shrink-0 mt-0.5 z-10 shadow-xl"
+              style="
+                background: linear-gradient(135deg, #10b981, #14b8a6);
+                box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+              "
+            ></div>
+            <div
+              class="flex-1 rounded-xl p-5 shadow-xl"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  rgba(16, 185, 129, 0.15),
+                  rgba(20, 184, 166, 0.08)
+                );
+                border: 1px solid rgba(52, 211, 153, 0.4);
+              "
+            >
+              <span
+                class="text-[9px] font-black tracking-widest uppercase px-2 py-0.5 rounded-full text-emerald-100"
+                style="background: rgba(16, 185, 129, 0.3)"
+                >🚀 Aujourd'hui</span
+              >
+              <h3 class="text-base font-extrabold text-white mt-2">
+                Création de mon entreprise — NX-DEV
+              </h3>
+              <p class="text-xs text-emerald-300 mt-0.5 font-bold">
+                Février 2026 · Développement informatique
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ PORTFOLIO ═══════════════════════════════ -->
+    <section
+      id="portfolio"
+      class="relative py-24 px-5 md:px-8 overflow-hidden"
+      style="background: #020c07"
+    >
+      <div
+        class="absolute bottom-0 right-0 w-96 h-96 pointer-events-none"
+        style="
+          background: radial-gradient(
+            circle,
+            rgba(16, 185, 129, 0.05),
+            transparent 70%
+          );
+        "
+      ></div>
+
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12 reveal">
+          <p
+            class="text-emerald-400 text-xs font-extrabold tracking-widest uppercase mb-3"
+          >
+            Réalisations
+          </p>
+          <h2 class="text-3xl md:text-4xl font-black mb-4">Mon Portfolio</h2>
+          <div
+            class="w-12 h-0.5 mx-auto mb-5"
+            style="background: linear-gradient(to right, #10b981, #14b8a6)"
+          ></div>
+          <!-- Filtres -->
+          <div class="flex flex-wrap justify-center gap-2 mt-6">
+            <button
+              onclick="filterCards('tous')"
+              data-filter="tous"
+              class="filter-btn px-4 py-1.5 rounded-xl text-xs font-extrabold border transition-all"
+              style="
+                border-color: rgba(52, 211, 153, 0.4);
+                background: rgba(16, 185, 129, 0.1);
+                color: #6ee7b7;
+              "
+            >
+              Tous
+            </button>
+            <button
+              onclick="filterCards('vitrine')"
+              data-filter="vitrine"
+              class="filter-btn px-4 py-1.5 rounded-xl text-xs font-extrabold border transition-all"
+              style="border-color: rgba(255, 255, 255, 0.1); color: #64748b"
+            >
+              Site vitrine
+            </button>
+            <button
+              onclick="filterCards('application')"
+              data-filter="application"
+              class="filter-btn px-4 py-1.5 rounded-xl text-xs font-extrabold border transition-all"
+              style="border-color: rgba(255, 255, 255, 0.1); color: #64748b"
+            >
+              Application
+            </button>
+            <button
+              onclick="filterCards('dashboard')"
+              data-filter="dashboard"
+              class="filter-btn px-4 py-1.5 rounded-xl text-xs font-extrabold border transition-all"
+              style="border-color: rgba(255, 255, 255, 0.1); color: #64748b"
+            >
+              Dashboard
+            </button>
+            <button
+              onclick="filterCards('ecommerce')"
+              data-filter="ecommerce"
+              class="filter-btn px-4 py-1.5 rounded-xl text-xs font-extrabold border transition-all"
+              style="border-color: rgba(255, 255, 255, 0.1); color: #64748b"
+            >
+              E-commerce
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="cards-grid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+        >
+          <a
+            href="404.html"
+            data-category="vitrine"
+            class="project-card proj-card reveal rounded-2xl overflow-hidden flex flex-col"
+            style="
+              background: rgba(255, 255, 255, 0.03);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+            "
+          >
+            <div class="relative h-44 overflow-hidden">
+              <img
+                src="Assets/Images/Restaurant.jpg"
+                alt="La Belle Assiette"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                style="transition: transform 0.5s ease"
+              />
+              <div
+                class="absolute inset-0"
+                style="
+                  background: linear-gradient(
+                    to top,
+                    rgba(2, 12, 7, 0.9),
+                    transparent 60%
+                  );
+                "
+              ></div>
+              <span
+                class="absolute top-3 left-3 text-[10px] font-extrabold tracking-widest uppercase px-2.5 py-1 rounded-lg"
+                style="
+                  background: rgba(16, 185, 129, 0.2);
+                  border: 1px solid rgba(52, 211, 153, 0.3);
+                  color: #6ee7b7;
+                  backdrop-filter: blur(8px);
+                "
+                >Site vitrine</span
+              >
+            </div>
+            <div class="p-5 flex flex-col gap-2 flex-1">
+              <div class="flex items-center justify-between">
+                <h3 class="font-extrabold text-white text-sm">
+                  La Belle Assiette
+                </h3>
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                ></i>
+              </div>
+              <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                Restaurant gastronomique. Menu interactif, réservation en ligne,
+                galerie photo.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >HTML</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >CSS</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >JavaScript</span
+                >
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="404.html"
+            data-category="application"
+            class="project-card proj-card reveal rounded-2xl overflow-hidden flex flex-col"
+            style="
+              background: rgba(255, 255, 255, 0.03);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              animation-delay: 0.07s;
+            "
+          >
+            <div class="relative h-44 overflow-hidden">
+              <img
+                src="Assets/Images/Todo.jpg"
+                alt="TaskFlow"
+                class="w-full h-full object-cover"
+                style="transition: transform 0.5s ease"
+              />
+              <div
+                class="absolute inset-0"
+                style="
+                  background: linear-gradient(
+                    to top,
+                    rgba(2, 12, 7, 0.9),
+                    transparent 60%
+                  );
+                "
+              ></div>
+              <span
+                class="absolute top-3 left-3 text-[10px] font-extrabold tracking-widest uppercase px-2.5 py-1 rounded-lg"
+                style="
+                  background: rgba(20, 184, 166, 0.2);
+                  border: 1px solid rgba(45, 212, 191, 0.3);
+                  color: #5eead4;
+                  backdrop-filter: blur(8px);
+                "
+                >Application</span
+              >
+            </div>
+            <div class="p-5 flex flex-col gap-2 flex-1">
+              <div class="flex items-center justify-between">
+                <h3 class="font-extrabold text-white text-sm">TaskFlow</h3>
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                ></i>
+              </div>
+              <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                Gestion de tâches drag &amp; drop, catégories, priorités,
+                statistiques.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >React</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >Node.js</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >MongoDB</span
+                >
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="404.html"
+            data-category="dashboard"
+            class="project-card proj-card reveal rounded-2xl overflow-hidden flex flex-col"
+            style="
+              background: rgba(255, 255, 255, 0.03);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              animation-delay: 0.14s;
+            "
+          >
+            <div class="relative h-44 overflow-hidden">
+              <img
+                src="Assets/Images/Dashboard.jpg"
+                alt="AnalytiX"
+                class="w-full h-full object-cover"
+                style="transition: transform 0.5s ease"
+              />
+              <div
+                class="absolute inset-0"
+                style="
+                  background: linear-gradient(
+                    to top,
+                    rgba(2, 12, 7, 0.9),
+                    transparent 60%
+                  );
+                "
+              ></div>
+              <span
+                class="absolute top-3 left-3 text-[10px] font-extrabold tracking-widest uppercase px-2.5 py-1 rounded-lg"
+                style="
+                  background: rgba(139, 92, 246, 0.2);
+                  border: 1px solid rgba(167, 139, 250, 0.3);
+                  color: #c4b5fd;
+                  backdrop-filter: blur(8px);
+                "
+                >Dashboard</span
+              >
+            </div>
+            <div class="p-5 flex flex-col gap-2 flex-1">
+              <div class="flex items-center justify-between">
+                <h3 class="font-extrabold text-white text-sm">AnalytiX</h3>
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                ></i>
+              </div>
+              <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                Analyse de données temps réel, graphiques interactifs, KPIs,
+                rapports.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >Vue.js</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >Chart.js</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >Laravel</span
+                >
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="404.html"
+            data-category="ecommerce"
+            class="project-card proj-card reveal rounded-2xl overflow-hidden flex flex-col"
+            style="
+              background: rgba(255, 255, 255, 0.03);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              animation-delay: 0.07s;
+            "
+          >
+            <div class="relative h-44 overflow-hidden">
+              <img
+                src="Assets/Images/E-commerce.jpg"
+                alt="ShopNest"
+                class="w-full h-full object-cover"
+                style="transition: transform 0.5s ease"
+              />
+              <div
+                class="absolute inset-0"
+                style="
+                  background: linear-gradient(
+                    to top,
+                    rgba(2, 12, 7, 0.9),
+                    transparent 60%
+                  );
+                "
+              ></div>
+              <span
+                class="absolute top-3 left-3 text-[10px] font-extrabold tracking-widest uppercase px-2.5 py-1 rounded-lg"
+                style="
+                  background: rgba(249, 115, 22, 0.2);
+                  border: 1px solid rgba(251, 146, 60, 0.3);
+                  color: #fdba74;
+                  backdrop-filter: blur(8px);
+                "
+                >E-commerce</span
+              >
+            </div>
+            <div class="p-5 flex flex-col gap-2 flex-1">
+              <div class="flex items-center justify-between">
+                <h3 class="font-extrabold text-white text-sm">ShopNest</h3>
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                ></i>
+              </div>
+              <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                Boutique complète : panier, Stripe, stocks, espace admin.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >Next.js</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >Stripe</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >PostgreSQL</span
+                >
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="404.html"
+            data-category="vitrine"
+            class="project-card proj-card reveal rounded-2xl overflow-hidden flex flex-col"
+            style="
+              background: rgba(255, 255, 255, 0.03);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              animation-delay: 0.14s;
+            "
+          >
+            <div class="relative h-44 overflow-hidden">
+              <img
+                src="Assets/Images/Agence.jpg"
+                alt="Lumio Agency"
+                class="w-full h-full object-cover"
+                style="transition: transform 0.5s ease"
+              />
+              <div
+                class="absolute inset-0"
+                style="
+                  background: linear-gradient(
+                    to top,
+                    rgba(2, 12, 7, 0.9),
+                    transparent 60%
+                  );
+                "
+              ></div>
+              <span
+                class="absolute top-3 left-3 text-[10px] font-extrabold tracking-widest uppercase px-2.5 py-1 rounded-lg"
+                style="
+                  background: rgba(16, 185, 129, 0.2);
+                  border: 1px solid rgba(52, 211, 153, 0.3);
+                  color: #6ee7b7;
+                  backdrop-filter: blur(8px);
+                "
+                >Site vitrine</span
+              >
+            </div>
+            <div class="p-5 flex flex-col gap-2 flex-1">
+              <div class="flex items-center justify-between">
+                <h3 class="font-extrabold text-white text-sm">Lumio Agency</h3>
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                ></i>
+              </div>
+              <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                Agence créative : animations scroll, portfolio, formulaire.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >HTML</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >GSAP</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >Tailwind</span
+                >
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="404.html"
+            data-category="application"
+            class="project-card proj-card reveal rounded-2xl overflow-hidden flex flex-col"
+            style="
+              background: rgba(255, 255, 255, 0.03);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              animation-delay: 0.21s;
+            "
+          >
+            <div class="relative h-44 overflow-hidden">
+              <img
+                src="Assets/Images/Météo.jpg"
+                alt="SkyPulse"
+                class="w-full h-full object-cover"
+                style="transition: transform 0.5s ease"
+              />
+              <div
+                class="absolute inset-0"
+                style="
+                  background: linear-gradient(
+                    to top,
+                    rgba(2, 12, 7, 0.9),
+                    transparent 60%
+                  );
+                "
+              ></div>
+              <span
+                class="absolute top-3 left-3 text-[10px] font-extrabold tracking-widest uppercase px-2.5 py-1 rounded-lg"
+                style="
+                  background: rgba(20, 184, 166, 0.2);
+                  border: 1px solid rgba(45, 212, 191, 0.3);
+                  color: #5eead4;
+                  backdrop-filter: blur(8px);
+                "
+                >Application</span
+              >
+            </div>
+            <div class="p-5 flex flex-col gap-2 flex-1">
+              <div class="flex items-center justify-between">
+                <h3 class="font-extrabold text-white text-sm">SkyPulse</h3>
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                ></i>
+              </div>
+              <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                App météo : prévisions 7j, géolocalisation, carte interactive.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >React</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >API REST</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >Leaflet</span
+                >
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="404.html"
+            data-category="dashboard"
+            class="project-card proj-card reveal rounded-2xl overflow-hidden flex flex-col"
+            style="
+              background: rgba(255, 255, 255, 0.03);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+            "
+          >
+            <div class="relative h-44 overflow-hidden">
+              <img
+                src="Assets/Images/RH.jpg"
+                alt="HRFlow"
+                class="w-full h-full object-cover"
+                style="transition: transform 0.5s ease"
+              />
+              <div
+                class="absolute inset-0"
+                style="
+                  background: linear-gradient(
+                    to top,
+                    rgba(2, 12, 7, 0.9),
+                    transparent 60%
+                  );
+                "
+              ></div>
+              <span
+                class="absolute top-3 left-3 text-[10px] font-extrabold tracking-widest uppercase px-2.5 py-1 rounded-lg"
+                style="
+                  background: rgba(139, 92, 246, 0.2);
+                  border: 1px solid rgba(167, 139, 250, 0.3);
+                  color: #c4b5fd;
+                  backdrop-filter: blur(8px);
+                "
+                >Dashboard</span
+              >
+            </div>
+            <div class="p-5 flex flex-col gap-2 flex-1">
+              <div class="flex items-center justify-between">
+                <h3 class="font-extrabold text-white text-sm">HRFlow</h3>
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                ></i>
+              </div>
+              <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                Outil RH : congés, organigramme, fiches employés, reporting.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >Angular</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >Spring Boot</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >MySQL</span
+                >
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="404.html"
+            data-category="ecommerce"
+            class="project-card proj-card reveal rounded-2xl overflow-hidden flex flex-col"
+            style="
+              background: rgba(255, 255, 255, 0.03);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              animation-delay: 0.07s;
+            "
+          >
+            <div class="relative h-44 overflow-hidden">
+              <img
+                src="Assets/Images/Mode.jpg"
+                alt="Velour Shop"
+                class="w-full h-full object-cover"
+                style="transition: transform 0.5s ease"
+              />
+              <div
+                class="absolute inset-0"
+                style="
+                  background: linear-gradient(
+                    to top,
+                    rgba(2, 12, 7, 0.9),
+                    transparent 60%
+                  );
+                "
+              ></div>
+              <span
+                class="absolute top-3 left-3 text-[10px] font-extrabold tracking-widest uppercase px-2.5 py-1 rounded-lg"
+                style="
+                  background: rgba(249, 115, 22, 0.2);
+                  border: 1px solid rgba(251, 146, 60, 0.3);
+                  color: #fdba74;
+                  backdrop-filter: blur(8px);
+                "
+                >E-commerce</span
+              >
+            </div>
+            <div class="p-5 flex flex-col gap-2 flex-1">
+              <div class="flex items-center justify-between">
+                <h3 class="font-extrabold text-white text-sm">Velour Shop</h3>
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                ></i>
+              </div>
+              <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                Mode en ligne : filtres, wishlist, comparateur tailles,
+                fidélité.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >Nuxt.js</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >Tailwind</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >Stripe</span
+                >
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="404.html"
+            data-category="vitrine"
+            class="project-card proj-card reveal rounded-2xl overflow-hidden flex flex-col"
+            style="
+              background: rgba(255, 255, 255, 0.03);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              animation-delay: 0.14s;
+            "
+          >
+            <div class="relative h-44 overflow-hidden">
+              <img
+                src="Assets/Images/Photographe.jpg"
+                alt="Focus Studio"
+                class="w-full h-full object-cover"
+                style="transition: transform 0.5s ease"
+              />
+              <div
+                class="absolute inset-0"
+                style="
+                  background: linear-gradient(
+                    to top,
+                    rgba(2, 12, 7, 0.9),
+                    transparent 60%
+                  );
+                "
+              ></div>
+              <span
+                class="absolute top-3 left-3 text-[10px] font-extrabold tracking-widest uppercase px-2.5 py-1 rounded-lg"
+                style="
+                  background: rgba(16, 185, 129, 0.2);
+                  border: 1px solid rgba(52, 211, 153, 0.3);
+                  color: #6ee7b7;
+                  backdrop-filter: blur(8px);
+                "
+                >Site vitrine</span
+              >
+            </div>
+            <div class="p-5 flex flex-col gap-2 flex-1">
+              <div class="flex items-center justify-between">
+                <h3 class="font-extrabold text-white text-sm">Focus Studio</h3>
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                ></i>
+              </div>
+              <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                Portfolio photographe : galerie masonry, lightbox, réservation.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >HTML</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >CSS</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold text-slate-500"
+                  style="background: rgba(255, 255, 255, 0.05)"
+                  >PHP</span
+                >
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div
+          id="no-result"
+          class="hidden text-center py-16"
+          style="color: #475569"
+        >
+          <i
+            class="fa-solid fa-folder-open text-3xl block mb-3"
+            style="color: #334155"
+          ></i>
+          <p class="font-bold">Aucun projet dans cette catégorie</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ NX-DEV ═══════════════════════════════ -->
+    <section
+      id="nxdev"
+      class="relative py-24 px-5 md:px-8 overflow-hidden"
+      style="background: #040f08"
+    >
+      <div
+        class="absolute inset-0 pointer-events-none"
+        style="
+          background: radial-gradient(
+            ellipse 70% 50% at 50% 50%,
+            rgba(16, 185, 129, 0.06),
+            transparent 70%
+          );
+        "
+      ></div>
+
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12 reveal">
+          <p
+            class="text-emerald-400 text-xs font-extrabold tracking-widest uppercase mb-3"
+          >
+            Depuis février 2026
+          </p>
+          <h2 class="text-3xl md:text-4xl font-black mb-4">Mon Entreprise</h2>
+          <div
+            class="w-12 h-0.5 mx-auto"
+            style="background: linear-gradient(to right, #10b981, #14b8a6)"
+          ></div>
+        </div>
+
+        <div
+          class="reveal rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 md:gap-14"
+          style="
+            background: linear-gradient(
+              135deg,
+              rgba(16, 185, 129, 0.1),
+              rgba(20, 184, 166, 0.05)
+            );
+            border: 1px solid rgba(52, 211, 153, 0.2);
+          "
+        >
+          <!-- Logo NX-DEV -->
+          <div class="shrink-0 flex flex-col items-center gap-4">
+            <div
+              class="w-28 h-28 rounded-3xl flex items-center justify-center shadow-2xl float"
+              style="
+                background: linear-gradient(135deg, #10b981, #0d9488);
+                box-shadow: 0 20px 60px rgba(16, 185, 129, 0.3);
+              "
+            >
+              <div class="text-center" style="color: #020c07">
+                <div
+                  class="font-black text-2xl leading-tight"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                >
+                  NX
+                </div>
+                <div
+                  class="font-black text-sm tracking-widest"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                >
+                  DEV
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex items-center gap-2 px-3.5 py-1.5 rounded-full"
+              style="
+                background: rgba(16, 185, 129, 0.1);
+                border: 1px solid rgba(52, 211, 153, 0.3);
+              "
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-emerald-400 inline-block glow-dot"
+              ></span>
+              <span
+                class="text-emerald-300 text-xs font-extrabold tracking-widest uppercase"
+                >Active</span
+              >
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-5 text-center md:text-left">
+            <h3 class="text-2xl md:text-3xl font-black text-white">NX-DEV</h3>
+            <p class="text-slate-300 leading-relaxed text-sm">
+              Créée en <strong class="text-emerald-400">février 2026</strong>,
+              NX-DEV est mon entreprise de développement informatique. Je
+              propose des solutions web sur mesure : sites vitrines,
+              applications web, dashboards, e-commerce — de la conception à la
+              mise en ligne.
+            </p>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Que vous soyez une startup, une PME ou un particulier, je vous
+              accompagne de A à Z dans votre projet digital avec sérieux et
+              passion.
+            </p>
+            <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+              <a
+                href="404.html"
+                class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-extrabold text-sm transition-all hover:-translate-y-0.5 shadow-lg"
+                style="
+                  background: #10b981;
+                  color: #020c07;
+                  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+                "
+              >
+                Visiter NX-DEV <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+              <a
+                href="#contact"
+                class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all hover:-translate-y-0.5 text-emerald-300 hover:text-emerald-200"
+                style="border: 1px solid rgba(52, 211, 153, 0.3)"
+              >
+                Discutons de votre projet
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
+    <section
+      id="contact"
+      class="relative py-24 px-5 md:px-8 overflow-hidden"
+      style="background: #020c07"
+    >
+      <div
+        class="absolute top-0 left-0 w-80 h-80 pointer-events-none"
+        style="
+          background: radial-gradient(
+            circle,
+            rgba(16, 185, 129, 0.06),
+            transparent 70%
+          );
+        "
+      ></div>
+      <div
+        class="absolute bottom-0 right-0 w-96 h-96 pointer-events-none"
+        style="
+          background: radial-gradient(
+            circle,
+            rgba(20, 184, 166, 0.05),
+            transparent 70%
+          );
+        "
+      ></div>
+
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-14 reveal">
+          <p
+            class="text-emerald-400 text-xs font-extrabold tracking-widest uppercase mb-3"
+          >
+            Parlons-nous
+          </p>
+          <h2 class="text-3xl md:text-4xl font-black mb-4">Me contacter</h2>
+          <div
+            class="w-12 h-0.5 mx-auto mb-5"
+            style="background: linear-gradient(to right, #10b981, #14b8a6)"
+          ></div>
+          <p class="text-slate-400 text-sm max-w-md mx-auto leading-relaxed">
+            Un projet ? Une question ? N'hésitez pas, je réponds rapidement.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          <!-- Infos -->
+          <div class="reveal flex flex-col gap-4">
+            <div
+              class="flex items-center gap-4 p-5 rounded-2xl"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.07);
+              "
+            >
+              <div
+                class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                style="
+                  background: rgba(16, 185, 129, 0.12);
+                  border: 1px solid rgba(52, 211, 153, 0.2);
+                "
+              >
+                <i class="fa-solid fa-envelope text-emerald-400 text-sm"></i>
+              </div>
+              <div>
+                <p
+                  class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
+                >
+                  Email
+                </p>
+                <p class="text-slate-200 font-semibold text-sm">
+                  mattis1dcf@gmail.com
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center gap-4 p-5 rounded-2xl"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.07);
+              "
+            >
+              <div
+                class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                style="
+                  background: rgba(16, 185, 129, 0.12);
+                  border: 1px solid rgba(52, 211, 153, 0.2);
+                "
+              >
+                <i
+                  class="fa-solid fa-location-dot text-emerald-400 text-sm"
+                ></i>
+              </div>
+              <div>
+                <p
+                  class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
+                >
+                  Localisation
+                </p>
+                <p class="text-slate-200 font-semibold text-sm">
+                  Alès, France 🇫🇷
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center gap-4 p-5 rounded-2xl"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.07);
+              "
+            >
+              <div
+                class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                style="
+                  background: rgba(16, 185, 129, 0.12);
+                  border: 1px solid rgba(52, 211, 153, 0.2);
+                "
+              >
+                <i
+                  class="fa-solid fa-circle-check text-emerald-400 text-sm"
+                ></i>
+              </div>
+              <div>
+                <p
+                  class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
+                >
+                  Disponibilité
+                </p>
+                <p class="text-slate-200 font-semibold text-sm">
+                  Disponible dès maintenant
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-3 pt-1">
+              <a
+                href="https://github.com/MattisD3V"
+                class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-slate-400 text-sm font-bold hover:text-emerald-400 transition-all"
+                style="
+                  background: rgba(255, 255, 255, 0.03);
+                  border: 1px solid rgba(255, 255, 255, 0.08);
+                "
+                ><i class="fa-brands fa-github"></i>GitHub</a
+              >
+              <a
+                href="https://www.linkedin.com/in/mattis-da-costa-faro/"
+                class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-slate-400 text-sm font-bold hover:text-emerald-400 transition-all"
+                style="
+                  background: rgba(255, 255, 255, 0.03);
+                  border: 1px solid rgba(255, 255, 255, 0.08);
+                "
+                ><i class="fa-brands fa-linkedin"></i>LinkedIn</a
+              >
+            </div>
+          </div>
+
+          <!-- Formulaire -->
+          <form
+            name="contact-form"
+            action="https://formspree.io/f/xaqdkzlw"
+            method="POST"
+            class="reveal flex flex-col gap-4"
+            style="animation-delay: 0.12s"
+          >
+            <div class="grid grid-cols-2 gap-4">
+              <div class="flex flex-col gap-1.5">
+                <label
+                  class="text-[10px] font-extrabold tracking-widest uppercase text-slate-500"
+                  >Prénom</label
+                >
+                <input
+                  type="text"
+                  name="prenom"
+                  placeholder="Votre prénom"
+                  class="px-4 py-3 rounded-xl text-white text-sm placeholder-slate-600 focus:outline-none transition"
+                  style="
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    focus: border-color#10b981;
+                  "
+                  onfocus="this.style.borderColor = '#10b981'"
+                  onblur="this.style.borderColor = 'rgba(255,255,255,.1)'"
+                />
+              </div>
+              <div class="flex flex-col gap-1.5">
+                <label
+                  class="text-[10px] font-extrabold tracking-widest uppercase text-slate-500"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="votre@email.com"
+                  class="px-4 py-3 rounded-xl text-white text-sm placeholder-slate-600 focus:outline-none transition"
+                  style="
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                  "
+                  onfocus="this.style.borderColor = '#10b981'"
+                  onblur="this.style.borderColor = 'rgba(255,255,255,.1)'"
+                />
+              </div>
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <label
+                class="text-[10px] font-extrabold tracking-widest uppercase text-slate-500"
+                >Sujet</label
+              >
+              <input
+                type="text"
+                name="sujet"
+                placeholder="Votre sujet"
+                class="px-4 py-3 rounded-xl text-white text-sm placeholder-slate-600 focus:outline-none transition"
+                style="
+                  background: rgba(255, 255, 255, 0.05);
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                "
+                onfocus="this.style.borderColor = '#10b981'"
+                onblur="this.style.borderColor = 'rgba(255,255,255,.1)'"
+              />
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <label
+                class="text-[10px] font-extrabold tracking-widest uppercase text-slate-500"
+                >Message</label
+              >
+              <textarea
+                name="message"
+                rows="5"
+                placeholder="Décrivez votre projet..."
+                class="px-4 py-3 rounded-xl text-white text-sm placeholder-slate-600 focus:outline-none transition resize-none"
+                style="
+                  background: rgba(255, 255, 255, 0.05);
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                "
+                onfocus="this.style.borderColor = '#10b981'"
+                onblur="this.style.borderColor = 'rgba(255,255,255,.1)'"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="w-full py-4 rounded-xl font-extrabold text-sm tracking-wide transition-all hover:-translate-y-0.5 active:scale-95 shadow-xl"
+              style="
+                background: #10b981;
+                color: #020c07;
+                box-shadow: 0 8px 32px rgba(16, 185, 129, 0.25);
+              "
+            >
+              Envoyer <i class="fa-solid fa-paper-plane ml-1.5 text-xs"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+    <footer
+      class="py-10 px-5 md:px-8"
+      style="
+        background: #020c07;
+        border-top: 1px solid rgba(16, 185, 129, 0.08);
+      "
+    >
+      <div
+        class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 rounded-lg flex items-center justify-center"
+            style="background: #10b981"
+          >
+            <span class="font-black text-sm" style="color: #020c07">M</span>
+          </div>
+          <div>
+            <p
+              class="font-extrabold text-white text-sm"
+              style="font-family: &quot;Nunito&quot;, sans-serif"
+            >
+              Mattis Da Costa Faro
+            </p>
+            <p class="text-xs text-slate-600">
+              Développeur Full Stack · NX-DEV
+            </p>
+          </div>
+        </div>
+        <nav
+          class="flex flex-wrap justify-center gap-5 text-xs font-bold"
+          style="color: #475569"
+        >
+          <a href="#about" class="hover:text-emerald-400 transition-colors"
+            >À propos</a
+          >
+          <a href="#skills" class="hover:text-emerald-400 transition-colors"
+            >Compétences</a
+          >
+          <a href="#parcours" class="hover:text-emerald-400 transition-colors"
+            >Parcours</a
+          >
+          <a href="#portfolio" class="hover:text-emerald-400 transition-colors"
+            >Portfolio</a
+          >
+          <a href="#nxdev" class="hover:text-emerald-400 transition-colors"
+            >NX-DEV</a
+          >
+          <a href="#contact" class="hover:text-emerald-400 transition-colors"
+            >Contact</a
+          >
+        </nav>
+        <p class="text-xs font-mono" style="color: #334155">© 2026 NX-DEV</p>
+      </div>
+    </footer>
+
+    <script>
+      // ── Navbar scroll
+      const topbar = document.getElementById("topbar");
+      window.addEventListener("scroll", () => {
+        topbar.classList.toggle("scrolled", window.scrollY > 20);
+      });
+
+      // ── Burger menu
+      const burger = document.getElementById("burger");
+      const mobNav = document.getElementById("mob-nav");
+      const b1 = document.getElementById("b1"),
+        b2 = document.getElementById("b2"),
+        b3 = document.getElementById("b3");
+      let menuOpen = false;
+      burger.addEventListener("click", () => {
+        menuOpen = !menuOpen;
+        mobNav.classList.toggle("open", menuOpen);
+        b1.style.cssText = menuOpen
+          ? "transform:translateY(6px) rotate(45deg)"
+          : "";
+        b2.style.opacity = menuOpen ? "0" : "1";
+        b3.style.cssText = menuOpen
+          ? "transform:translateY(-6px) rotate(-45deg);width:20px"
+          : "";
+      });
+      mobNav.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          menuOpen = false;
+          mobNav.classList.remove("open");
+          b1.style.cssText = b3.style.cssText = "";
+          b2.style.opacity = "1";
+        }),
+      );
+
+      // ── Active nav on scroll
+      const navLinks = document.querySelectorAll(".nav-a");
+      const allSections = document.querySelectorAll("section[id]");
+      window.addEventListener("scroll", () => {
+        let cur = "";
+        allSections.forEach((s) => {
+          if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+        });
+        navLinks.forEach((l) =>
+          l.classList.toggle("active", l.getAttribute("href") === "#" + cur),
+        );
+      });
+
+      // ── Portfolio filter
+      function filterCards(cat) {
+        const cards = document.querySelectorAll(".project-card");
+        const btns = document.querySelectorAll(".filter-btn");
+        let vis = 0;
+        btns.forEach((b) => {
+          const active = b.dataset.filter === cat;
+          b.style.background = active ? "rgba(16,185,129,.1)" : "transparent";
+          b.style.borderColor = active
+            ? "rgba(52,211,153,.4)"
+            : "rgba(255,255,255,.1)";
+          b.style.color = active ? "#6ee7b7" : "#64748b";
+        });
+        cards.forEach((c) => {
+          const show = cat === "tous" || c.dataset.category === cat;
+          c.style.display = show ? "flex" : "none";
+          if (show) vis++;
+        });
+        document
+          .getElementById("no-result")
+          .classList.toggle("hidden", vis > 0);
+      }
+
+      // ── Intersection Observer (reveal + card images hover)
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.08 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+
+      // Card image zoom on hover
+      document.querySelectorAll(".proj-card").forEach((card) => {
+        const img = card.querySelector("img");
+        card.addEventListener(
+          "mouseenter",
+          () => img && (img.style.transform = "scale(1.06)"),
+        );
+        card.addEventListener(
+          "mouseleave",
+          () => img && (img.style.transform = "scale(1)"),
+        );
+      });
+      function submitBeatport() {
+        document.beatport.submit();
+        document.beatport.reset();
+      }
+    </script>
+  </body>
+</html>

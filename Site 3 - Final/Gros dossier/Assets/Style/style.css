@@ -1,0 +1,51 @@
+html{scroll-behavior:smooth}
+    *{box-sizing:border-box}
+    body{font-family:'Outfit',sans-serif;background:#020c07}
+    h1,h2,h3,h4,nav{font-family:'Nunito',sans-serif}
+    ::-webkit-scrollbar{width:4px}
+    ::-webkit-scrollbar-track{background:#020c07}
+    ::-webkit-scrollbar-thumb{background:#10b981;border-radius:99px}
+
+    /* Animations */
+    @keyframes fadeSlideUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes glowDot{0%,100%{box-shadow:0 0 0 0 rgba(52,211,153,.6)}50%{box-shadow:0 0 0 8px rgba(52,211,153,0)}}
+    @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes rotateSlow{to{transform:rotate(360deg)}}
+    @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+
+    .anim-in{animation:fadeSlideUp .7s cubic-bezier(.22,.68,0,1.2) both}
+    .d1{animation-delay:.08s}.d2{animation-delay:.18s}.d3{animation-delay:.28s}.d4{animation-delay:.38s}.d5{animation-delay:.48s}.d6{animation-delay:.58s}
+    .glow-dot{animation:glowDot 2s ease-in-out infinite}
+    .float{animation:floatY 5s ease-in-out infinite}
+    .ring-spin{animation:rotateSlow 18s linear infinite}
+    .ring-spin-r{animation:rotateSlow 12s linear infinite reverse}
+    .shimmer-text{background:linear-gradient(90deg,#34d399,#a7f3d0,#34d399);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite}
+
+    /* Navbar scroll effect */
+    #topbar{transition:background .3s,border-color .3s,backdrop-filter .3s;border-bottom:1px solid transparent}
+    #topbar.scrolled{background:rgba(2,12,7,.92);border-color:rgba(16,185,129,.12);backdrop-filter:blur(16px)}
+
+    /* Timeline */
+    .tl-track{position:absolute;left:9px;top:20px;bottom:0;width:2px;background:linear-gradient(to bottom,#10b981,rgba(16,185,129,.1))}
+
+    /* Card hover */
+    .proj-card{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+    .proj-card:hover{transform:translateY(-6px);box-shadow:0 24px 56px rgba(16,185,129,.14);border-color:rgba(52,211,153,.4)!important}
+
+    /* Mobile menu */
+    #mob-nav{max-height:0;overflow:hidden;transition:max-height .35s ease,opacity .35s ease;opacity:0}
+    #mob-nav.open{max-height:400px;opacity:1}
+
+    /* Section fade-in via observer */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* Active nav link */
+    .nav-a{color:#94a3b8;transition:color .2s;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
+    .nav-a:hover,.nav-a.active{color:#34d399}
+
+    /* Gradient border card */
+    .gb-card{background:linear-gradient(#0d1f14,#0d1f14) padding-box,linear-gradient(135deg,rgba(52,211,153,.3),rgba(20,184,166,.1)) border-box;border:1px solid transparent}
+
+    /* Skill pill */
+    .skill-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:99px;background:rgba(16,185,129,.1);border:1px solid rgba(52,211,153,.25);color:#6ee7b7;font-size:.72rem;font-weight:700;letter-spacing:.05em}
