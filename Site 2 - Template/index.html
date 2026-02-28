@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP — Adapté pour Mattis Da Costa Faro
+-->
+<html>
+	<head>
+		<title>Mattis Da Costa Faro — Développeur Full Stack</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet"/>
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			:root {
+				--emerald: #10b981;
+				--emerald-dark: #059669;
+				--emerald-light: #6ee7b7;
+			}
+
+			#header {
+				background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&q=80');
+				background-size: cover;
+				background-position: center;
+			}
+			#header:before {
+				background: linear-gradient(135deg, rgba(2,20,15,0.92) 0%, rgba(5,50,35,0.85) 100%);
+			}
+			#header .inner header h1 a,
+			#header .inner header h1 { color: #fff; font-family: 'Nunito', sans-serif; font-weight: 900; letter-spacing: 0.05em; }
+			#header .inner header p { color: var(--emerald-light); font-size: 0.9em; letter-spacing: 0.2em; text-transform: uppercase; }
+			#header .button.circled { background: var(--emerald) !important; border-color: var(--emerald) !important; color: #fff !important; }
+			#header .button.circled:hover { background: var(--emerald-dark) !important; border-color: var(--emerald-dark) !important; }
+
+			#nav > ul > li > a { font-family: 'Nunito', sans-serif; font-weight: 700; }
+			#nav > ul > li > a:hover { color: var(--emerald) !important; }
+
+			#banner {
+				background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1600&q=80');
+				background-size: cover;
+				background-position: center top;
+			}
+			#banner:before { background: linear-gradient(135deg, rgba(2,20,15,0.88) 0%, rgba(5,60,40,0.80) 100%); }
+			#banner header h2 { color: #fff; font-family: 'Nunito', sans-serif; font-weight: 900; }
+			#banner header h2 strong { color: var(--emerald-light); }
+
+			h2, h3 { font-family: 'Nunito', sans-serif; }
+			a:hover { color: var(--emerald) !important; }
+			.button { border-color: var(--emerald) !important; color: var(--emerald) !important; }
+			.button:hover { background: var(--emerald) !important; color: #fff !important; }
+
+			#footer { background: #0d1f18; color: #aaa; }
+			#footer h2.icon:before { background: var(--emerald) !important; border-color: var(--emerald) !important; }
+
+			.badge-dispo {
+				display: inline-flex; align-items: center; gap: 8px;
+				background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4);
+				border-radius: 999px; padding: 4px 14px; font-size: 0.7em;
+				color: var(--emerald-light); letter-spacing: 0.15em; text-transform: uppercase;
+				font-weight: 700; margin-bottom: 1em;
+			}
+			.badge-dispo span {
+				width: 8px; height: 8px; border-radius: 50%;
+				background: var(--emerald); display: inline-block; animation: pulse 1.5s infinite;
+			}
+			@keyframes pulse {
+				0%, 100% { opacity: 1; transform: scale(1); }
+				50% { opacity: 0.5; transform: scale(0.8); }
+			}
+
+			.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1em; justify-content: center; }
+			.skill-tag {
+				background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35);
+				color: var(--emerald-light); border-radius: 999px; padding: 3px 14px;
+				font-size: 0.72em; font-weight: 700; letter-spacing: 0.08em; font-family: 'Nunito', sans-serif;
+			}
+
+			.timeline-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 1.4em; text-align: left; break-inside: avoid; }
+			.timeline-dot {
+				width: 13px; height: 13px; border-radius: 50%; background: var(--emerald);
+				flex-shrink: 0; margin-top: 5px; box-shadow: 0 0 8px rgba(16,185,129,0.4);
+			}
+			.timeline-dot.highlight {
+				background: linear-gradient(135deg, var(--emerald), #14b8a6);
+				width: 17px; height: 17px;
+			}
+			.timeline-content h4 { font-family: 'Nunito', sans-serif; font-weight: 800; color: #483949; margin: 0 0 2px 0; font-size: 0.95em; }
+			.timeline-content .date { color: var(--emerald-dark); font-size: 0.78em; font-weight: 600; }
+			.timeline-content .lieu { color: #999; font-size: 0.75em; }
+
+			.portfolio-card-label {
+				display: inline-block; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.35);
+				color: var(--emerald); border-radius: 999px; padding: 2px 10px;
+				font-size: 0.68em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+				margin-bottom: 4px; font-family: 'Nunito', sans-serif;
+			}
+		</style>
+	</head>
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+
+			<!-- ── HEADER ── -->
+			<div id="header">
+				<div class="inner">
+					<header>
+						<div class="badge-dispo"><span></span>Disponible</div>
+						<h1><a href="index.html" id="logo">Mattis Da Costa Faro</a></h1>
+						<hr />
+						<p>Développeur Full Stack · NX-DEV · BAC+3 CDA</p>
+					</header>
+					<footer>
+						<a href="#banner" class="button circled scrolly">Découvrir</a>
+					</footer>
+				</div>
+				<nav id="nav">
+					<ul>
+						<li><a href="#banner">À propos</a></li>
+						<li><a href="#portfolio">Portfolio</a></li>
+						<li><a href="#experiences">Expériences</a></li>
+						<li><a href="#footer">Contact</a></li>
+						<li><a href="404.html">NX-DEV</a></li>
+					</ul>
+				</nav>
+			</div>
+
+			<!-- ── BANNER / À PROPOS ── -->
+			<section id="banner">
+				<header>
+					<h2>Bonjour, moi c'est <strong>Mattis</strong>.</h2>
+					<p>
+						J'ai 23 ans et je suis développeur Full Stack passionné par la création de sites et d'applications web.<br/>
+						Diplômé d'un <strong>BAC+3 Concepteur Développeur d'Applications</strong> — et un jour, je créerai des jeux vidéo.
+					</p>
+					<div class="skill-tags">
+						<span class="skill-tag">HTML / CSS</span>
+						<span class="skill-tag">JavaScript</span>
+						<span class="skill-tag">React</span>
+						<span class="skill-tag">Node.js</span>
+						<span class="skill-tag">Full Stack</span>
+						<span class="skill-tag">Jeux vidéo</span>
+					</div>
+				</header>
+			</section>
+
+			<!-- ── PORTFOLIO CAROUSEL ── -->
+			<section class="carousel" id="portfolio">
+				<div class="reel">
+					<article>
+						<a href="404.html" class="image featured"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="La Belle Assiette" /></a>
+						<header><span class="portfolio-card-label">Site vitrine</span><h3><a href="404.html">La Belle Assiette</a></h3></header>
+						<p>Site vitrine pour un restaurant gastronomique. Menu interactif, réservation en ligne et galerie photo.</p>
+					</article>
+					<article>
+						<a href="404.html" class="image featured"><img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=600&q=80" alt="TaskFlow" /></a>
+						<header><span class="portfolio-card-label">Application</span><h3><a href="404.html">TaskFlow</a></h3></header>
+						<p>Application de gestion de tâches avec drag & drop, catégories, priorités et statistiques.</p>
+					</article>
+					<article>
+						<a href="404.html" class="image featured"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="AnalytiX" /></a>
+						<header><span class="portfolio-card-label">Dashboard</span><h3><a href="404.html">AnalytiX</a></h3></header>
+						<p>Dashboard d'analyse de données en temps réel avec graphiques interactifs et rapports exportables.</p>
+					</article>
+					<article>
+						<a href="404.html" class="image featured"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&q=80" alt="ShopNest" /></a>
+						<header><span class="portfolio-card-label">E-commerce</span><h3><a href="404.html">ShopNest</a></h3></header>
+						<p>Boutique en ligne complète avec panier, paiement Stripe, gestion des stocks et espace admin.</p>
+					</article>
+					<article>
+						<a href="404.html" class="image featured"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Lumio Agency" /></a>
+						<header><span class="portfolio-card-label">Site vitrine</span><h3><a href="404.html">Lumio Agency</a></h3></header>
+						<p>Site vitrine pour une agence créative avec animations au scroll et formulaire de contact.</p>
+					</article>
+					<article>
+						<a href="404.html" class="image featured"><img src="https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=600&q=80" alt="SkyPulse" /></a>
+						<header><span class="portfolio-card-label">Application</span><h3><a href="404.html">SkyPulse</a></h3></header>
+						<p>Application météo avec prévisions 7 jours, géolocalisation et alertes personnalisées.</p>
+					</article>
+					<article>
+						<a href="404.html" class="image featured"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80" alt="HRFlow" /></a>
+						<header><span class="portfolio-card-label">Dashboard</span><h3><a href="404.html">HRFlow</a></h3></header>
+						<p>Outil RH avec suivi des congés, organigramme interactif et reporting mensuel.</p>
+					</article>
+					<article>
+						<a href="404.html" class="image featured"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&q=80" alt="Focus Studio" /></a>
+						<header><span class="portfolio-card-label">Site vitrine</span><h3><a href="404.html">Focus Studio</a></h3></header>
+						<p>Portfolio pour un photographe professionnel avec galerie masonry et réservation de séances.</p>
+					</article>
+				</div>
+			</section>
+
+			<!-- ── EXPÉRIENCES ── -->
+			<div class="wrapper style2" id="experiences">
+				<article id="main" class="container special">
+					<header>
+						<h2>Mon parcours</h2>
+						<p>De la cuisine aux lignes de code — un chemin atypique qui forge un développeur polyvalent et curieux.</p>
+					</header>
+					<div style="columns: 2; column-gap: 3em; text-align: left; margin-bottom: 2em;">
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Stage de 3ème — Cuisine</h4><div class="date">Décembre 2016 · 2 semaines</div><div class="lieu">Le Mandajors · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Bac Pro Cuisine — Seconde pro</h4><div class="date">Septembre 2017 – Juin 2018</div><div class="lieu">Lycée Marie Curie · Saint-Jean-du-Gard</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Stage — Cuisine</h4><div class="date">Décembre 2017 · 2 semaines</div><div class="lieu">L'Atelier des Épicuriens · Saint-Paul-la-Coste</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Stage — Cuisine</h4><div class="date">Mai – Juin 2018 · 6 semaines</div><div class="lieu">Le Bistrot · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Bac Pro Chimie — Seconde & Première pro</h4><div class="date">Septembre 2018 – Janvier 2020</div><div class="lieu">Lycée Jean-Baptiste Dumas · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Stage — Chimie</h4><div class="date">Mai – Juin 2019 · 6 semaines</div><div class="lieu">Sika · Les Salles-du-Gardon</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Stage — Chimie</h4><div class="date">Janvier 2020 · 2 semaines</div><div class="lieu">Lycée Jean-Baptiste Dumas · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Dispositif Garantie Jeunes</h4><div class="date">Octobre 2020 – Octobre 2021</div><div class="lieu">Mission Locale · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Stage — Vente (magasin de cartes)</h4><div class="date">Novembre 2020 · 2 semaines</div><div class="lieu">Le Panthéon · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Stage — Vente (magasin de cartes)</h4><div class="date">Mars 2021 · 4 semaines</div><div class="lieu">Le Panthéon · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot highlight"></div><div class="timeline-content"><h4>Formation Développeur Web & Web Mobile</h4><div class="date">Juin – Octobre 2021</div><div class="lieu">ADRAR Formation · Montpellier</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Dispositif Garantie Jeunes (renouvellement)</h4><div class="date">Octobre 2021 – Juillet 2023</div><div class="lieu">Mission Locale · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Stage — Vente (friperie)</h4><div class="date">Janvier 2022 · 2 semaines</div><div class="lieu">Le Hangar · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Stage — Vente (friperie)</h4><div class="date">Juillet 2022 · 2 semaines</div><div class="lieu">So Frip · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Mission intérim — Cuisine</h4><div class="date">Novembre 2022 · 3 jours</div><div class="lieu">La Cuisine Solidaire · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Emploi — Cuisine</h4><div class="date">Août 2023 · 2 semaines</div><div class="lieu">Tacos Avenue · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>École de la Deuxième Chance (E2C)</h4><div class="date">Août 2023 – Février 2024</div><div class="lieu">E2C · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Stage — Vente (ameublement)</h4><div class="date">Septembre 2023 · 2 semaines</div><div class="lieu">Inter Dépôt · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Stage — Fleuriste</h4><div class="date">Octobre 2023 · 2 semaines</div><div class="lieu">Casa di Fiori · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Stage — Régisseur son & lumière</h4><div class="date">Novembre 2023 · 2 semaines</div><div class="lieu">Pelousse Paradise · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Stage — Fleuriste</h4><div class="date">Décembre 2023 · 1 semaine</div><div class="lieu">Myosotis Flora · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot highlight"></div><div class="timeline-content"><h4>Développeur Full Stack — CDD 6 mois</h4><div class="date">Janvier – Juin 2024</div><div class="lieu">Dynamic Cloud Studios · Alès</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot highlight"></div><div class="timeline-content"><h4>Formation Concepteur Développeur d'Applications</h4><div class="date">Août 2024 – Décembre 2025</div><div class="lieu">ALT · Rennes</div></div></div>
+						<div class="timeline-item"><div class="timeline-dot highlight"></div><div class="timeline-content"><h4>🚀 Création de mon entreprise — NX-DEV</h4><div class="date">Février 2026</div><div class="lieu">Développement informatique</div></div></div>
+					</div>
+				</article>
+			</div>
+
+			<!-- ── FEATURES / SERVICES ── -->
+			<div class="wrapper style1">
+				<section id="features" class="container special">
+					<header>
+						<h2>Ce que je fais</h2>
+						<p>Du design à la mise en production, je couvre l'intégralité du cycle de développement web.</p>
+					</header>
+					<div class="row">
+						<article class="col-4 col-12-mobile special">
+							<a href="#" class="image featured"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80" alt="Développement web" /></a>
+							<header><h3><a href="#">Développement Front-End</a></h3></header>
+							<p>Création de sites vitrine, applications web et interfaces modernes. Du HTML/CSS vanilla aux frameworks React et Vue.js, je m'adapte à chaque besoin.</p>
+						</article>
+						<article class="col-4 col-12-mobile special">
+							<a href="#" class="image featured"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80" alt="Back-end" /></a>
+							<header><h3><a href="#">Développement Back-End</a></h3></header>
+							<p>Conception d'APIs REST, gestion de bases de données (MySQL, MongoDB, PostgreSQL) et intégration de services tiers. Node.js, Laravel, Spring Boot.</p>
+						</article>
+						<article class="col-4 col-12-mobile special">
+							<a href="#" class="image featured"><img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&q=80" alt="Mobile" /></a>
+							<header><h3><a href="#">Applications & Jeux</a></h3></header>
+							<p>Passionné par le développement d'applications interactives et la création de jeux vidéo. J'explore Unity et les technologies web pour le gaming.</p>
+						</article>
+					</div>
+				</section>
+			</div>
+
+			<!-- ── FOOTER / CONTACT ── -->
+			<div id="footer">
+				<div class="container">
+					<div class="row">
+
+						<section class="col-4 col-12-mobile">
+							<header><h2 class="icon solid fa-envelope circled"><span class="label">Contact</span></h2></header>
+							<form action="https://formspree.io/f/xaqdkzlw" method="POST">
+								<div class="row gtr-50">
+									<div class="col-12"><input type="email" name="email" placeholder="Votre email" /></div>
+									<div class="col-12"><textarea name="message" placeholder="Votre message" rows="4"></textarea></div>
+									<div class="col-12"><input type="submit" value="Envoyer" class="button fit" /></div>
+								</div>
+							</form>
+						</section>
+
+						<section class="col-4 col-12-mobile">
+							<header><h2 class="icon solid fa-user circled"><span class="label">À propos</span></h2></header>
+							<p>Développeur Full Stack basé en France, diplômé BAC+3 CDA. Créateur de <strong>NX-DEV</strong>, mon entreprise de développement informatique fondée en février 2026.</p>
+							<ul class="divided">
+								<li>🎓 BAC+3 Concepteur Développeur d'Applications</li>
+								<li>💼 Fondateur NX-DEV</li>
+								<li>🎮 Passionné de jeux vidéo</li>
+							</ul>
+						</section>
+
+						<section class="col-4 col-12-mobile">
+							<header><h2 class="icon solid fa-code circled"><span class="label">Liens</span></h2></header>
+							<p>Retrouvez-moi sur les réseaux ou visitez le site de mon entreprise NX-DEV pour tout projet de développement.</p>
+							<ul class="icons">
+								<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="404.html" class="icon solid fa-globe"><span class="label">NX-DEV</span></a></li>
+							</ul>
+						</section>
+
+					</div>
+					<hr />
+					<div class="row">
+						<div class="col-12">
+							<section class="contact">
+								<header><h3>Un projet en tête ?</h3></header>
+								<p>N'hésitez pas à me contacter pour tout projet de développement web ou d'application.</p>
+							</section>
+							<div class="copyright">
+								<ul class="menu">
+									<li>&copy; Mattis Da Costa Faro — NX-DEV 2026</li>
+									<li>Template: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>
