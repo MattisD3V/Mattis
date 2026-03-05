@@ -1,0 +1,2618 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mattis Da Costa Faro — Développeur Full Stack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      :root {
+        --bg: #020c07;
+        --bg2: #040f08;
+        --em: #10b981;
+        --em2: #34d399;
+        --teal: #14b8a6;
+        --teal2: #2dd4bf;
+        --txt: #e2e8f0;
+        --muted: #64748b;
+        --card-bg: rgba(255, 255, 255, 0.03);
+        --card-br: rgba(255, 255, 255, 0.08);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Outfit", sans-serif;
+        background: var(--bg);
+        color: var(--txt);
+        line-height: 1.6;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Nunito", sans-serif;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--em);
+        border-radius: 99px;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes glowPulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55);
+        }
+        50% {
+          box-shadow: 0 0 0 9px rgba(52, 211, 153, 0);
+        }
+      }
+      @keyframes shimmer {
+        0% {
+          background-position: -200% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+      @keyframes rotSlow {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes rotSlowR {
+        to {
+          transform: rotate(-360deg);
+        }
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+      @keyframes barGrow {
+        from {
+          width: 0;
+        }
+        to {
+          width: var(--w);
+        }
+      }
+      @keyframes scanline {
+        0%,
+        100% {
+          top: 0;
+        }
+        50% {
+          top: calc(100% - 2px);
+        }
+      }
+      @keyframes slideInR {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .anim-in {
+        animation: fadeUp 0.65s cubic-bezier(0.22, 0.68, 0, 1.15) both;
+      }
+      .d1 {
+        animation-delay: 0.06s;
+      }
+      .d2 {
+        animation-delay: 0.14s;
+      }
+      .d3 {
+        animation-delay: 0.22s;
+      }
+      .d4 {
+        animation-delay: 0.3s;
+      }
+      .d5 {
+        animation-delay: 0.38s;
+      }
+      .glow-dot {
+        animation: glowPulse 2s ease-in-out infinite;
+      }
+      .shimmer-text {
+        background: linear-gradient(90deg, #34d399, #a7f3d0, #6ee7b7, #34d399);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shimmer 3s linear infinite;
+      }
+      #topbar {
+        transition:
+          background 0.3s,
+          border-color 0.3s,
+          backdrop-filter 0.3s;
+        border-bottom: 1px solid transparent;
+      }
+      #topbar.scrolled {
+        background: rgba(2, 12, 7, 0.93);
+        border-color: rgba(16, 185, 129, 0.12);
+        backdrop-filter: blur(18px);
+      }
+      .nav-link {
+        color: #94a3b8;
+        font-family: "Nunito", sans-serif;
+        font-weight: 700;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--em2);
+      }
+      #mob-nav {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.35s ease,
+          opacity 0.35s ease;
+        opacity: 0;
+      }
+      #mob-nav.open {
+        max-height: 400px;
+        opacity: 1;
+      }
+      .hero-grid {
+        background-image:
+          linear-gradient(rgba(16, 185, 129, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(16, 185, 129, 0.035) 1px, transparent 1px);
+        background-size: 48px 48px;
+      }
+      .scan-bar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(52, 211, 153, 0.4),
+          transparent
+        );
+        pointer-events: none;
+        animation: scanline 5s ease-in-out infinite;
+      }
+      .terminal {
+        background: #071209;
+        border: 1px solid rgba(52, 211, 153, 0.2);
+        border-radius: 14px;
+        overflow: hidden;
+        font-family: "Courier New", monospace;
+        font-size: 0.78rem;
+      }
+      .terminal-bar {
+        background: rgba(16, 185, 129, 0.07);
+        border-bottom: 1px solid rgba(52, 211, 153, 0.12);
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .t-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .terminal-body {
+        padding: 16px 18px;
+        line-height: 2;
+        color: #6ee7b7;
+      }
+      .key {
+        color: #94a3b8;
+      }
+      .val {
+        color: #34d399;
+        font-weight: 600;
+      }
+      .cmt {
+        color: var(--muted);
+        font-style: italic;
+      }
+      .cursor::after {
+        content: "█";
+        animation: blink 1s step-end infinite;
+        color: var(--em2);
+        font-size: 0.7rem;
+      }
+      .bar-track {
+        height: 5px;
+        border-radius: 99px;
+        background: rgba(255, 255, 255, 0.06);
+        overflow: hidden;
+      }
+      .bar-fill {
+        height: 100%;
+        border-radius: 99px;
+        width: var(--w);
+        animation: barGrow 0.9s cubic-bezier(0.22, 0.68, 0, 1.1) 0.3s both;
+      }
+      .bar-green {
+        background: linear-gradient(to right, var(--em), var(--em2));
+      }
+      .bar-teal {
+        background: linear-gradient(to right, var(--teal), var(--teal2));
+      }
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 12px;
+        border-radius: 99px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+      .tag-em {
+        background: rgba(16, 185, 129, 0.09);
+        border: 1px solid rgba(52, 211, 153, 0.22);
+        color: #6ee7b7;
+      }
+      .tag-teal {
+        background: rgba(20, 184, 166, 0.09);
+        border: 1px solid rgba(45, 212, 191, 0.22);
+        color: #5eead4;
+      }
+      .tag-vio {
+        background: rgba(139, 92, 246, 0.1);
+        border: 1px solid rgba(167, 139, 250, 0.25);
+        color: #c4b5fd;
+      }
+      .tag-slate {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #94a3b8;
+      }
+      .gb-card {
+        background:
+          linear-gradient(#0d1f14, #0d1f14) padding-box,
+          linear-gradient(
+              135deg,
+              rgba(52, 211, 153, 0.28),
+              rgba(20, 184, 166, 0.08)
+            )
+            border-box;
+        border: 1px solid transparent;
+        border-radius: 16px;
+      }
+      .sec-label {
+        color: var(--em);
+        font-family: "Nunito", sans-serif;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .sec-rule {
+        width: 40px;
+        height: 3px;
+        border-radius: 99px;
+        background: linear-gradient(to right, var(--em), var(--teal));
+      }
+      .xp-card {
+        border-left: 2px solid rgba(16, 185, 129, 0.2);
+        padding-left: 20px;
+        transition: border-color 0.25s;
+      }
+      .xp-card:hover {
+        border-color: var(--em);
+      }
+      .xp-card.pinned {
+        border-color: var(--em);
+      }
+      .proj-card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-br);
+        border-radius: 18px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+      }
+      .proj-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 24px 56px rgba(16, 185, 129, 0.13);
+        border-color: rgba(52, 211, 153, 0.38) !important;
+      }
+      .proj-card img {
+        transition: transform 0.5s ease;
+      }
+      .proj-card:hover img {
+        transform: scale(1.05);
+      }
+      .filter-btn {
+        padding: 6px 16px;
+        border-radius: 12px;
+        font-family: "Nunito", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        border: 1px solid;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .filter-btn.on {
+        background: rgba(16, 185, 129, 0.1);
+        border-color: rgba(52, 211, 153, 0.4);
+        color: #6ee7b7;
+      }
+      .filter-btn.off {
+        background: transparent;
+        border-color: rgba(255, 255, 255, 0.1);
+        color: #64748b;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.vis {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .c-input {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--txt);
+        font-size: 0.875rem;
+        font-family: "Outfit", sans-serif;
+        transition: border-color 0.2s;
+        outline: none;
+      }
+      .c-input:focus {
+        border-color: var(--em);
+      }
+      .c-input::placeholder {
+        color: #475569;
+      }
+      #cv-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+      }
+      #cv-modal.open {
+        display: flex;
+      }
+      #cv-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(2, 12, 7, 0.82);
+        backdrop-filter: blur(6px);
+        animation: fadeIn 0.25s ease both;
+      }
+      #cv-panel {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: min(640px, 100vw);
+        background: #08160d;
+        border-left: 1px solid rgba(52, 211, 153, 0.18);
+        overflow-y: auto;
+        padding: 32px 28px 48px;
+        animation: slideInR 0.35s cubic-bezier(0.22, 0.68, 0, 1.1) both;
+      }
+      #cv-panel::-webkit-scrollbar {
+        width: 3px;
+      }
+      #cv-panel::-webkit-scrollbar-thumb {
+        background: var(--em);
+        border-radius: 99px;
+      }
+      .tl-wrap {
+        display: flex;
+        flex-direction: column;
+      }
+      .tl-entry {
+        display: grid;
+        grid-template-columns: 22px 1fr;
+        gap: 14px;
+        position: relative;
+        padding-bottom: 18px;
+      }
+      .tl-entry:not(:last-child) .tl-spine::after {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 22px;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          rgba(16, 185, 129, 0.45),
+          rgba(16, 185, 129, 0.04)
+        );
+      }
+      .tl-spine {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      .tl-dot-sm {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-top: 3px;
+        position: relative;
+        z-index: 1;
+        flex-shrink: 0;
+      }
+      .dot-dev {
+        background: var(--em);
+        box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+      }
+      .dot-now {
+        width: 22px;
+        height: 22px;
+        background: linear-gradient(135deg, var(--em), var(--teal));
+        box-shadow: 0 0 18px rgba(16, 185, 129, 0.6);
+      }
+      .tl-body {
+        min-width: 0;
+      }
+      .chip {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 99px;
+        font-family: "Nunito", sans-serif;
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .chip-em {
+        background: rgba(16, 185, 129, 0.2);
+        color: #a7f3d0;
+      }
+      .tech-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .tech-item {
+        padding: 6px 12px;
+        border-radius: 10px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #94a3b8;
+        transition: all 0.2s;
+      }
+      .tech-item:hover {
+        background: rgba(16, 185, 129, 0.1);
+        border-color: rgba(52, 211, 153, 0.3);
+        color: #6ee7b7;
+      }
+      footer {
+        border-top: 1px solid rgba(16, 185, 129, 0.08);
+      }
+    </style>
+  </head>
+  <body>
+    <header id="topbar" role="banner" class="fixed top-0 inset-x-0 z-50">
+      <div
+        class="max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between"
+      >
+        <a
+          href="#hero"
+          class="flex items-center gap-2.5 group"
+          aria-label="Retour en haut"
+        >
+          <div
+            class="w-9 h-9 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-105 transition-transform"
+            style="background: var(--em)"
+          >
+            <span
+              style="
+                color: #020c07;
+                font-family: &quot;Nunito&quot;, sans-serif;
+                font-weight: 900;
+                font-size: 0.8rem;
+              "
+              >M</span
+            >
+          </div>
+          <span
+            class="font-extrabold text-white text-sm hidden sm:block"
+            style="font-family: &quot;Nunito&quot;, sans-serif"
+            >Mattis<span style="color: var(--em2)">·DCF</span></span
+          >
+        </a>
+        <nav
+          role="navigation"
+          aria-label="Navigation principale"
+          class="hidden md:flex items-center gap-7"
+        >
+          <a href="#skills" class="nav-link">Stack</a>
+          <a href="#projects" class="nav-link">Projets</a>
+          <a href="#xp" class="nav-link">Expérience</a>
+          <a href="#about" class="nav-link">À propos</a>
+          <button
+            onclick="openCV()"
+            class="nav-link border border-white/10 px-4 py-1.5 rounded-xl hover:border-emerald-400/40 hover:text-emerald-300 transition-all"
+            aria-haspopup="dialog"
+          >
+            <i class="fa-solid fa-file-lines mr-1 text-emerald-500 text-xs"></i
+            >CV
+          </button>
+          <a
+            href="#contact"
+            class="ml-1 px-5 py-2 rounded-xl font-extrabold text-xs tracking-widest uppercase transition-all hover:-translate-y-0.5"
+            style="
+              font-family: &quot;Nunito&quot;, sans-serif;
+              background: var(--em);
+              color: #020c07;
+            "
+            >Contact</a
+          >
+        </nav>
+        <button
+          id="burger"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="mob-nav"
+          class="md:hidden p-2 rounded-lg hover:bg-white/5 transition flex flex-col gap-1.5"
+        >
+          <span
+            id="b1"
+            class="w-5 h-0.5 bg-slate-300 rounded transition-all block"
+          ></span>
+          <span
+            id="b2"
+            class="w-5 h-0.5 bg-slate-300 rounded transition-all block"
+          ></span>
+          <span
+            id="b3"
+            class="w-4 h-0.5 bg-slate-300 rounded transition-all block self-end"
+          ></span>
+        </button>
+      </div>
+      <div
+        id="mob-nav"
+        role="navigation"
+        aria-label="Navigation mobile"
+        style="
+          background: rgba(2, 12, 7, 0.97);
+          border-top: 1px solid rgba(16, 185, 129, 0.1);
+        "
+      >
+        <ul class="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1 list-none">
+          <li>
+            <a
+              href="#skills"
+              class="nav-link block py-2.5 px-3 rounded-lg hover:bg-white/5"
+              >Stack</a
+            >
+          </li>
+          <li>
+            <a
+              href="#projects"
+              class="nav-link block py-2.5 px-3 rounded-lg hover:bg-white/5"
+              >Projets</a
+            >
+          </li>
+          <li>
+            <a
+              href="#xp"
+              class="nav-link block py-2.5 px-3 rounded-lg hover:bg-white/5"
+              >Expérience</a
+            >
+          </li>
+          <li>
+            <a
+              href="#about"
+              class="nav-link block py-2.5 px-3 rounded-lg hover:bg-white/5"
+              >À propos</a
+            >
+          </li>
+          <li>
+            <button
+              onclick="
+                openCV();
+                closeMob();
+              "
+              class="nav-link block py-2.5 px-3 rounded-lg hover:bg-white/5 w-full text-left"
+            >
+              CV
+            </button>
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="nav-link block py-2.5 px-3 rounded-lg hover:bg-white/5"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- HERO -->
+      <section
+        id="hero"
+        aria-label="Présentation"
+        class="relative min-h-screen flex items-center overflow-hidden pt-16 hero-grid"
+      >
+        <div
+          aria-hidden="true"
+          class="absolute inset-0"
+          style="
+            background: radial-gradient(
+              ellipse 75% 55% at 58% 42%,
+              rgba(5, 46, 22, 0.72),
+              rgba(2, 12, 7, 1) 68%
+            );
+          "
+        ></div>
+        <div
+          aria-hidden="true"
+          class="absolute inset-0"
+          style="
+            background: radial-gradient(
+              ellipse 45% 38% at 8% 78%,
+              rgba(20, 184, 166, 0.07),
+              transparent 70%
+            );
+          "
+        ></div>
+        <div aria-hidden="true" class="scan-bar"></div>
+        <div
+          aria-hidden="true"
+          class="absolute top-20 right-10 w-72 h-72 rounded-full border border-emerald-500/[0.07] pointer-events-none hidden lg:block"
+          style="animation: rotSlow 22s linear infinite"
+        ></div>
+        <div
+          aria-hidden="true"
+          class="absolute top-32 right-24 w-48 h-48 rounded-full border border-teal-400/[0.05] pointer-events-none hidden lg:block"
+          style="animation: rotSlowR 14s linear infinite"
+        ></div>
+        <div class="relative z-10 max-w-6xl mx-auto px-5 md:px-8 w-full py-20">
+          <div class="flex flex-col lg:flex-row items-center gap-14 lg:gap-20">
+            <aside
+              aria-label="Photo et statut"
+              class="flex flex-col items-center gap-5 shrink-0"
+            >
+              <div class="relative anim-in d1">
+                <div
+                  aria-hidden="true"
+                  class="absolute -inset-3 rounded-full"
+                  style="
+                    background: conic-gradient(
+                      from 0deg,
+                      #10b981,
+                      #14b8a6,
+                      #10b981
+                    );
+                    animation: rotSlow 4s linear infinite;
+                    filter: blur(8px);
+                    opacity: 0.38;
+                  "
+                ></div>
+                <div
+                  class="relative w-44 h-44 md:w-52 md:h-52 rounded-full overflow-hidden border-2 border-emerald-400/50 shadow-2xl"
+                >
+                  <img
+                    src="Assets/Images/Mattis.jpg"
+                    alt="Portrait de Mattis Da Costa Faro"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <div
+                class="anim-in d2 flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-400/28"
+                style="background: rgba(16, 185, 129, 0.08)"
+              >
+                <span
+                  class="w-2 h-2 rounded-full bg-emerald-400 glow-dot"
+                  aria-hidden="true"
+                ></span>
+                <span
+                  class="text-emerald-300 text-xs font-extrabold tracking-widest uppercase"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                  >Disponible</span
+                >
+              </div>
+              <div class="anim-in d3 flex gap-2.5">
+                <a
+                  href="https://github.com/MattisD3V"
+                  title="GitHub"
+                  rel="noopener"
+                  class="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 text-slate-400 hover:text-emerald-400 hover:border-emerald-400/40 transition-all"
+                  style="background: rgba(255, 255, 255, 0.03)"
+                  ><i class="fa-brands fa-github text-sm"></i
+                ></a>
+                <a
+                  href="https://www.linkedin.com/in/mattis-da-costa-faro/"
+                  title="LinkedIn"
+                  rel="noopener"
+                  class="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 text-slate-400 hover:text-emerald-400 hover:border-emerald-400/40 transition-all"
+                  style="background: rgba(255, 255, 255, 0.03)"
+                  ><i class="fa-brands fa-linkedin text-sm"></i
+                ></a>
+              </div>
+            </aside>
+            <div class="flex flex-col gap-6 text-center lg:text-left max-w-2xl">
+              <div class="anim-in d1">
+                <span
+                  class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-emerald-300 text-xs font-extrabold tracking-widest uppercase border border-emerald-400/22"
+                  style="
+                    font-family: &quot;Nunito&quot;, sans-serif;
+                    background: rgba(16, 185, 129, 0.07);
+                  "
+                >
+                  <i class="fa-solid fa-code text-[10px]"></i>Développeur Full
+                  Stack · Fondateur NX-DEV
+                </span>
+              </div>
+              <h1
+                class="anim-in d2 text-4xl sm:text-5xl md:text-6xl font-black leading-[1.08]"
+              >
+                Mattis<br /><span class="shimmer-text">Da Costa Faro</span>
+              </h1>
+              <p
+                class="anim-in d3 text-slate-300 text-base leading-relaxed max-w-xl"
+              >
+                Développeur Full Stack diplômé
+                <strong class="text-white">BAC+3 CDA</strong>, je conçois des
+                applications web robustes et des interfaces soignées — du
+                back-end à l'UI. En parallèle, je développe activement des
+                prototypes de jeux vidéo sous Unity.
+              </p>
+              <div
+                class="anim-in d4 terminal max-w-md mx-auto lg:mx-0"
+                role="presentation"
+                aria-hidden="true"
+              >
+                <div class="terminal-bar">
+                  <div class="t-dot" style="background: #ff5f57"></div>
+                  <div class="t-dot" style="background: #febc2e"></div>
+                  <div class="t-dot" style="background: #28c840"></div>
+                  <span
+                    class="ml-3 text-xs text-slate-500"
+                    style="font-family: monospace"
+                    >mattis@nxdev ~</span
+                  >
+                </div>
+                <div class="terminal-body text-xs">
+                  <div>
+                    <span class="key">const </span><span class="val">dev</span
+                    ><span class="key"> = </span
+                    ><span style="color: #64748b">{</span>
+                  </div>
+                  <div style="padding-left: 14px">
+                    <span class="key">stack: </span
+                    ><span class="val">"React · Node · SQL/NoSQL"</span
+                    ><span class="key">,</span>
+                  </div>
+                  <div style="padding-left: 14px">
+                    <span class="key">diplôme: </span
+                    ><span class="val">"BAC+3 CDA"</span
+                    ><span class="key">,</span>
+                  </div>
+                  <div style="padding-left: 14px">
+                    <span class="key">statut: </span
+                    ><span style="color: #34d399">"✅ Disponible"</span
+                    ><span class="key">,</span>
+                  </div>
+                  <div style="padding-left: 14px">
+                    <span class="key">passion: </span
+                    ><span class="val">"Web + GameDev Unity"</span>
+                  </div>
+                  <div><span style="color: #64748b">}</span></div>
+                  <div class="mt-1 cmt">
+                    // open to missions &amp; freelance<span
+                      class="cursor"
+                    ></span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="anim-in d5 flex flex-wrap gap-3 justify-center lg:justify-start"
+              >
+                <a
+                  href="#projects"
+                  class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl font-extrabold text-sm transition-all hover:-translate-y-0.5 shadow-xl"
+                  style="
+                    font-family: &quot;Nunito&quot;, sans-serif;
+                    background: var(--em);
+                    color: #020c07;
+                    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.22);
+                  "
+                  >Voir mes projets
+                  <i class="fa-solid fa-arrow-right text-xs"></i
+                ></a>
+                <a
+                  href="#contact"
+                  class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl border border-emerald-400/25 text-slate-200 font-bold text-sm hover:border-emerald-400/60 hover:text-emerald-300 transition-all hover:-translate-y-0.5"
+                  style="background: rgba(255, 255, 255, 0.03)"
+                  >Me contacter</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
+          aria-hidden="true"
+        >
+          <span
+            class="text-[10px] font-extrabold tracking-widest uppercase text-slate-600"
+            style="font-family: &quot;Nunito&quot;, sans-serif"
+            >Scroll</span
+          >
+          <i
+            class="fa-solid fa-chevron-down text-emerald-500 text-xs animate-bounce"
+          ></i>
+        </div>
+      </section>
+
+      <!-- COMPÉTENCES -->
+      <section
+        id="skills"
+        aria-labelledby="skills-title"
+        class="relative py-24 px-5 md:px-8 overflow-hidden"
+        style="background: var(--bg2)"
+      >
+        <div
+          aria-hidden="true"
+          class="absolute left-0 top-0 w-96 h-96 pointer-events-none"
+          style="
+            background: radial-gradient(
+              circle,
+              rgba(16, 185, 129, 0.05),
+              transparent 70%
+            );
+          "
+        ></div>
+        <div class="max-w-5xl mx-auto">
+          <header class="text-center mb-14 reveal">
+            <p class="sec-label mb-2">Stack technique</p>
+            <h2 id="skills-title" class="text-3xl md:text-4xl font-black mb-4">
+              Compétences
+            </h2>
+            <div class="sec-rule mx-auto"></div>
+          </header>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <article
+              class="reveal gb-card p-6 flex flex-col gap-5"
+              aria-label="Front-End"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-xl flex items-center justify-center"
+                  style="
+                    background: rgba(16, 185, 129, 0.12);
+                    border: 1px solid rgba(52, 211, 153, 0.2);
+                  "
+                >
+                  <i
+                    class="fa-solid fa-paintbrush text-emerald-400 text-sm"
+                  ></i>
+                </div>
+                <h3 class="font-extrabold text-white">Front-End</h3>
+              </div>
+              <div class="flex flex-col gap-3" role="list">
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold">HTML / CSS</span
+                    ><span class="text-emerald-400 font-bold">90%</span>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill bar-green" style="--w: 90%"></div>
+                  </div>
+                </div>
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold"
+                      >JavaScript ES6+</span
+                    ><span class="text-emerald-400 font-bold">80%</span>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill bar-green" style="--w: 80%"></div>
+                  </div>
+                </div>
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold"
+                      >React / Next.js</span
+                    ><span class="text-emerald-400 font-bold">75%</span>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill bar-green" style="--w: 75%"></div>
+                  </div>
+                </div>
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold"
+                      >Vue.js / Nuxt</span
+                    ><span class="text-emerald-400 font-bold">65%</span>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill bar-green" style="--w: 65%"></div>
+                  </div>
+                </div>
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold"
+                      >Tailwind CSS</span
+                    ><span class="text-emerald-400 font-bold">85%</span>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill bar-green" style="--w: 85%"></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              class="reveal gb-card p-6 flex flex-col gap-5"
+              style="animation-delay: 0.1s"
+              aria-label="Back-End"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-xl flex items-center justify-center"
+                  style="
+                    background: rgba(20, 184, 166, 0.12);
+                    border: 1px solid rgba(45, 212, 191, 0.2);
+                  "
+                >
+                  <i class="fa-solid fa-server text-teal-400 text-sm"></i>
+                </div>
+                <h3 class="font-extrabold text-white">Back-End</h3>
+              </div>
+              <div class="flex flex-col gap-3" role="list">
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold"
+                      >Node.js / Express</span
+                    ><span class="text-teal-400 font-bold">75%</span>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill bar-teal" style="--w: 75%"></div>
+                  </div>
+                </div>
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold">REST APIs</span
+                    ><span class="text-teal-400 font-bold">78%</span>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill bar-teal" style="--w: 78%"></div>
+                  </div>
+                </div>
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold"
+                      >MySQL / MongoDB</span
+                    ><span class="text-teal-400 font-bold">80%</span>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill bar-teal" style="--w: 80%"></div>
+                  </div>
+                </div>
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold">Prisma ORM</span
+                    ><span class="text-teal-400 font-bold">70%</span>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill bar-teal" style="--w: 70%"></div>
+                  </div>
+                </div>
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold"
+                      >Java / Spring Boot</span
+                    ><span class="text-teal-400 font-bold">60%</span>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill bar-teal" style="--w: 60%"></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              class="reveal gb-card p-6 flex flex-col gap-4"
+              style="animation-delay: 0.2s"
+              aria-label="Outils et GameDev"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-xl flex items-center justify-center"
+                  style="
+                    background: rgba(139, 92, 246, 0.12);
+                    border: 1px solid rgba(167, 139, 250, 0.2);
+                  "
+                >
+                  <i class="fa-solid fa-gamepad text-violet-400 text-sm"></i>
+                </div>
+                <h3 class="font-extrabold text-white">Outils &amp; GameDev</h3>
+              </div>
+              <div class="tech-grid">
+                <span class="tech-item"
+                  ><i class="fa-brands fa-git-alt text-orange-400 mr-1"></i
+                  >Git</span
+                >
+                <span class="tech-item"
+                  ><i class="fa-brands fa-docker text-blue-400 mr-1"></i
+                  >Docker</span
+                >
+                <span class="tech-item"
+                  ><i class="fa-brands fa-figma text-pink-400 mr-1"></i
+                  >Figma</span
+                >
+                <span class="tech-item"
+                  ><i class="fa-solid fa-terminal text-emerald-400 mr-1"></i
+                  >Linux</span
+                >
+                <span class="tech-item"
+                  ><i class="fa-brands fa-aws text-orange-300 mr-1"></i
+                  >AWS</span
+                >
+                <span class="tech-item"
+                  ><i class="fa-solid fa-code-branch text-violet-400 mr-1"></i
+                  >Agile</span
+                >
+                <span class="tech-item"
+                  ><i class="fa-brands fa-unity mr-1"></i>Unity</span
+                >
+                <span class="tech-item"
+                  ><i class="fa-solid fa-c text-blue-300 mr-1"></i>C#</span
+                >
+                <span class="tech-item"
+                  ><i class="fa-brands fa-python text-yellow-400 mr-1"></i
+                  >Python</span
+                >
+                <span class="tech-item"
+                  ><i class="fa-brands fa-java text-red-400 mr-1"></i>Java</span
+                >
+              </div>
+              <p
+                class="text-xs text-slate-500 leading-relaxed mt-auto pt-3 border-t border-white/[0.04]"
+              >
+                <i class="fa-solid fa-dice-d20 text-violet-400 mr-1"></i>Je
+                développe activement des prototypes de jeux sous Unity / C# —
+                level design, IA basique, physique 2D/3D.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJETS -->
+      <section
+        id="projects"
+        aria-labelledby="projects-title"
+        class="relative py-24 px-5 md:px-8 overflow-hidden"
+        style="background: var(--bg)"
+      >
+        <div
+          aria-hidden="true"
+          class="absolute bottom-0 right-0 w-96 h-96 pointer-events-none"
+          style="
+            background: radial-gradient(
+              circle,
+              rgba(16, 185, 129, 0.05),
+              transparent 70%
+            );
+          "
+        ></div>
+        <div class="max-w-6xl mx-auto">
+          <header class="text-center mb-12 reveal">
+            <p class="sec-label mb-2">Preuves de compétences</p>
+            <h2
+              id="projects-title"
+              class="text-3xl md:text-4xl font-black mb-4"
+            >
+              Projets
+            </h2>
+            <div class="sec-rule mx-auto mb-6"></div>
+            <div
+              class="flex flex-wrap justify-center gap-2 mt-6"
+              role="group"
+              aria-label="Filtrer les projets"
+            >
+              <button
+                onclick="filterCards('tous')"
+                data-filter="tous"
+                class="filter-btn on"
+              >
+                Tous
+              </button>
+              <button
+                onclick="filterCards('vitrine')"
+                data-filter="vitrine"
+                class="filter-btn off"
+              >
+                Site vitrine
+              </button>
+              <button
+                onclick="filterCards('application')"
+                data-filter="application"
+                class="filter-btn off"
+              >
+                Application
+              </button>
+              <button
+                onclick="filterCards('dashboard')"
+                data-filter="dashboard"
+                class="filter-btn off"
+              >
+                Dashboard
+              </button>
+              <button
+                onclick="filterCards('ecommerce')"
+                data-filter="ecommerce"
+                class="filter-btn off"
+              >
+                E-commerce
+              </button>
+            </div>
+          </header>
+          <ul
+            id="cards-grid"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 list-none"
+            role="list"
+          >
+            <li data-category="vitrine" class="project-card reveal">
+              <a href="404.html" class="flex flex-col h-full"
+                ><div class="relative h-44 overflow-hidden">
+                  <img
+                    src="Assets/Images/Restaurant.jpg"
+                    alt="La Belle Assiette"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    aria-hidden="true"
+                    class="absolute inset-0"
+                    style="
+                      background: linear-gradient(
+                        to top,
+                        rgba(2, 12, 7, 0.88),
+                        transparent 60%
+                      );
+                    "
+                  ></div>
+                  <span
+                    class="tag tag-em absolute top-3 left-3 text-[9px]"
+                    style="backdrop-filter: blur(8px)"
+                    >Site vitrine</span
+                  >
+                </div>
+                <div class="p-5 flex flex-col gap-2 flex-1">
+                  <div class="flex items-center justify-between">
+                    <h3 class="font-extrabold text-white text-sm">
+                      La Belle Assiette
+                    </h3>
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                    ></i>
+                  </div>
+                  <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                    Restaurant gastronomique. Menu interactif, réservation en
+                    ligne, galerie photo.
+                  </p>
+                  <div class="flex flex-wrap gap-1.5 pt-1">
+                    <span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >HTML</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >CSS</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >JavaScript</span
+                    >
+                  </div>
+                </div></a
+              >
+            </li>
+            <li
+              data-category="application"
+              class="project-card reveal"
+              style="animation-delay: 0.07s"
+            >
+              <a href="404.html" class="flex flex-col h-full"
+                ><div class="relative h-44 overflow-hidden">
+                  <img
+                    src="Assets/Images/Todo.jpg"
+                    alt="TaskFlow"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    aria-hidden="true"
+                    class="absolute inset-0"
+                    style="
+                      background: linear-gradient(
+                        to top,
+                        rgba(2, 12, 7, 0.88),
+                        transparent 60%
+                      );
+                    "
+                  ></div>
+                  <span
+                    class="tag tag-teal absolute top-3 left-3 text-[9px]"
+                    style="backdrop-filter: blur(8px)"
+                    >Application</span
+                  >
+                </div>
+                <div class="p-5 flex flex-col gap-2 flex-1">
+                  <div class="flex items-center justify-between">
+                    <h3 class="font-extrabold text-white text-sm">TaskFlow</h3>
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                    ></i>
+                  </div>
+                  <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                    Gestion de tâches drag &amp; drop, catégories, priorités,
+                    statistiques temps réel.
+                  </p>
+                  <div class="flex flex-wrap gap-1.5 pt-1">
+                    <span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >React</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >Node.js</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >MongoDB</span
+                    >
+                  </div>
+                </div></a
+              >
+            </li>
+            <li
+              data-category="dashboard"
+              class="project-card reveal"
+              style="animation-delay: 0.14s"
+            >
+              <a href="404.html" class="flex flex-col h-full"
+                ><div class="relative h-44 overflow-hidden">
+                  <img
+                    src="Assets/Images/Dashboard.jpg"
+                    alt="AnalytiX"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    aria-hidden="true"
+                    class="absolute inset-0"
+                    style="
+                      background: linear-gradient(
+                        to top,
+                        rgba(2, 12, 7, 0.88),
+                        transparent 60%
+                      );
+                    "
+                  ></div>
+                  <span
+                    class="tag tag-vio absolute top-3 left-3 text-[9px]"
+                    style="backdrop-filter: blur(8px)"
+                    >Dashboard</span
+                  >
+                </div>
+                <div class="p-5 flex flex-col gap-2 flex-1">
+                  <div class="flex items-center justify-between">
+                    <h3 class="font-extrabold text-white text-sm">AnalytiX</h3>
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                    ></i>
+                  </div>
+                  <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                    Analyse de données temps réel, graphiques interactifs, KPIs,
+                    rapports PDF.
+                  </p>
+                  <div class="flex flex-wrap gap-1.5 pt-1">
+                    <span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >Vue.js</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >Chart.js</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >Laravel</span
+                    >
+                  </div>
+                </div></a
+              >
+            </li>
+            <li
+              data-category="ecommerce"
+              class="project-card reveal"
+              style="animation-delay: 0.07s"
+            >
+              <a href="404.html" class="flex flex-col h-full"
+                ><div class="relative h-44 overflow-hidden">
+                  <img
+                    src="Assets/Images/E-commerce.jpg"
+                    alt="ShopNest"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    aria-hidden="true"
+                    class="absolute inset-0"
+                    style="
+                      background: linear-gradient(
+                        to top,
+                        rgba(2, 12, 7, 0.88),
+                        transparent 60%
+                      );
+                    "
+                  ></div>
+                  <span
+                    class="tag absolute top-3 left-3 text-[9px]"
+                    style="
+                      background: rgba(249, 115, 22, 0.18);
+                      border: 1px solid rgba(251, 146, 60, 0.3);
+                      color: #fdba74;
+                      backdrop-filter: blur(8px);
+                    "
+                    >E-commerce</span
+                  >
+                </div>
+                <div class="p-5 flex flex-col gap-2 flex-1">
+                  <div class="flex items-center justify-between">
+                    <h3 class="font-extrabold text-white text-sm">ShopNest</h3>
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                    ></i>
+                  </div>
+                  <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                    Boutique complète : panier, Stripe, gestion des stocks,
+                    espace admin.
+                  </p>
+                  <div class="flex flex-wrap gap-1.5 pt-1">
+                    <span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >Next.js</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >Stripe</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >PostgreSQL</span
+                    >
+                  </div>
+                </div></a
+              >
+            </li>
+            <li
+              data-category="vitrine"
+              class="project-card reveal"
+              style="animation-delay: 0.14s"
+            >
+              <a href="404.html" class="flex flex-col h-full"
+                ><div class="relative h-44 overflow-hidden">
+                  <img
+                    src="Assets/Images/Agence.jpg"
+                    alt="Lumio Agency"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    aria-hidden="true"
+                    class="absolute inset-0"
+                    style="
+                      background: linear-gradient(
+                        to top,
+                        rgba(2, 12, 7, 0.88),
+                        transparent 60%
+                      );
+                    "
+                  ></div>
+                  <span
+                    class="tag tag-em absolute top-3 left-3 text-[9px]"
+                    style="backdrop-filter: blur(8px)"
+                    >Site vitrine</span
+                  >
+                </div>
+                <div class="p-5 flex flex-col gap-2 flex-1">
+                  <div class="flex items-center justify-between">
+                    <h3 class="font-extrabold text-white text-sm">
+                      Lumio Agency
+                    </h3>
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                    ></i>
+                  </div>
+                  <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                    Agence créative : animations scroll, portfolio, formulaire
+                    de contact.
+                  </p>
+                  <div class="flex flex-wrap gap-1.5 pt-1">
+                    <span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >HTML</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >GSAP</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >Tailwind</span
+                    >
+                  </div>
+                </div></a
+              >
+            </li>
+            <li
+              data-category="application"
+              class="project-card reveal"
+              style="animation-delay: 0.21s"
+            >
+              <a href="404.html" class="flex flex-col h-full"
+                ><div class="relative h-44 overflow-hidden">
+                  <img
+                    src="Assets/Images/Météo.jpg"
+                    alt="SkyPulse"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    aria-hidden="true"
+                    class="absolute inset-0"
+                    style="
+                      background: linear-gradient(
+                        to top,
+                        rgba(2, 12, 7, 0.88),
+                        transparent 60%
+                      );
+                    "
+                  ></div>
+                  <span
+                    class="tag tag-teal absolute top-3 left-3 text-[9px]"
+                    style="backdrop-filter: blur(8px)"
+                    >Application</span
+                  >
+                </div>
+                <div class="p-5 flex flex-col gap-2 flex-1">
+                  <div class="flex items-center justify-between">
+                    <h3 class="font-extrabold text-white text-sm">SkyPulse</h3>
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                    ></i>
+                  </div>
+                  <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                    App météo : prévisions 7j, géolocalisation, carte
+                    interactive Leaflet.
+                  </p>
+                  <div class="flex flex-wrap gap-1.5 pt-1">
+                    <span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >React</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >API REST</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >Leaflet</span
+                    >
+                  </div>
+                </div></a
+              >
+            </li>
+            <li data-category="dashboard" class="project-card reveal">
+              <a href="404.html" class="flex flex-col h-full"
+                ><div class="relative h-44 overflow-hidden">
+                  <img
+                    src="Assets/Images/RH.jpg"
+                    alt="HRFlow"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    aria-hidden="true"
+                    class="absolute inset-0"
+                    style="
+                      background: linear-gradient(
+                        to top,
+                        rgba(2, 12, 7, 0.88),
+                        transparent 60%
+                      );
+                    "
+                  ></div>
+                  <span
+                    class="tag tag-vio absolute top-3 left-3 text-[9px]"
+                    style="backdrop-filter: blur(8px)"
+                    >Dashboard</span
+                  >
+                </div>
+                <div class="p-5 flex flex-col gap-2 flex-1">
+                  <div class="flex items-center justify-between">
+                    <h3 class="font-extrabold text-white text-sm">HRFlow</h3>
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                    ></i>
+                  </div>
+                  <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                    Outil RH : congés, organigramme, fiches employés, reporting.
+                  </p>
+                  <div class="flex flex-wrap gap-1.5 pt-1">
+                    <span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >Angular</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >Spring Boot</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >MySQL</span
+                    >
+                  </div>
+                </div></a
+              >
+            </li>
+            <li
+              data-category="ecommerce"
+              class="project-card reveal"
+              style="animation-delay: 0.07s"
+            >
+              <a href="404.html" class="flex flex-col h-full"
+                ><div class="relative h-44 overflow-hidden">
+                  <img
+                    src="Assets/Images/Mode.jpg"
+                    alt="Velour Shop"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    aria-hidden="true"
+                    class="absolute inset-0"
+                    style="
+                      background: linear-gradient(
+                        to top,
+                        rgba(2, 12, 7, 0.88),
+                        transparent 60%
+                      );
+                    "
+                  ></div>
+                  <span
+                    class="tag absolute top-3 left-3 text-[9px]"
+                    style="
+                      background: rgba(249, 115, 22, 0.18);
+                      border: 1px solid rgba(251, 146, 60, 0.3);
+                      color: #fdba74;
+                      backdrop-filter: blur(8px);
+                    "
+                    >E-commerce</span
+                  >
+                </div>
+                <div class="p-5 flex flex-col gap-2 flex-1">
+                  <div class="flex items-center justify-between">
+                    <h3 class="font-extrabold text-white text-sm">
+                      Velour Shop
+                    </h3>
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                    ></i>
+                  </div>
+                  <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                    Mode en ligne : filtres avancés, wishlist, comparateur
+                    tailles, fidélité.
+                  </p>
+                  <div class="flex flex-wrap gap-1.5 pt-1">
+                    <span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >Nuxt.js</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >Tailwind</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >Stripe</span
+                    >
+                  </div>
+                </div></a
+              >
+            </li>
+            <li
+              data-category="vitrine"
+              class="project-card reveal"
+              style="animation-delay: 0.14s"
+            >
+              <a href="404.html" class="flex flex-col h-full"
+                ><div class="relative h-44 overflow-hidden">
+                  <img
+                    src="Assets/Images/Photographe.jpg"
+                    alt="Focus Studio"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    aria-hidden="true"
+                    class="absolute inset-0"
+                    style="
+                      background: linear-gradient(
+                        to top,
+                        rgba(2, 12, 7, 0.88),
+                        transparent 60%
+                      );
+                    "
+                  ></div>
+                  <span
+                    class="tag tag-em absolute top-3 left-3 text-[9px]"
+                    style="backdrop-filter: blur(8px)"
+                    >Site vitrine</span
+                  >
+                </div>
+                <div class="p-5 flex flex-col gap-2 flex-1">
+                  <div class="flex items-center justify-between">
+                    <h3 class="font-extrabold text-white text-sm">
+                      Focus Studio
+                    </h3>
+                    <i
+                      class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-600"
+                    ></i>
+                  </div>
+                  <p class="text-slate-400 text-xs leading-relaxed flex-1">
+                    Portfolio photographe : galerie masonry, lightbox,
+                    réservation.
+                  </p>
+                  <div class="flex flex-wrap gap-1.5 pt-1">
+                    <span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >HTML</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >CSS</span
+                    ><span class="tag tag-slate text-[10px] px-2 py-0.5"
+                      >PHP</span
+                    >
+                  </div>
+                </div></a
+              >
+            </li>
+          </ul>
+          <p
+            id="no-result"
+            class="hidden text-center py-16 text-slate-500 font-extrabold"
+            style="font-family: &quot;Nunito&quot;, sans-serif"
+            aria-live="polite"
+          >
+            <i
+              class="fa-solid fa-folder-open text-3xl block mb-3 text-slate-700"
+            ></i
+            >Aucun projet dans cette catégorie
+          </p>
+        </div>
+      </section>
+
+      <!-- EXPÉRIENCE DEV UNIQUEMENT -->
+      <section
+        id="xp"
+        aria-labelledby="xp-title"
+        class="relative py-24 px-5 md:px-8 overflow-hidden"
+        style="background: var(--bg2)"
+      >
+        <div
+          aria-hidden="true"
+          class="absolute right-0 top-0 w-80 h-80 pointer-events-none"
+          style="
+            background: radial-gradient(
+              circle,
+              rgba(16, 185, 129, 0.05),
+              transparent 70%
+            );
+          "
+        ></div>
+        <div class="max-w-4xl mx-auto">
+          <header class="text-center mb-14 reveal">
+            <p class="sec-label mb-2">Parcours technique</p>
+            <h2 id="xp-title" class="text-3xl md:text-4xl font-black mb-4">
+              Expérience
+            </h2>
+            <div class="sec-rule mx-auto"></div>
+          </header>
+          <div class="flex flex-col gap-10">
+            <article
+              class="reveal xp-card pinned"
+              aria-label="Fondateur Nexys-Dev"
+            >
+              <div
+                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+              >
+                <div>
+                  <span class="chip chip-em mr-2">🚀 Présent</span>
+                  <h3 class="inline font-extrabold text-white text-base">
+                    Fondateur &amp; Développeur Full Stack
+                  </h3>
+                </div>
+                <time
+                  datetime="2026-02"
+                  class="text-xs text-emerald-400 font-extrabold whitespace-nowrap"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                  >Fév. 2026 →</time
+                >
+              </div>
+              <p class="text-sm text-emerald-300 font-semibold mb-2">
+                Nexys-Dev (NX-DEV) · Alès · Auto-entrepreneur
+              </p>
+              <p class="text-sm text-slate-400 leading-relaxed mb-3">
+                Création et gestion de mon entreprise de développement web sur
+                mesure. Conception, développement et déploiement de solutions
+                digitales complètes pour TPE et startups.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag tag-em">React</span
+                ><span class="tag tag-em">Node.js</span
+                ><span class="tag tag-em">Next.js</span
+                ><span class="tag tag-em">MySQL</span
+                ><span class="tag tag-em">MongoDB</span
+                ><span class="tag tag-em">Docker</span>
+              </div>
+            </article>
+            <article
+              class="reveal xp-card"
+              style="animation-delay: 0.07s"
+              aria-label="Formation CDA ALT Rennes"
+            >
+              <div
+                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+              >
+                <div>
+                  <span class="chip chip-em mr-2">Formation BAC+3</span>
+                  <h3 class="inline font-extrabold text-white text-base">
+                    Concepteur Développeur d'Applications
+                  </h3>
+                </div>
+                <time
+                  datetime="2024-08/2025-12"
+                  class="text-xs text-emerald-400 font-extrabold whitespace-nowrap"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                  >Août 2024 – Déc. 2025</time
+                >
+              </div>
+              <p class="text-sm text-emerald-300 font-semibold mb-2">
+                ALT · Rennes · Alternance
+              </p>
+              <p class="text-sm text-slate-400 leading-relaxed mb-3">
+                Formation BAC+3 en alternance : architecture logicielle, gestion
+                de projet Agile, développement full stack, APIs REST, bases de
+                données relationnelles et NoSQL.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag tag-teal">Architecture logicielle</span
+                ><span class="tag tag-teal">Agile/Scrum</span
+                ><span class="tag tag-teal">React</span
+                ><span class="tag tag-teal">Node.js</span
+                ><span class="tag tag-teal">SQL/NoSQL</span>
+              </div>
+            </article>
+            <article
+              class="reveal xp-card"
+              style="animation-delay: 0.14s"
+              aria-label="Développeur Full Stack Dynamic Cloud Studios"
+            >
+              <div
+                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+              >
+                <div>
+                  <span class="chip chip-em mr-2">CDD · 6 mois</span>
+                  <h3 class="inline font-extrabold text-white text-base">
+                    Développeur Full Stack
+                  </h3>
+                </div>
+                <time
+                  datetime="2024-01/2024-06"
+                  class="text-xs text-emerald-400 font-extrabold whitespace-nowrap"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                  >Jan. – Juin 2024</time
+                >
+              </div>
+              <p class="text-sm text-emerald-300 font-semibold mb-2">
+                Dynamic Cloud Studios · Alès
+              </p>
+              <p class="text-sm text-slate-400 leading-relaxed mb-3">
+                Développement et maintenance d'applications web. Intégration
+                d'APIs, création d'interfaces React, gestion de bases de
+                données, travail en équipe Agile.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag tag-slate">React</span
+                ><span class="tag tag-slate">Node.js</span
+                ><span class="tag tag-slate">REST API</span
+                ><span class="tag tag-slate">Git</span
+                ><span class="tag tag-slate">Agile</span>
+              </div>
+            </article>
+            <article
+              class="reveal xp-card"
+              style="animation-delay: 0.21s"
+              aria-label="Formation Développeur Web ADRAR"
+            >
+              <div
+                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+              >
+                <div>
+                  <span class="chip chip-em mr-2">Formation certifiante</span>
+                  <h3 class="inline font-extrabold text-white text-base">
+                    Développeur Web &amp; Web Mobile
+                  </h3>
+                </div>
+                <time
+                  datetime="2021-06/2021-10"
+                  class="text-xs text-emerald-400 font-extrabold whitespace-nowrap"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                  >Juin – Oct. 2021</time
+                >
+              </div>
+              <p class="text-sm text-emerald-300 font-semibold mb-2">
+                ADRAR Formation · Montpellier
+              </p>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Point de départ de ma reconversion dans le développement web.
+                HTML/CSS, JavaScript, PHP, MySQL — bases solides qui m'ont
+                permis d'accéder rapidement à un emploi.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- À PROPOS -->
+      <section
+        id="about"
+        aria-labelledby="about-title"
+        class="relative py-24 px-5 md:px-8 overflow-hidden"
+        style="background: var(--bg)"
+      >
+        <div
+          aria-hidden="true"
+          class="absolute right-0 bottom-0 w-96 h-96 pointer-events-none"
+          style="
+            background: radial-gradient(
+              circle,
+              rgba(20, 184, 166, 0.05),
+              transparent 70%
+            );
+          "
+        ></div>
+        <div class="max-w-5xl mx-auto">
+          <header class="text-center mb-14 reveal">
+            <p class="sec-label mb-2">Qui suis-je ?</p>
+            <h2 id="about-title" class="text-3xl md:text-4xl font-black mb-4">
+              À propos
+            </h2>
+            <div class="sec-rule mx-auto"></div>
+          </header>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <article class="reveal gb-card p-6 flex flex-col gap-4">
+              <div
+                class="w-11 h-11 rounded-xl flex items-center justify-center"
+                style="
+                  background: rgba(16, 185, 129, 0.12);
+                  border: 1px solid rgba(52, 211, 153, 0.2);
+                "
+              >
+                <i class="fa-solid fa-user text-emerald-400"></i>
+              </div>
+              <h3 class="font-extrabold text-white">Profil</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                23 ans, basé à Alès (France). Développeur Full Stack passionné,
+                fondateur de Nexys-Dev (NX-DEV). Je crée des expériences
+                digitales soignées, de la conception à la mise en production.
+              </p>
+            </article>
+            <article
+              class="reveal gb-card p-6 flex flex-col gap-4"
+              style="animation-delay: 0.1s"
+            >
+              <div
+                class="w-11 h-11 rounded-xl flex items-center justify-center"
+                style="
+                  background: rgba(16, 185, 129, 0.12);
+                  border: 1px solid rgba(52, 211, 153, 0.2);
+                "
+              >
+                <i class="fa-solid fa-graduation-cap text-emerald-400"></i>
+              </div>
+              <h3 class="font-extrabold text-white">Formation</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                BAC+3 Concepteur Développeur d'Applications (ALT, Rennes).
+                Parcours atypique — reconversion réussie — qui forge curiosité
+                et détermination.
+              </p>
+            </article>
+            <article
+              class="reveal gb-card p-6 flex flex-col gap-4"
+              style="animation-delay: 0.2s"
+            >
+              <div
+                class="w-11 h-11 rounded-xl flex items-center justify-center"
+                style="
+                  background: rgba(139, 92, 246, 0.12);
+                  border: 1px solid rgba(167, 139, 250, 0.2);
+                "
+              >
+                <i class="fa-solid fa-gamepad text-violet-400"></i>
+              </div>
+              <h3 class="font-extrabold text-white">Passion GameDev</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                Je développe activement des prototypes de jeux vidéo sous Unity
+                / C# — level design, IA de base, physique 2D/3D. Le jeu vidéo
+                est ma prochaine frontière.
+              </p>
+            </article>
+          </div>
+          <div class="mt-12 text-center reveal">
+            <p class="text-slate-500 text-sm mb-4">
+              Vous souhaitez consulter mon parcours complet ?
+            </p>
+            <button
+              onclick="openCV()"
+              class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl font-extrabold text-sm transition-all hover:-translate-y-0.5"
+              style="
+                font-family: &quot;Nunito&quot;, sans-serif;
+                background: rgba(16, 185, 129, 0.1);
+                border: 1px solid rgba(52, 211, 153, 0.28);
+                color: #6ee7b7;
+              "
+              aria-haspopup="dialog"
+            >
+              <i class="fa-solid fa-file-lines"></i>Voir mon CV complet
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section
+        id="contact"
+        aria-labelledby="contact-title"
+        class="relative py-24 px-5 md:px-8 overflow-hidden"
+        style="background: var(--bg2)"
+      >
+        <div
+          aria-hidden="true"
+          class="absolute top-0 left-0 w-80 h-80 pointer-events-none"
+          style="
+            background: radial-gradient(
+              circle,
+              rgba(16, 185, 129, 0.06),
+              transparent 70%
+            );
+          "
+        ></div>
+        <div
+          aria-hidden="true"
+          class="absolute bottom-0 right-0 w-96 h-96 pointer-events-none"
+          style="
+            background: radial-gradient(
+              circle,
+              rgba(20, 184, 166, 0.05),
+              transparent 70%
+            );
+          "
+        ></div>
+        <div class="max-w-5xl mx-auto">
+          <header class="text-center mb-14 reveal">
+            <p class="sec-label mb-2">Parlons-nous</p>
+            <h2 id="contact-title" class="text-3xl md:text-4xl font-black mb-4">
+              Me contacter
+            </h2>
+            <div class="sec-rule mx-auto mb-5"></div>
+            <p class="text-slate-400 text-sm max-w-md mx-auto leading-relaxed">
+              Un projet ? Une mission ? N'hésitez pas, je réponds rapidement.
+            </p>
+          </header>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            <aside
+              aria-label="Informations de contact"
+              class="reveal flex flex-col gap-4"
+            >
+              <div
+                class="flex items-center gap-4 p-5 rounded-2xl"
+                style="
+                  background: var(--card-bg);
+                  border: 1px solid var(--card-br);
+                "
+              >
+                <div
+                  class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                  style="
+                    background: rgba(16, 185, 129, 0.12);
+                    border: 1px solid rgba(52, 211, 153, 0.2);
+                  "
+                >
+                  <i class="fa-solid fa-envelope text-emerald-400 text-sm"></i>
+                </div>
+                <div>
+                  <p
+                    class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
+                    style="font-family: &quot;Nunito&quot;, sans-serif"
+                  >
+                    Email
+                  </p>
+                  <a
+                    href="mailto:mattis1dcf@gmail.com"
+                    class="text-slate-200 font-semibold text-sm hover:text-emerald-400 transition-colors"
+                    >mattis1dcf@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div
+                class="flex items-center gap-4 p-5 rounded-2xl"
+                style="
+                  background: var(--card-bg);
+                  border: 1px solid var(--card-br);
+                "
+              >
+                <div
+                  class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                  style="
+                    background: rgba(16, 185, 129, 0.12);
+                    border: 1px solid rgba(52, 211, 153, 0.2);
+                  "
+                >
+                  <i
+                    class="fa-solid fa-location-dot text-emerald-400 text-sm"
+                  ></i>
+                </div>
+                <div>
+                  <p
+                    class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
+                    style="font-family: &quot;Nunito&quot;, sans-serif"
+                  >
+                    Localisation
+                  </p>
+                  <p class="text-slate-200 font-semibold text-sm">
+                    Alès, France 🇫🇷
+                  </p>
+                </div>
+              </div>
+              <div
+                class="flex items-center gap-4 p-5 rounded-2xl"
+                style="
+                  background: var(--card-bg);
+                  border: 1px solid var(--card-br);
+                "
+              >
+                <div
+                  class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                  style="
+                    background: rgba(16, 185, 129, 0.12);
+                    border: 1px solid rgba(52, 211, 153, 0.2);
+                  "
+                >
+                  <i
+                    class="fa-solid fa-circle-check text-emerald-400 text-sm"
+                  ></i>
+                </div>
+                <div>
+                  <p
+                    class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
+                    style="font-family: &quot;Nunito&quot;, sans-serif"
+                  >
+                    Disponibilité
+                  </p>
+                  <p class="text-slate-200 font-semibold text-sm">
+                    Disponible dès maintenant
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-3 pt-1">
+                <a
+                  href="https://github.com/MattisD3V"
+                  rel="noopener"
+                  class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-slate-400 text-sm font-extrabold hover:text-emerald-400 transition-all"
+                  style="
+                    font-family: &quot;Nunito&quot;, sans-serif;
+                    background: var(--card-bg);
+                    border: 1px solid var(--card-br);
+                  "
+                  ><i class="fa-brands fa-github"></i>GitHub</a
+                >
+                <a
+                  href="https://www.linkedin.com/in/mattis-da-costa-faro/"
+                  rel="noopener"
+                  class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-slate-400 text-sm font-extrabold hover:text-emerald-400 transition-all"
+                  style="
+                    font-family: &quot;Nunito&quot;, sans-serif;
+                    background: var(--card-bg);
+                    border: 1px solid var(--card-br);
+                  "
+                  ><i class="fa-brands fa-linkedin"></i>LinkedIn</a
+                >
+              </div>
+            </aside>
+            <div class="reveal" style="animation-delay: 0.12s">
+              <form
+                name="contact-form"
+                action="https://formspree.io/f/xaqdkzlw"
+                method="POST"
+                class="flex flex-col gap-4"
+                aria-label="Formulaire de contact"
+              >
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="flex flex-col gap-1.5">
+                    <label
+                      for="prenom"
+                      class="text-[10px] font-extrabold tracking-widest uppercase text-slate-500"
+                      style="font-family: &quot;Nunito&quot;, sans-serif"
+                      >Prénom</label
+                    >
+                    <input
+                      type="text"
+                      id="prenom"
+                      name="prenom"
+                      placeholder="Votre prénom"
+                      class="c-input"
+                      autocomplete="given-name"
+                    />
+                  </div>
+                  <div class="flex flex-col gap-1.5">
+                    <label
+                      for="email"
+                      class="text-[10px] font-extrabold tracking-widest uppercase text-slate-500"
+                      style="font-family: &quot;Nunito&quot;, sans-serif"
+                      >Email</label
+                    >
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="votre@email.com"
+                      class="c-input"
+                      autocomplete="email"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <label
+                    for="sujet"
+                    class="text-[10px] font-extrabold tracking-widest uppercase text-slate-500"
+                    style="font-family: &quot;Nunito&quot;, sans-serif"
+                    >Sujet</label
+                  >
+                  <input
+                    type="text"
+                    id="sujet"
+                    name="sujet"
+                    placeholder="Votre sujet"
+                    class="c-input"
+                  />
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <label
+                    for="message"
+                    class="text-[10px] font-extrabold tracking-widest uppercase text-slate-500"
+                    style="font-family: &quot;Nunito&quot;, sans-serif"
+                    >Message</label
+                  >
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    placeholder="Décrivez votre projet..."
+                    class="c-input resize-none"
+                    required
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full py-4 rounded-xl font-extrabold text-sm tracking-wide transition-all hover:-translate-y-0.5 active:scale-95 shadow-xl"
+                  style="
+                    font-family: &quot;Nunito&quot;, sans-serif;
+                    background: var(--em);
+                    color: #020c07;
+                    box-shadow: 0 8px 32px rgba(16, 185, 129, 0.25);
+                  "
+                >
+                  Envoyer <i class="fa-solid fa-paper-plane ml-1.5 text-xs"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      role="contentinfo"
+      class="py-10 px-5 md:px-8"
+      style="background: var(--bg)"
+    >
+      <div
+        class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 rounded-lg flex items-center justify-center"
+            style="background: var(--em)"
+          >
+            <span
+              style="
+                color: #020c07;
+                font-family: &quot;Nunito&quot;, sans-serif;
+                font-weight: 900;
+                font-size: 0.8rem;
+              "
+              >M</span
+            >
+          </div>
+          <div>
+            <p
+              class="font-extrabold text-white text-sm"
+              style="font-family: &quot;Nunito&quot;, sans-serif"
+            >
+              Mattis Da Costa Faro
+            </p>
+            <p class="text-xs text-slate-600">
+              Développeur Full Stack · Nexys-Dev (NX-DEV)
+            </p>
+          </div>
+        </div>
+        <nav
+          aria-label="Navigation pied de page"
+          class="flex flex-wrap justify-center gap-5 text-xs font-extrabold"
+          style="font-family: &quot;Nunito&quot;, sans-serif; color: #475569"
+        >
+          <a href="#skills" class="hover:text-emerald-400 transition-colors"
+            >Stack</a
+          >
+          <a href="#projects" class="hover:text-emerald-400 transition-colors"
+            >Projets</a
+          >
+          <a href="#xp" class="hover:text-emerald-400 transition-colors"
+            >Expérience</a
+          >
+          <a href="#about" class="hover:text-emerald-400 transition-colors"
+            >À propos</a
+          >
+          <button
+            onclick="openCV()"
+            class="hover:text-emerald-400 transition-colors"
+          >
+            CV
+          </button>
+          <a href="#contact" class="hover:text-emerald-400 transition-colors"
+            >Contact</a
+          >
+        </nav>
+        <p class="text-xs font-mono" style="color: #334155">
+          © 2026 Mattis Da Costa Faro
+        </p>
+      </div>
+    </footer>
+
+    <!-- MODAL CV — expériences dev uniquement -->
+    <aside
+      id="cv-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cv-modal-title"
+    >
+      <div id="cv-backdrop" onclick="closeCV()"></div>
+      <div id="cv-panel" tabindex="-1">
+        <div class="flex items-start justify-between mb-8">
+          <div>
+            <p class="sec-label mb-1">Curriculum Vitæ</p>
+            <h2 id="cv-modal-title" class="text-2xl font-black text-white">
+              Mattis Da Costa Faro
+            </h2>
+            <p
+              class="text-emerald-400 text-sm font-extrabold mt-1"
+              style="font-family: &quot;Nunito&quot;, sans-serif"
+            >
+              Développeur Full Stack · BAC+3 CDA
+            </p>
+            <div class="flex flex-wrap gap-2 mt-3">
+              <span class="tag tag-slate text-[10px]"
+                ><i class="fa-solid fa-location-dot text-emerald-400"></i> Alès,
+                France</span
+              >
+              <span class="tag tag-em text-[10px]"
+                ><span
+                  class="w-1.5 h-1.5 rounded-full bg-emerald-400 glow-dot inline-block"
+                ></span>
+                Disponible</span
+              >
+            </div>
+          </div>
+          <button
+            onclick="closeCV()"
+            aria-label="Fermer le CV"
+            class="w-9 h-9 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all shrink-0 ml-4"
+            style="border: 1px solid rgba(255, 255, 255, 0.1)"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <section aria-labelledby="cv-xp-tech">
+          <h3
+            id="cv-xp-tech"
+            class="font-extrabold text-white text-sm mb-5 flex items-center gap-2"
+            style="font-family: &quot;Nunito&quot;, sans-serif"
+          >
+            <span
+              class="w-5 h-5 rounded-lg flex items-center justify-center"
+              style="background: rgba(16, 185, 129, 0.15)"
+              ><i class="fa-solid fa-code text-emerald-400 text-[9px]"></i
+            ></span>
+            Expériences techniques
+          </h3>
+          <div class="tl-wrap">
+            <div class="tl-entry">
+              <div class="tl-spine"><div class="tl-dot-sm dot-now"></div></div>
+              <div
+                class="tl-body rounded-xl p-4"
+                style="
+                  background: rgba(16, 185, 129, 0.1);
+                  border: 1px solid rgba(52, 211, 153, 0.3);
+                "
+              >
+                <span class="chip chip-em">🚀 Présent</span>
+                <h4
+                  class="font-extrabold text-white text-sm mt-1.5"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                >
+                  Fondateur — Nexys-Dev (NX-DEV)
+                </h4>
+                <time class="text-xs text-emerald-400 font-bold"
+                  >Fév. 2026 →</time
+                >
+                <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                  Développement web sur mesure, gestion client, architecture de
+                  solutions digitales.
+                </p>
+              </div>
+            </div>
+            <div class="tl-entry">
+              <div class="tl-spine"><div class="tl-dot-sm dot-dev"></div></div>
+              <div
+                class="tl-body rounded-xl p-4"
+                style="
+                  background: rgba(16, 185, 129, 0.07);
+                  border: 1px solid rgba(16, 185, 129, 0.2);
+                "
+              >
+                <span class="chip chip-em">Formation BAC+3</span>
+                <h4
+                  class="font-extrabold text-white text-sm mt-1.5"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                >
+                  Concepteur Développeur d'Applications
+                </h4>
+                <time class="text-xs text-emerald-400 font-bold"
+                  >Août 2024 – Déc. 2025 · ALT, Rennes</time
+                >
+                <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                  Architecture logicielle, Agile, React, Node.js, SQL/NoSQL.
+                </p>
+              </div>
+            </div>
+            <div class="tl-entry">
+              <div class="tl-spine"><div class="tl-dot-sm dot-dev"></div></div>
+              <div
+                class="tl-body rounded-xl p-4"
+                style="
+                  background: rgba(16, 185, 129, 0.07);
+                  border: 1px solid rgba(16, 185, 129, 0.2);
+                "
+              >
+                <span class="chip chip-em">CDD</span>
+                <h4
+                  class="font-extrabold text-white text-sm mt-1.5"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                >
+                  Développeur Full Stack
+                </h4>
+                <time class="text-xs text-emerald-400 font-bold"
+                  >Jan. – Juin 2024 · Dynamic Cloud Studios, Alès</time
+                >
+                <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                  React, Node.js, APIs REST, Git, Agile.
+                </p>
+              </div>
+            </div>
+            <div class="tl-entry">
+              <div class="tl-spine"><div class="tl-dot-sm dot-dev"></div></div>
+              <div
+                class="tl-body rounded-xl p-4"
+                style="
+                  background: rgba(16, 185, 129, 0.07);
+                  border: 1px solid rgba(16, 185, 129, 0.2);
+                "
+              >
+                <span class="chip chip-em">Formation certifiante</span>
+                <h4
+                  class="font-extrabold text-white text-sm mt-1.5"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                >
+                  Développeur Web &amp; Web Mobile
+                </h4>
+                <time class="text-xs text-emerald-400 font-bold"
+                  >Juin – Oct. 2021 · ADRAR Formation, Montpellier</time
+                >
+                <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                  HTML/CSS, JavaScript, PHP, MySQL — reconversion réussie.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr class="my-6" style="border-color: rgba(255, 255, 255, 0.06)" />
+
+        <section aria-labelledby="cv-skills">
+          <h3
+            id="cv-skills"
+            class="font-extrabold text-white text-sm mb-4 flex items-center gap-2"
+            style="font-family: &quot;Nunito&quot;, sans-serif"
+          >
+            <span
+              class="w-5 h-5 rounded-lg flex items-center justify-center"
+              style="background: rgba(16, 185, 129, 0.15)"
+              ><i class="fa-solid fa-microchip text-emerald-400 text-[9px]"></i
+            ></span>
+            Stack technique
+          </h3>
+          <div class="tech-grid">
+            <span class="tech-item">HTML/CSS</span
+            ><span class="tech-item">JavaScript</span
+            ><span class="tech-item">React</span
+            ><span class="tech-item">Next.js</span>
+            <span class="tech-item">Vue.js</span
+            ><span class="tech-item">Tailwind</span
+            ><span class="tech-item">Node.js</span
+            ><span class="tech-item">Express</span>
+            <span class="tech-item">MySQL</span
+            ><span class="tech-item">MongoDB</span
+            ><span class="tech-item">Prisma</span
+            ><span class="tech-item">REST API</span>
+            <span class="tech-item">Git</span
+            ><span class="tech-item">Docker</span
+            ><span class="tech-item">Linux</span
+            ><span class="tech-item">AWS</span>
+            <span class="tech-item">Figma</span
+            ><span class="tech-item">Unity/C#</span>
+          </div>
+        </section>
+      </div>
+    </aside>
+
+    <script>
+      const topbar = document.getElementById("topbar");
+      window.addEventListener(
+        "scroll",
+        () => {
+          topbar.classList.toggle("scrolled", window.scrollY > 20);
+        },
+        { passive: true },
+      );
+
+      const navLinks = document.querySelectorAll(".nav-link");
+      const allSections = document.querySelectorAll("section[id]");
+      window.addEventListener(
+        "scroll",
+        () => {
+          let cur = "";
+          allSections.forEach((s) => {
+            if (window.scrollY >= s.offsetTop - 130) cur = s.id;
+          });
+          navLinks.forEach((l) => {
+            const h = l.getAttribute("href");
+            l.classList.toggle("active", h === "#" + cur);
+          });
+        },
+        { passive: true },
+      );
+
+      const burger = document.getElementById("burger");
+      const mobNav = document.getElementById("mob-nav");
+      const b1 = document.getElementById("b1"),
+        b2 = document.getElementById("b2"),
+        b3 = document.getElementById("b3");
+      let menuOpen = false;
+
+      function closeMob() {
+        menuOpen = false;
+        mobNav.classList.remove("open");
+        burger.setAttribute("aria-expanded", "false");
+        b1.style.cssText = b3.style.cssText = "";
+        b2.style.opacity = "1";
+      }
+      burger.addEventListener("click", () => {
+        menuOpen = !menuOpen;
+        mobNav.classList.toggle("open", menuOpen);
+        burger.setAttribute("aria-expanded", String(menuOpen));
+        b1.style.cssText = menuOpen
+          ? "transform:translateY(6px) rotate(45deg)"
+          : "";
+        b2.style.opacity = menuOpen ? "0" : "1";
+        b3.style.cssText = menuOpen
+          ? "transform:translateY(-6px) rotate(-45deg);width:20px"
+          : "";
+      });
+      mobNav
+        .querySelectorAll("a")
+        .forEach((a) => a.addEventListener("click", closeMob));
+
+      function filterCards(cat) {
+        const cards = document.querySelectorAll("#cards-grid > li");
+        const btns = document.querySelectorAll(".filter-btn");
+        let vis = 0;
+        btns.forEach((b) => {
+          b.className =
+            "filter-btn " + (b.dataset.filter === cat ? "on" : "off");
+        });
+        cards.forEach((c) => {
+          const show = cat === "tous" || c.dataset.category === cat;
+          c.style.display = show ? "" : "none";
+          if (show) vis++;
+        });
+        document
+          .getElementById("no-result")
+          .classList.toggle("hidden", vis > 0);
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("vis");
+          });
+        },
+        { threshold: 0.08 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+
+      function openCV() {
+        document.getElementById("cv-modal").classList.add("open");
+        document.body.style.overflow = "hidden";
+        document.getElementById("cv-panel").focus();
+      }
+      function closeCV() {
+        document.getElementById("cv-modal").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeCV();
+      });
+    </script>
+  </body>
+</html>

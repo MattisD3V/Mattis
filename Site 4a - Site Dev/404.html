@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 — Page introuvable · NX-DEV</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Outfit:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <style>
+    html{scroll-behavior:smooth}
+    body{font-family:'Outfit',sans-serif;background:#020c07;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    h1,h2,h3{font-family:'Nunito',sans-serif}
+    @keyframes glitch1{0%,100%{clip-path:inset(0 0 95% 0)}20%{clip-path:inset(30% 0 50% 0)}40%{clip-path:inset(70% 0 10% 0)}60%{clip-path:inset(10% 0 80% 0)}80%{clip-path:inset(50% 0 30% 0)}}
+    @keyframes glitch2{0%,100%{clip-path:inset(0 0 95% 0);transform:translate(-3px,0)}20%{clip-path:inset(60% 0 20% 0);transform:translate(2px,0)}40%{clip-path:inset(20% 0 70% 0);transform:translate(-2px,0)}60%{clip-path:inset(80% 0 5% 0);transform:translate(3px,0)}80%{clip-path:inset(5% 0 85% 0);transform:translate(-3px,0)}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes scanline{0%{top:-10%}100%{top:110%}}
+    @keyframes glowPulse{0%,100%{box-shadow:0 0 0 0 rgba(52,211,153,.5)}50%{box-shadow:0 0 0 10px rgba(52,211,153,0)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .glitch{position:relative;font-family:'Nunito',sans-serif;font-weight:900}
+    .glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%}
+    .glitch::before{color:#10b981;animation:glitch1 2.5s infinite linear;opacity:.8}
+    .glitch::after{color:#14b8a6;animation:glitch2 2.5s .1s infinite linear;opacity:.6}
+    .float{animation:float 4s ease-in-out infinite}
+    .glow{animation:glowPulse 2s infinite}
+    .fadeup{animation:fadeUp .7s ease both}
+    .d1{animation-delay:.1s}.d2{animation-delay:.22s}.d3{animation-delay:.34s}.d4{animation-delay:.46s}
+    .scan{position:absolute;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(16,185,129,.4),transparent);animation:scanline 3s linear infinite;pointer-events:none}
+    /* Starfield */
+    .star{position:fixed;background:white;border-radius:50%;animation:twinkle var(--dur,3s) ease-in-out infinite var(--del,0s)}
+    @keyframes twinkle{0%,100%{opacity:var(--op,.3)}50%{opacity:.9}}
+  </style>
+</head>
+<body class="text-white overflow-hidden">
+
+  <!-- Stars BG -->
+  <div id="stars" class="fixed inset-0 pointer-events-none z-0"></div>
+
+  <!-- Scan line -->
+  <div class="scan z-10"></div>
+
+  <!-- BG gradient -->
+  <div class="fixed inset-0 z-0" style="background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(5,46,22,.5),rgba(2,12,7,1) 70%)"></div>
+
+  <!-- Content -->
+  <main class="relative z-20 flex flex-col items-center text-center px-6 gap-8 max-w-2xl">
+
+    <!-- 404 Glitch -->
+    <div class="float">
+      <div class="glitch text-[10rem] sm:text-[14rem] leading-none select-none fadeup" data-text="404"
+        style="color:#020c07;-webkit-text-stroke:2px #10b981;text-shadow:0 0 40px rgba(16,185,129,.3),0 0 80px rgba(16,185,129,.1)">
+        404
+      </div>
+    </div>
+
+    <!-- Badge -->
+    <div class="fadeup d1 flex items-center gap-2 px-4 py-2 rounded-full" style="background:rgba(16,185,129,.08);border:1px solid rgba(52,211,153,.25)">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 glow inline-block"></span>
+      <span class="text-emerald-300 text-xs font-extrabold tracking-widest uppercase">Erreur 404 — Page introuvable</span>
+    </div>
+
+    <!-- Message -->
+    <div class="fadeup d2 flex flex-col gap-3">
+      <h1 class="text-2xl md:text-3xl font-black text-white">Oups, cette page n'existe pas.</h1>
+      <p class="text-slate-400 leading-relaxed text-sm max-w-md mx-auto">
+        La page que vous cherchez a été déplacée, supprimée, ou n'a jamais existé. 
+        Pas de panique — on vous ramène sur la bonne voie.
+      </p>
+    </div>
+
+    <!-- Terminal card -->
+    <div class="fadeup d3 w-full max-w-md rounded-2xl overflow-hidden" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08)">
+      <div class="flex items-center gap-2 px-4 py-3 border-b" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.06)">
+        <span class="w-3 h-3 rounded-full" style="background:#ef4444"></span>
+        <span class="w-3 h-3 rounded-full" style="background:#f59e0b"></span>
+        <span class="w-3 h-3 rounded-full" style="background:#10b981"></span>
+        <span class="text-slate-500 text-xs ml-2 font-mono">terminal</span>
+      </div>
+      <div class="p-5 font-mono text-xs text-left">
+        <p><span class="text-emerald-400">mattis@nxdev</span><span class="text-slate-500">:~$</span> <span class="text-slate-300">GET /page-demandée</span></p>
+        <p class="text-red-400 mt-1">→ HTTP 404 Not Found</p>
+        <p class="text-slate-500 mt-1">→ La ressource demandée est introuvable.</p>
+        <p class="mt-3"><span class="text-emerald-400">mattis@nxdev</span><span class="text-slate-500">:~$</span> <span class="text-slate-300">redirect <span class="text-emerald-400">index.html</span></span></p>
+        <p class="text-emerald-400 mt-1 animate-pulse">→ Prêt à rediriger... <span class="inline-block w-2 h-3 bg-emerald-400 ml-0.5"></span></p>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="fadeup d4 flex flex-wrap justify-center gap-3">
+      <a href="index.html" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-extrabold text-sm transition-all hover:-translate-y-0.5 shadow-xl" style="background:#10b981;color:#020c07;box-shadow:0 8px 24px rgba(16,185,129,.3)">
+        <i class="fa-solid fa-house text-xs"></i> Retour à l'accueil
+      </a>
+      <button onclick="history.back()" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm transition-all hover:-translate-y-0.5 text-slate-300" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)">
+        <i class="fa-solid fa-arrow-left text-xs"></i> Page précédente
+      </button>
+    </div>
+
+    <!-- Nav hints -->
+    <div class="fadeup d4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-slate-600 font-bold" style="animation-delay:.55s">
+      <a href="index.html#about"    class="hover:text-emerald-400 transition-colors">À propos</a>
+      <a href="index.html#portfolio" class="hover:text-emerald-400 transition-colors">Portfolio</a>
+      <a href="index.html#nxdev"    class="hover:text-emerald-400 transition-colors">NX-DEV</a>
+      <a href="index.html#contact"  class="hover:text-emerald-400 transition-colors">Contact</a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20">
+    <p class="text-xs font-mono" style="color:#334155">© 2026 NX-DEV — Mattis Da Costa Faro</p>
+  </footer>
+
+  <script>
+    // Generate stars
+    const starsEl = document.getElementById('stars');
+    for(let i=0;i<120;i++){
+      const s = document.createElement('div');
+      const size = Math.random()*2+1;
+      s.className = 'star';
+      s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}vw;top:${Math.random()*100}vh;--op:${(Math.random()*.4+.1).toFixed(2)};--dur:${(Math.random()*4+2).toFixed(1)}s;--del:-${(Math.random()*5).toFixed(1)}s`;
+      starsEl.appendChild(s);
+    }
+  </script>
+</body>
+</html>

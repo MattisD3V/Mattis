@@ -1,0 +1,2025 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mattis Da Costa Faro — CV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      /* ─── VARIABLES ─────────────────────────── */
+      :root {
+        --bg: #060d1f;
+        --bg2: #080f26;
+        --bg3: #0b1433;
+        --blue: #3b82f6;
+        --blue2: #60a5fa;
+        --blue3: #93c5fd;
+        --indigo: #6366f1;
+        --txt: #e2e8f0;
+        --muted: #64748b;
+        --card: rgba(255, 255, 255, 0.04);
+        --bdr: rgba(255, 255, 255, 0.08);
+      }
+
+      /* ─── BASE ──────────────────────────────── */
+      html {
+        scroll-behavior: smooth;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Outfit", sans-serif;
+        background: var(--bg);
+        color: var(--txt);
+        line-height: 1.65;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Nunito", sans-serif;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--blue);
+        border-radius: 99px;
+      }
+
+      /* ─── ANIMATIONS ────────────────────────── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(26px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes glowPulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.55);
+        }
+        50% {
+          box-shadow: 0 0 0 9px rgba(59, 130, 246, 0);
+        }
+      }
+      @keyframes shimmer {
+        0% {
+          background-position: -200% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+      @keyframes rotSlow {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes rotSlowR {
+        to {
+          transform: rotate(-360deg);
+        }
+      }
+      @keyframes barGrow {
+        from {
+          width: 0;
+        }
+        to {
+          width: var(--w);
+        }
+      }
+
+      .anim-in {
+        animation: fadeUp 0.65s cubic-bezier(0.22, 0.68, 0, 1.15) both;
+      }
+      .d1 {
+        animation-delay: 0.06s;
+      }
+      .d2 {
+        animation-delay: 0.14s;
+      }
+      .d3 {
+        animation-delay: 0.22s;
+      }
+      .d4 {
+        animation-delay: 0.3s;
+      }
+      .d5 {
+        animation-delay: 0.38s;
+      }
+      .d6 {
+        animation-delay: 0.46s;
+      }
+      .glow-dot {
+        animation: glowPulse 2s ease-in-out infinite;
+      }
+
+      .shimmer-blue {
+        background: linear-gradient(90deg, #60a5fa, #a5b4fc, #818cf8, #60a5fa);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shimmer 4s linear infinite;
+      }
+
+      /* ─── NAVBAR ─────────────────────────────── */
+      #topbar {
+        transition:
+          background 0.3s,
+          border-color 0.3s,
+          backdrop-filter 0.3s;
+        border-bottom: 1px solid transparent;
+      }
+      #topbar.scrolled {
+        background: rgba(6, 13, 31, 0.94);
+        border-color: rgba(59, 130, 246, 0.12);
+        backdrop-filter: blur(20px);
+      }
+      .nav-link {
+        color: #94a3b8;
+        font-family: "Nunito", sans-serif;
+        font-weight: 700;
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--blue2);
+      }
+
+      /* ─── MOBILE NAV ─────────────────────────── */
+      #mob-nav {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.35s ease,
+          opacity 0.35s ease;
+        opacity: 0;
+      }
+      #mob-nav.open {
+        max-height: 400px;
+        opacity: 1;
+      }
+
+      /* ─── HERO ───────────────────────────────── */
+      .hero-grid {
+        background-image:
+          linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+        background-size: 48px 48px;
+      }
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        filter: blur(90px);
+        opacity: 0.18;
+      }
+
+      /* ─── GLASS CARDS ────────────────────────── */
+      .glass {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+      }
+      .glass-blue {
+        background: rgba(59, 130, 246, 0.06);
+        border: 1px solid rgba(96, 165, 250, 0.2);
+        border-radius: 20px;
+      }
+      .gb-card {
+        background:
+          linear-gradient(#0c1535, #0c1535) padding-box,
+          linear-gradient(
+              135deg,
+              rgba(96, 165, 250, 0.28),
+              rgba(99, 102, 241, 0.08)
+            )
+            border-box;
+        border: 1px solid transparent;
+        border-radius: 18px;
+      }
+
+      /* ─── SECTION LABELS ─────────────────────── */
+      .sec-label {
+        color: var(--blue2);
+        font-family: "Nunito", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .sec-rule {
+        width: 40px;
+        height: 3px;
+        border-radius: 99px;
+        background: linear-gradient(to right, var(--blue), var(--indigo));
+      }
+
+      /* ─── SKILL BARS ─────────────────────────── */
+      .bar-track {
+        height: 5px;
+        border-radius: 99px;
+        background: rgba(255, 255, 255, 0.07);
+        overflow: hidden;
+      }
+      .bar-fill {
+        height: 100%;
+        border-radius: 99px;
+        width: var(--w);
+        animation: barGrow 0.85s cubic-bezier(0.22, 0.68, 0, 1.1) 0.3s both;
+        background: linear-gradient(to right, var(--blue), var(--indigo));
+      }
+
+      /* ─── TAGS ───────────────────────────────── */
+      .tag-blue {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 12px;
+        border-radius: 99px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(96, 165, 250, 0.22);
+        color: var(--blue3);
+      }
+      .tag-slate {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 12px;
+        border-radius: 99px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #94a3b8;
+      }
+      .tag-green {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 12px;
+        border-radius: 99px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        background: rgba(16, 185, 129, 0.08);
+        border: 1px solid rgba(52, 211, 153, 0.2);
+        color: #6ee7b7;
+      }
+
+      /* ─── XP CARDS ───────────────────────────── */
+      .xp-card {
+        border-left: 2px solid rgba(59, 130, 246, 0.22);
+        padding-left: 22px;
+        transition: border-color 0.25s;
+      }
+      .xp-card:hover {
+        border-color: var(--blue);
+      }
+      .xp-card.pinned {
+        border-color: var(--blue);
+      }
+
+      /* ─── CHIP ───────────────────────────────── */
+      .chip {
+        display: inline-block;
+        padding: 2px 9px;
+        border-radius: 99px;
+        font-family: "Nunito", sans-serif;
+        font-size: 0.62rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .chip-blue {
+        background: rgba(59, 130, 246, 0.2);
+        color: #bfdbfe;
+      }
+      .chip-slate {
+        background: rgba(255, 255, 255, 0.07);
+        color: #94a3b8;
+      }
+
+      /* ─── TECH GRID ──────────────────────────── */
+      .tech-item {
+        padding: 6px 12px;
+        border-radius: 10px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        color: #94a3b8;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .tech-item:hover {
+        background: rgba(59, 130, 246, 0.1);
+        border-color: rgba(96, 165, 250, 0.3);
+        color: var(--blue2);
+      }
+
+      /* ─── TIMELINE ───────────────────────────── */
+      .tl-list {
+        display: flex;
+        flex-direction: column;
+      }
+      .tl-entry {
+        display: grid;
+        grid-template-columns: 20px 1fr;
+        gap: 16px;
+        position: relative;
+        padding-bottom: 18px;
+      }
+      .tl-entry:not(:last-child) .tl-spine::after {
+        content: "";
+        position: absolute;
+        left: 9px;
+        top: 20px;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          rgba(59, 130, 246, 0.45),
+          rgba(59, 130, 246, 0.04)
+        );
+      }
+      .tl-spine {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      .tl-dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin-top: 3px;
+        position: relative;
+        z-index: 1;
+      }
+      .dot-blue {
+        background: var(--blue);
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+      }
+      .dot-ghost {
+        background: #1a2a4a;
+        border: 2px solid #24375e;
+      }
+      .dot-now {
+        width: 22px;
+        height: 22px;
+        background: linear-gradient(135deg, var(--blue), var(--indigo));
+        box-shadow: 0 0 18px rgba(59, 130, 246, 0.55);
+      }
+
+      /* ─── REVEAL ─────────────────────────────── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.vis {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ─── FOOTER ─────────────────────────────── */
+      footer {
+        border-top: 1px solid rgba(59, 130, 246, 0.08);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ══════════════════════════════════════
+     HEADER
+══════════════════════════════════════ -->
+    <header id="topbar" role="banner" class="fixed top-0 inset-x-0 z-50">
+      <div
+        class="max-w-5xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between"
+      >
+        <a
+          href="#hero"
+          class="flex items-center gap-2.5 group"
+          aria-label="Retour en haut"
+        >
+          <div
+            class="w-9 h-9 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform"
+            style="
+              background: linear-gradient(135deg, var(--blue), var(--indigo));
+              box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+            "
+          >
+            <span
+              style="
+                color: #fff;
+                font-family: &quot;Nunito&quot;, sans-serif;
+                font-weight: 900;
+                font-size: 0.82rem;
+              "
+              >M</span
+            >
+          </div>
+          <span
+            class="font-extrabold text-white text-sm hidden sm:block"
+            style="font-family: &quot;Nunito&quot;, sans-serif"
+          >
+            Mattis<span style="color: var(--blue2)">·DCF</span>
+          </span>
+        </a>
+
+        <nav
+          role="navigation"
+          aria-label="Navigation principale"
+          class="hidden md:flex items-center gap-6"
+        >
+          <a href="#profil" class="nav-link">Profil</a>
+          <a href="#competences" class="nav-link">Compétences</a>
+          <a href="#experiences" class="nav-link">Expériences</a>
+          <a href="#formations" class="nav-link">Formations</a>
+          <a
+            href="#contact"
+            class="ml-1 px-5 py-2 rounded-xl font-extrabold text-xs tracking-widest uppercase transition-all hover:-translate-y-0.5"
+            style="
+              font-family: &quot;Nunito&quot;, sans-serif;
+              background: var(--blue);
+              color: #fff;
+              box-shadow: 0 4px 14px rgba(59, 130, 246, 0.28);
+            "
+          >
+            Contact
+          </a>
+        </nav>
+
+        <button
+          id="burger"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="mob-nav"
+          class="md:hidden p-2 rounded-lg hover:bg-white/5 transition flex flex-col gap-1.5"
+        >
+          <span
+            id="b1"
+            class="w-5 h-0.5 bg-slate-300 rounded transition-all block"
+          ></span>
+          <span
+            id="b2"
+            class="w-5 h-0.5 bg-slate-300 rounded transition-all block"
+          ></span>
+          <span
+            id="b3"
+            class="w-4 h-0.5 bg-slate-300 rounded transition-all block self-end"
+          ></span>
+        </button>
+      </div>
+
+      <div
+        id="mob-nav"
+        role="navigation"
+        aria-label="Navigation mobile"
+        style="
+          background: rgba(6, 13, 31, 0.97);
+          border-top: 1px solid rgba(59, 130, 246, 0.1);
+        "
+      >
+        <ul class="max-w-5xl mx-auto px-5 py-4 flex flex-col gap-1 list-none">
+          <li>
+            <a
+              href="#profil"
+              class="nav-link block py-2.5 px-3 rounded-lg hover:bg-white/5"
+              >Profil</a
+            >
+          </li>
+          <li>
+            <a
+              href="#competences"
+              class="nav-link block py-2.5 px-3 rounded-lg hover:bg-white/5"
+              >Compétences</a
+            >
+          </li>
+          <li>
+            <a
+              href="#experiences"
+              class="nav-link block py-2.5 px-3 rounded-lg hover:bg-white/5"
+              >Expériences</a
+            >
+          </li>
+          <li>
+            <a
+              href="#formations"
+              class="nav-link block py-2.5 px-3 rounded-lg hover:bg-white/5"
+              >Formations</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="nav-link block py-2.5 px-3 rounded-lg hover:bg-white/5"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- ══════════════════════════════════════
+     MAIN
+══════════════════════════════════════ -->
+    <main id="main-content">
+      <!-- ── HERO ──────────────────────────────────── -->
+      <section
+        id="hero"
+        aria-label="Présentation"
+        class="relative min-h-screen flex items-center overflow-hidden pt-16 hero-grid"
+      >
+        <div
+          aria-hidden="true"
+          class="orb w-[480px] h-[480px] top-[-80px] right-[-60px]"
+          style="
+            background: radial-gradient(circle, var(--blue), var(--indigo));
+          "
+        ></div>
+        <div
+          aria-hidden="true"
+          class="orb w-[360px] h-[360px] bottom-[-60px] left-[-40px]"
+          style="background: radial-gradient(circle, var(--indigo), #0ea5e9)"
+        ></div>
+        <div
+          aria-hidden="true"
+          class="absolute inset-0"
+          style="
+            background: radial-gradient(
+              ellipse 80% 60% at 50% 40%,
+              transparent 0%,
+              rgba(6, 13, 31, 0.95) 65%
+            );
+          "
+        ></div>
+
+        <div
+          aria-hidden="true"
+          class="absolute top-20 right-12 w-72 h-72 rounded-full border border-blue-500/[0.07] pointer-events-none hidden lg:block"
+          style="animation: rotSlow 22s linear infinite"
+        ></div>
+        <div
+          aria-hidden="true"
+          class="absolute top-32 right-24 w-48 h-48 rounded-full border border-indigo-400/[0.05] pointer-events-none hidden lg:block"
+          style="animation: rotSlowR 15s linear infinite"
+        ></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-5 md:px-8 w-full py-20">
+          <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            <!-- Photo -->
+            <aside
+              aria-label="Photo de profil"
+              class="flex flex-col items-center gap-5 shrink-0"
+            >
+              <div class="relative anim-in d1">
+                <div
+                  aria-hidden="true"
+                  class="absolute -inset-3 rounded-full"
+                  style="
+                    background: conic-gradient(
+                      from 0deg,
+                      var(--blue),
+                      var(--indigo),
+                      var(--blue)
+                    );
+                    animation: rotSlow 4s linear infinite;
+                    filter: blur(8px);
+                    opacity: 0.35;
+                  "
+                ></div>
+                <div
+                  class="relative w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-2 shadow-2xl"
+                  style="border-color: rgba(96, 165, 250, 0.5)"
+                >
+                  <img
+                    src="Assets/Images/Mattis.jpg"
+                    alt="Mattis Da Costa Faro"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <!-- Badge dispo -->
+              <div
+                class="anim-in d2 flex items-center gap-2 px-4 py-2 rounded-full border"
+                style="
+                  background: rgba(59, 130, 246, 0.08);
+                  border-color: rgba(96, 165, 250, 0.28);
+                "
+              >
+                <span
+                  class="w-2 h-2 rounded-full glow-dot"
+                  style="background: var(--blue2)"
+                ></span>
+                <span
+                  class="text-xs font-extrabold tracking-widest uppercase"
+                  style="
+                    color: var(--blue3);
+                    font-family: &quot;Nunito&quot;, sans-serif;
+                  "
+                  >Disponible</span
+                >
+              </div>
+              <!-- Réseaux -->
+              <div class="anim-in d3 flex gap-2.5">
+                <a
+                  href="https://github.com/MattisD3V"
+                  title="GitHub"
+                  rel="noopener"
+                  class="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 text-slate-400 hover:text-blue-400 hover:border-blue-400/40 transition-all"
+                  style="background: rgba(255, 255, 255, 0.03)"
+                >
+                  <i class="fa-brands fa-github text-sm" aria-hidden="true"></i>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/mattis-da-costa-faro/"
+                  title="LinkedIn"
+                  rel="noopener"
+                  class="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 text-slate-400 hover:text-blue-400 hover:border-blue-400/40 transition-all"
+                  style="background: rgba(255, 255, 255, 0.03)"
+                >
+                  <i
+                    class="fa-brands fa-linkedin text-sm"
+                    aria-hidden="true"
+                  ></i>
+                </a>
+                <a
+                  href="mailto:mattis1dcf@gmail.com"
+                  title="Email"
+                  class="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 text-slate-400 hover:text-blue-400 hover:border-blue-400/40 transition-all"
+                  style="background: rgba(255, 255, 255, 0.03)"
+                >
+                  <i
+                    class="fa-solid fa-envelope text-sm"
+                    aria-hidden="true"
+                  ></i>
+                </a>
+              </div>
+            </aside>
+
+            <!-- Texte hero -->
+            <div class="flex flex-col gap-5 text-center lg:text-left max-w-2xl">
+              <div class="anim-in d1">
+                <span
+                  class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-extrabold tracking-widest uppercase border"
+                  style="
+                    font-family: &quot;Nunito&quot;, sans-serif;
+                    background: rgba(59, 130, 246, 0.07);
+                    border-color: rgba(96, 165, 250, 0.22);
+                    color: var(--blue3);
+                  "
+                >
+                  <i
+                    class="fa-solid fa-briefcase text-[10px]"
+                    aria-hidden="true"
+                  ></i>
+                  Recherche active d'emploi
+                </span>
+              </div>
+
+              <h1
+                class="anim-in d2 text-4xl sm:text-5xl md:text-6xl font-black leading-[1.08]"
+              >
+                Mattis<br /><span class="shimmer-blue">Da Costa Faro</span>
+              </h1>
+
+              <p
+                class="anim-in d3 text-slate-300 text-base leading-relaxed max-w-xl"
+              >
+                23 ans, basé à <strong class="text-white">Alès (30)</strong>.
+                Polyvalent, rigoureux et motivé — avec de l'expérience en
+                <strong class="text-white">cuisine</strong>, en
+                <strong class="text-white">vente</strong> et en
+                <strong class="text-white">informatique</strong>. Je m'adapte
+                vite et je m'investis à fond dans chaque mission.
+              </p>
+
+              <!-- Infos clés -->
+              <div
+                class="anim-in d4 grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-xl mx-auto lg:mx-0"
+              >
+                <div class="glass p-3 flex items-center gap-2.5">
+                  <i
+                    class="fa-solid fa-location-dot text-blue-400 text-sm shrink-0"
+                    aria-hidden="true"
+                  ></i>
+                  <div>
+                    <p
+                      class="text-[10px] text-slate-500 font-extrabold tracking-widest uppercase"
+                      style="font-family: &quot;Nunito&quot;, sans-serif"
+                    >
+                      Localisation
+                    </p>
+                    <p class="text-white text-xs font-semibold">Alès, 30</p>
+                  </div>
+                </div>
+                <div class="glass p-3 flex items-center gap-2.5">
+                  <i
+                    class="fa-solid fa-user text-blue-400 text-sm shrink-0"
+                    aria-hidden="true"
+                  ></i>
+                  <div>
+                    <p
+                      class="text-[10px] text-slate-500 font-extrabold tracking-widest uppercase"
+                      style="font-family: &quot;Nunito&quot;, sans-serif"
+                    >
+                      Âge
+                    </p>
+                    <p class="text-white text-xs font-semibold">23 ans</p>
+                  </div>
+                </div>
+                <div class="glass p-3 flex items-center gap-2.5">
+                  <i
+                    class="fa-solid fa-car text-blue-400 text-sm shrink-0"
+                    aria-hidden="true"
+                  ></i>
+                  <div>
+                    <p
+                      class="text-[10px] text-slate-500 font-extrabold tracking-widest uppercase"
+                      style="font-family: &quot;Nunito&quot;, sans-serif"
+                    >
+                      Mobilité
+                    </p>
+                    <p class="text-white text-xs font-semibold">Permis B</p>
+                  </div>
+                </div>
+                <div class="glass p-3 flex items-center gap-2.5">
+                  <i
+                    class="fa-solid fa-clock text-blue-400 text-sm shrink-0"
+                    aria-hidden="true"
+                  ></i>
+                  <div>
+                    <p
+                      class="text-[10px] text-slate-500 font-extrabold tracking-widest uppercase"
+                      style="font-family: &quot;Nunito&quot;, sans-serif"
+                    >
+                      Disponibilité
+                    </p>
+                    <p class="text-white text-xs font-semibold">Immédiate</p>
+                  </div>
+                </div>
+                <div class="glass p-3 flex items-center gap-2.5">
+                  <i
+                    class="fa-solid fa-envelope text-blue-400 text-sm shrink-0"
+                    aria-hidden="true"
+                  ></i>
+                  <div>
+                    <p
+                      class="text-[10px] text-slate-500 font-extrabold tracking-widest uppercase"
+                      style="font-family: &quot;Nunito&quot;, sans-serif"
+                    >
+                      Email
+                    </p>
+                    <a
+                      href="mailto:mattis1dcf@gmail.com"
+                      class="text-white text-xs font-semibold hover:text-blue-400 transition-colors"
+                      >mattis1dcf@gmail.com</a
+                    >
+                  </div>
+                </div>
+                <div class="glass p-3 flex items-center gap-2.5">
+                  <i
+                    class="fa-solid fa-graduation-cap text-blue-400 text-sm shrink-0"
+                    aria-hidden="true"
+                  ></i>
+                  <div>
+                    <p
+                      class="text-[10px] text-slate-500 font-extrabold tracking-widest uppercase"
+                      style="font-family: &quot;Nunito&quot;, sans-serif"
+                    >
+                      Diplôme
+                    </p>
+                    <p class="text-white text-xs font-semibold">BAC+3 CDA</p>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="anim-in d5 flex flex-wrap gap-3 justify-center lg:justify-start pt-1"
+              >
+                <a
+                  href="#experiences"
+                  class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl font-extrabold text-sm transition-all hover:-translate-y-0.5 shadow-xl"
+                  style="
+                    font-family: &quot;Nunito&quot;, sans-serif;
+                    background: var(--blue);
+                    color: #fff;
+                    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.22);
+                  "
+                >
+                  Voir mes expériences
+                  <i
+                    class="fa-solid fa-arrow-right text-xs"
+                    aria-hidden="true"
+                  ></i>
+                </a>
+                <a
+                  href="#contact"
+                  class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl border font-bold text-sm hover:text-blue-300 transition-all hover:-translate-y-0.5"
+                  style="
+                    font-family: &quot;Nunito&quot;, sans-serif;
+                    border-color: rgba(96, 165, 250, 0.25);
+                    color: #93c5fd;
+                    background: rgba(59, 130, 246, 0.05);
+                  "
+                >
+                  Me contacter
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
+          aria-hidden="true"
+        >
+          <span
+            class="text-[10px] font-extrabold tracking-widest uppercase text-slate-700"
+            style="font-family: &quot;Nunito&quot;, sans-serif"
+            >Scroll</span
+          >
+          <i
+            class="fa-solid fa-chevron-down text-blue-500 text-xs animate-bounce"
+          ></i>
+        </div>
+      </section>
+
+      <!-- ── PROFIL ────────────────────────────────── -->
+      <section
+        id="profil"
+        aria-labelledby="profil-title"
+        class="relative py-24 px-5 md:px-8 overflow-hidden"
+        style="background: var(--bg2)"
+      >
+        <div
+          aria-hidden="true"
+          class="absolute right-0 top-0 w-96 h-96 pointer-events-none"
+          style="
+            background: radial-gradient(
+              circle,
+              rgba(59, 130, 246, 0.05),
+              transparent 70%
+            );
+          "
+        ></div>
+
+        <div class="max-w-5xl mx-auto">
+          <header class="text-center mb-12 reveal">
+            <p class="sec-label mb-2">À propos</p>
+            <h2 id="profil-title" class="text-3xl md:text-4xl font-black mb-4">
+              Mon Profil
+            </h2>
+            <div class="sec-rule mx-auto"></div>
+          </header>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <article class="reveal gb-card p-6 flex flex-col gap-3">
+              <div
+                class="w-11 h-11 rounded-xl flex items-center justify-center"
+                style="
+                  background: rgba(59, 130, 246, 0.12);
+                  border: 1px solid rgba(96, 165, 250, 0.2);
+                "
+              >
+                <i
+                  class="fa-solid fa-user text-blue-400"
+                  aria-hidden="true"
+                ></i>
+              </div>
+              <h3 class="font-extrabold text-white text-base">Qui je suis</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                Curieux, adaptable et travailleur. Issu d'un parcours atypique
+                mêlant cuisine, chimie et informatique, je suis à l'aise dans
+                des environnements variés et je m'intègre rapidement dans une
+                équipe.
+              </p>
+            </article>
+
+            <article
+              class="reveal gb-card p-6 flex flex-col gap-3"
+              style="animation-delay: 0.1s"
+            >
+              <div
+                class="w-11 h-11 rounded-xl flex items-center justify-center"
+                style="
+                  background: rgba(59, 130, 246, 0.12);
+                  border: 1px solid rgba(96, 165, 250, 0.2);
+                "
+              >
+                <i
+                  class="fa-solid fa-star text-blue-400"
+                  aria-hidden="true"
+                ></i>
+              </div>
+              <h3 class="font-extrabold text-white text-base">Points forts</h3>
+              <ul
+                class="flex flex-col gap-1.5 list-none text-sm text-slate-400"
+              >
+                <li class="flex items-center gap-2">
+                  <i
+                    class="fa-solid fa-check text-blue-400 text-xs shrink-0"
+                    aria-hidden="true"
+                  ></i
+                  >Polyvalence et adaptabilité
+                </li>
+                <li class="flex items-center gap-2">
+                  <i
+                    class="fa-solid fa-check text-blue-400 text-xs shrink-0"
+                    aria-hidden="true"
+                  ></i
+                  >Rigueur et sens de l'organisation
+                </li>
+                <li class="flex items-center gap-2">
+                  <i
+                    class="fa-solid fa-check text-blue-400 text-xs shrink-0"
+                    aria-hidden="true"
+                  ></i
+                  >Esprit d'équipe et communication
+                </li>
+                <li class="flex items-center gap-2">
+                  <i
+                    class="fa-solid fa-check text-blue-400 text-xs shrink-0"
+                    aria-hidden="true"
+                  ></i
+                  >Gestion du stress et réactivité
+                </li>
+                <li class="flex items-center gap-2">
+                  <i
+                    class="fa-solid fa-check text-blue-400 text-xs shrink-0"
+                    aria-hidden="true"
+                  ></i
+                  >Apprentissage rapide
+                </li>
+              </ul>
+            </article>
+
+            <article
+              class="reveal gb-card p-6 flex flex-col gap-3"
+              style="animation-delay: 0.2s"
+            >
+              <div
+                class="w-11 h-11 rounded-xl flex items-center justify-center"
+                style="
+                  background: rgba(59, 130, 246, 0.12);
+                  border: 1px solid rgba(96, 165, 250, 0.2);
+                "
+              >
+                <i
+                  class="fa-solid fa-heart text-blue-400"
+                  aria-hidden="true"
+                ></i>
+              </div>
+              <h3 class="font-extrabold text-white text-base">
+                Centres d'intérêt
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="tag-slate"
+                  ><i
+                    class="fa-solid fa-utensils text-amber-400"
+                    aria-hidden="true"
+                  ></i
+                  >Cuisine</span
+                >
+                <span class="tag-slate"
+                  ><i
+                    class="fa-solid fa-gamepad text-violet-400"
+                    aria-hidden="true"
+                  ></i
+                  >Jeux vidéo</span
+                >
+                <span class="tag-slate"
+                  ><i
+                    class="fa-solid fa-code text-blue-400"
+                    aria-hidden="true"
+                  ></i
+                  >Dev web</span
+                >
+                <span class="tag-slate"
+                  ><i
+                    class="fa-solid fa-music text-pink-400"
+                    aria-hidden="true"
+                  ></i
+                  >Musique</span
+                >
+                <span class="tag-slate"
+                  ><i
+                    class="fa-solid fa-book text-emerald-400"
+                    aria-hidden="true"
+                  ></i
+                  >Lecture tech</span
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── COMPÉTENCES ───────────────────────────── -->
+      <section
+        id="competences"
+        aria-labelledby="competences-title"
+        class="relative py-24 px-5 md:px-8 overflow-hidden"
+        style="background: var(--bg)"
+      >
+        <div
+          aria-hidden="true"
+          class="absolute left-0 bottom-0 w-80 h-80 pointer-events-none"
+          style="
+            background: radial-gradient(
+              circle,
+              rgba(99, 102, 241, 0.05),
+              transparent 70%
+            );
+          "
+        ></div>
+
+        <div class="max-w-5xl mx-auto">
+          <header class="text-center mb-14 reveal">
+            <p class="sec-label mb-2">Savoir-faire</p>
+            <h2
+              id="competences-title"
+              class="text-3xl md:text-4xl font-black mb-4"
+            >
+              Compétences
+            </h2>
+            <div class="sec-rule mx-auto"></div>
+          </header>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Cuisine -->
+            <article
+              class="reveal gb-card p-6 flex flex-col gap-4"
+              aria-label="Compétences Cuisine"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-xl flex items-center justify-center"
+                  style="
+                    background: rgba(245, 158, 11, 0.12);
+                    border: 1px solid rgba(252, 211, 77, 0.2);
+                  "
+                >
+                  <i
+                    class="fa-solid fa-utensils text-amber-400 text-sm"
+                    aria-hidden="true"
+                  ></i>
+                </div>
+                <h3 class="font-extrabold text-white">Cuisine</h3>
+              </div>
+              <div class="flex flex-col gap-3" role="list">
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold"
+                      >Préparation & dressage</span
+                    >
+                    <span style="color: var(--blue2)" class="font-bold"
+                      >80%</span
+                    >
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="--w: 80%"></div>
+                  </div>
+                </div>
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold"
+                      >Normes HACCP</span
+                    >
+                    <span style="color: var(--blue2)" class="font-bold"
+                      >75%</span
+                    >
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="--w: 75%"></div>
+                  </div>
+                </div>
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold"
+                      >Travail en brigade</span
+                    >
+                    <span style="color: var(--blue2)" class="font-bold"
+                      >85%</span
+                    >
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="--w: 85%"></div>
+                  </div>
+                </div>
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold"
+                      >Rapidité & organisation</span
+                    >
+                    <span style="color: var(--blue2)" class="font-bold"
+                      >90%</span
+                    >
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="--w: 90%"></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Vente & relation client -->
+            <article
+              class="reveal gb-card p-6 flex flex-col gap-4"
+              style="animation-delay: 0.1s"
+              aria-label="Compétences Vente"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-xl flex items-center justify-center"
+                  style="
+                    background: rgba(59, 130, 246, 0.12);
+                    border: 1px solid rgba(96, 165, 250, 0.2);
+                  "
+                >
+                  <i
+                    class="fa-solid fa-handshake text-blue-400 text-sm"
+                    aria-hidden="true"
+                  ></i>
+                </div>
+                <h3 class="font-extrabold text-white">Vente & Client</h3>
+              </div>
+              <div class="flex flex-col gap-3" role="list">
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold"
+                      >Accueil & conseil</span
+                    >
+                    <span style="color: var(--blue2)" class="font-bold"
+                      >80%</span
+                    >
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="--w: 80%"></div>
+                  </div>
+                </div>
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold"
+                      >Tenue de caisse</span
+                    >
+                    <span style="color: var(--blue2)" class="font-bold"
+                      >70%</span
+                    >
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="--w: 70%"></div>
+                  </div>
+                </div>
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold"
+                      >Mise en rayon</span
+                    >
+                    <span style="color: var(--blue2)" class="font-bold"
+                      >75%</span
+                    >
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="--w: 75%"></div>
+                  </div>
+                </div>
+                <div role="listitem">
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <span class="text-slate-300 font-semibold"
+                      >Communication client</span
+                    >
+                    <span style="color: var(--blue2)" class="font-bold"
+                      >85%</span
+                    >
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="--w: 85%"></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Transversal -->
+            <article
+              class="reveal gb-card p-6 flex flex-col gap-4"
+              style="animation-delay: 0.2s"
+              aria-label="Compétences transversales"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-xl flex items-center justify-center"
+                  style="
+                    background: rgba(99, 102, 241, 0.12);
+                    border: 1px solid rgba(129, 140, 248, 0.2);
+                  "
+                >
+                  <i
+                    class="fa-solid fa-gear text-indigo-400 text-sm"
+                    aria-hidden="true"
+                  ></i>
+                </div>
+                <h3 class="font-extrabold text-white">Transversal</h3>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-item">Travail en équipe</span>
+                <span class="tech-item">Ponctualité</span>
+                <span class="tech-item">Fiabilité</span>
+                <span class="tech-item">Gestion du stress</span>
+                <span class="tech-item">Polyvalence</span>
+                <span class="tech-item">Sens du service</span>
+                <span class="tech-item">Pack Office</span>
+                <span class="tech-item">Outils numériques</span>
+              </div>
+              <p
+                class="text-xs text-slate-500 mt-auto pt-3 border-t border-white/[0.04] leading-relaxed"
+              >
+                <i
+                  class="fa-solid fa-info-circle text-blue-500/50 mr-1"
+                  aria-hidden="true"
+                ></i>
+                Également à l'aise en informatique : un atout pour tous les
+                postes impliquant de l'outil numérique.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── EXPÉRIENCES (anti-chrono) ─────────────── -->
+      <section
+        id="experiences"
+        aria-labelledby="xp-title"
+        class="relative py-24 px-5 md:px-8 overflow-hidden"
+        style="background: var(--bg2)"
+      >
+        <div
+          aria-hidden="true"
+          class="absolute right-0 top-0 w-80 h-80 pointer-events-none"
+          style="
+            background: radial-gradient(
+              circle,
+              rgba(59, 130, 246, 0.05),
+              transparent 70%
+            );
+          "
+        ></div>
+
+        <div class="max-w-4xl mx-auto">
+          <header class="text-center mb-14 reveal">
+            <p class="sec-label mb-2">Parcours professionnel</p>
+            <h2 id="xp-title" class="text-3xl md:text-4xl font-black mb-4">
+              Expériences
+            </h2>
+            <div class="sec-rule mx-auto mb-3"></div>
+            <p class="text-slate-500 text-sm max-w-md mx-auto">
+              Du plus récent au plus ancien.
+            </p>
+          </header>
+
+          <div class="flex flex-col gap-8">
+            <!-- Nexys-Dev -->
+            <article
+              class="reveal xp-card pinned"
+              aria-label="Fondateur Nexys-Dev"
+            >
+              <div
+                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+              >
+                <div>
+                  <span class="chip chip-blue mr-2">Présent</span>
+                  <h3 class="inline font-extrabold text-white text-base">
+                    Fondateur &amp; Développeur
+                  </h3>
+                </div>
+                <time
+                  datetime="2026-02"
+                  class="text-xs font-extrabold whitespace-nowrap"
+                  style="color: var(--blue2)"
+                  >Fév. 2026 →</time
+                >
+              </div>
+              <p class="text-sm font-bold mb-2" style="color: var(--blue3)">
+                Nexys-Dev (NX-DEV) · Alès · Indépendant
+              </p>
+              <p class="text-sm text-slate-400 leading-relaxed mb-3">
+                Création de mon entreprise de développement web. Gestion
+                complète : relation client, conception, développement et
+                livraison de projets numériques pour des TPE et indépendants.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag-blue">Gestion de projet</span>
+                <span class="tag-blue">Relation client</span>
+                <span class="tag-blue">Développement web</span>
+              </div>
+            </article>
+
+            <!-- Formation CDA -->
+            <article
+              class="reveal xp-card"
+              style="animation-delay: 0.06s"
+              aria-label="Formation CDA ALT"
+            >
+              <div
+                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+              >
+                <div>
+                  <span class="chip chip-blue mr-2">Formation BAC+3</span>
+                  <h3 class="inline font-extrabold text-white text-base">
+                    Concepteur Développeur d'Applications
+                  </h3>
+                </div>
+                <time
+                  datetime="2024-08/2025-12"
+                  class="text-xs font-extrabold whitespace-nowrap"
+                  style="color: var(--blue2)"
+                  >Août 2024 – Déc. 2025</time
+                >
+              </div>
+              <p class="text-sm font-bold mb-2" style="color: var(--blue3)">
+                ALT · Rennes · Alternance
+              </p>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Formation en alternance, développement d'applications web full
+                stack en entreprise. Gestion autonome de projets, travail en
+                équipe, respect des délais.
+              </p>
+            </article>
+
+            <!-- Tacos Avenue -->
+            <article
+              class="reveal xp-card"
+              style="animation-delay: 0.06s"
+              aria-label="Emploi Cuisine Tacos Avenue"
+            >
+              <div
+                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+              >
+                <div>
+                  <span class="chip chip-blue mr-2">Emploi</span>
+                  <h3 class="inline font-extrabold text-white text-base">
+                    Équipier cuisine
+                  </h3>
+                </div>
+                <time
+                  datetime="2023-08/2024-02"
+                  class="text-xs font-extrabold whitespace-nowrap"
+                  style="color: var(--blue2)"
+                  >Août 2023 – Fév. 2024</time
+                >
+              </div>
+              <p class="text-sm font-bold mb-2" style="color: var(--blue3)">
+                Tacos Avenue · Alès
+              </p>
+              <p class="text-sm text-slate-400 leading-relaxed mb-3">
+                Préparation des commandes en flux tendu, respect des normes
+                d'hygiène, travail en équipe en service continu. Gestion des
+                pics d'activité et polyvalence sur les postes.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag-slate">Cuisine rapide</span>
+                <span class="tag-slate">Hygiène HACCP</span>
+                <span class="tag-slate">Gestion du stress</span>
+              </div>
+            </article>
+
+            <!-- E2C -->
+            <article
+              class="reveal xp-card"
+              style="animation-delay: 0.06s"
+              aria-label="École de la Deuxième Chance"
+            >
+              <div
+                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+              >
+                <div>
+                  <span class="chip chip-slate mr-2">Dispositif</span>
+                  <h3 class="inline font-extrabold text-white text-base">
+                    École de la 2e Chance (E2C)
+                  </h3>
+                </div>
+                <time
+                  datetime="2023-09/2023-12"
+                  class="text-xs font-extrabold whitespace-nowrap"
+                  style="color: var(--blue2)"
+                  >Sept. – Déc. 2023</time
+                >
+              </div>
+              <p class="text-sm font-bold mb-2" style="color: var(--blue3)">
+                E2C · Alès
+              </p>
+              <p class="text-sm text-slate-400 leading-relaxed mb-3">
+                Remise à niveau, ateliers pro et stages en entreprise.
+                Expériences en vente (Inter Dépôt), fleuriste (Casa di Fiori,
+                Myosotis Flora) et son & lumière (Pelousse Paradise).
+                Compétences relationnelles et sens du service renforcés.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag-slate">Vente</span>
+                <span class="tag-slate">Service client</span>
+                <span class="tag-slate">Adaptabilité</span>
+              </div>
+            </article>
+
+            <!-- Dynamic Cloud Studios -->
+            <article
+              class="reveal xp-card"
+              style="animation-delay: 0.06s"
+              aria-label="Développeur Full Stack Dynamic Cloud"
+            >
+              <div
+                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+              >
+                <div>
+                  <span class="chip chip-blue mr-2">CDD</span>
+                  <h3 class="inline font-extrabold text-white text-base">
+                    Développeur Full Stack
+                  </h3>
+                </div>
+                <time
+                  datetime="2024-01/2024-06"
+                  class="text-xs font-extrabold whitespace-nowrap"
+                  style="color: var(--blue2)"
+                  >Jan. – Juin 2024</time
+                >
+              </div>
+              <p class="text-sm font-bold mb-2" style="color: var(--blue3)">
+                Dynamic Cloud Studios · Alès
+              </p>
+              <p class="text-sm text-slate-400 leading-relaxed mb-3">
+                Intégré dans une équipe de développement, gestion des tâches en
+                autonomie, communication régulière avec les clients, respect des
+                délais de livraison.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag-blue">Travail en équipe</span>
+                <span class="tag-blue">Autonomie</span>
+                <span class="tag-blue">Rigueur</span>
+              </div>
+            </article>
+
+            <!-- Garantie Jeunes + divers (condensé) -->
+            <article
+              class="reveal xp-card"
+              style="animation-delay: 0.06s"
+              aria-label="Expériences vente et insertion"
+            >
+              <div
+                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+              >
+                <div>
+                  <span class="chip chip-slate mr-2">2020–2023</span>
+                  <h3 class="inline font-extrabold text-white text-base">
+                    Stages vente &amp; insertion professionnelle
+                  </h3>
+                </div>
+                <time
+                  datetime="2020/2023"
+                  class="text-xs font-extrabold whitespace-nowrap"
+                  style="color: var(--blue2)"
+                  >Oct. 2020 – Juil. 2023</time
+                >
+              </div>
+              <p class="text-sm font-bold mb-2" style="color: var(--blue3)">
+                Mission Locale Garantie Jeunes · Alès
+              </p>
+              <p class="text-sm text-slate-400 leading-relaxed mb-3">
+                Plusieurs stages en vente : Le Panthéon (cartes, 2× 2021), Le
+                Hangar (friperie, janv. 2022), So Frip (juil. 2022). Accueil
+                client, conseil, encaissement, mise en rayon. Mission intérim
+                cuisine (La Cuisine Solidaire, nov. 2022).
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag-slate">Vente</span>
+                <span class="tag-slate">Accueil client</span>
+                <span class="tag-slate">Encaissement</span>
+                <span class="tag-slate">Mise en rayon</span>
+              </div>
+            </article>
+
+            <!-- Formation Dev Web -->
+            <article
+              class="reveal xp-card"
+              style="animation-delay: 0.06s"
+              aria-label="Formation Développeur Web ADRAR"
+            >
+              <div
+                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+              >
+                <div>
+                  <span class="chip chip-blue mr-2">Formation</span>
+                  <h3 class="inline font-extrabold text-white text-base">
+                    Développeur Web &amp; Web Mobile
+                  </h3>
+                </div>
+                <time
+                  datetime="2021-06/2021-10"
+                  class="text-xs font-extrabold whitespace-nowrap"
+                  style="color: var(--blue2)"
+                  >Juin – Oct. 2021</time
+                >
+              </div>
+              <p class="text-sm font-bold mb-2" style="color: var(--blue3)">
+                ADRAR Formation · Montpellier
+              </p>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Reconversion dans le développement web. Discipline, assiduité,
+                progression rapide.
+              </p>
+            </article>
+
+            <!-- Stages cuisine (condensé) -->
+            <article
+              class="reveal xp-card"
+              style="animation-delay: 0.06s"
+              aria-label="Stages cuisine"
+            >
+              <div
+                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+              >
+                <div>
+                  <span class="chip chip-slate mr-2">2016–2018</span>
+                  <h3 class="inline font-extrabold text-white text-base">
+                    Stages — Cuisine
+                  </h3>
+                </div>
+                <time
+                  datetime="2016/2018"
+                  class="text-xs font-extrabold whitespace-nowrap"
+                  style="color: var(--blue2)"
+                  >2016 – 2018</time
+                >
+              </div>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Trois stages en restauration : Le Mandajors (déc. 2016),
+                L'Atelier des Épicuriens (déc. 2017), Le Bistrot Alès (mai–juin
+                2018). Découverte du métier, initiation aux normes d'hygiène et
+                au travail en brigade.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── FORMATIONS ────────────────────────────── -->
+      <section
+        id="formations"
+        aria-labelledby="formations-title"
+        class="relative py-24 px-5 md:px-8 overflow-hidden"
+        style="background: var(--bg)"
+      >
+        <div
+          aria-hidden="true"
+          class="absolute left-0 top-0 w-80 h-80 pointer-events-none"
+          style="
+            background: radial-gradient(
+              circle,
+              rgba(59, 130, 246, 0.05),
+              transparent 70%
+            );
+          "
+        ></div>
+
+        <div class="max-w-4xl mx-auto">
+          <header class="text-center mb-14 reveal">
+            <p class="sec-label mb-2">Parcours scolaire</p>
+            <h2
+              id="formations-title"
+              class="text-3xl md:text-4xl font-black mb-4"
+            >
+              Formations
+            </h2>
+            <div class="sec-rule mx-auto"></div>
+          </header>
+
+          <div class="tl-list reveal">
+            <!-- CDA -->
+            <div class="tl-entry">
+              <div class="tl-spine"><div class="tl-dot dot-now"></div></div>
+              <div
+                class="p-5 rounded-xl flex-1"
+                style="
+                  background: rgba(59, 130, 246, 0.08);
+                  border: 1px solid rgba(96, 165, 250, 0.25);
+                "
+              >
+                <span class="chip chip-blue">BAC+3</span>
+                <h3 class="font-extrabold text-white text-sm mt-2">
+                  Concepteur Développeur d'Applications
+                </h3>
+                <time class="text-xs font-bold" style="color: var(--blue2)"
+                  >Août 2024 – Déc. 2025 · ALT, Rennes</time
+                >
+                <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                  Titre RNCP niveau 6. Architecture logicielle, développement
+                  full stack, gestion de projet Agile.
+                </p>
+              </div>
+            </div>
+
+            <!-- Dev Web -->
+            <div class="tl-entry">
+              <div class="tl-spine"><div class="tl-dot dot-blue"></div></div>
+              <div
+                class="p-5 rounded-xl flex-1"
+                style="
+                  background: rgba(59, 130, 246, 0.06);
+                  border: 1px solid rgba(96, 165, 250, 0.15);
+                "
+              >
+                <span class="chip chip-blue">Certifiante</span>
+                <h3 class="font-extrabold text-white text-sm mt-2">
+                  Développeur Web &amp; Web Mobile
+                </h3>
+                <time class="text-xs font-bold" style="color: var(--blue2)"
+                  >Juin – Oct. 2021 · ADRAR Formation, Montpellier</time
+                >
+              </div>
+            </div>
+
+            <!-- Bac Pro Chimie -->
+            <div class="tl-entry">
+              <div class="tl-spine"><div class="tl-dot dot-ghost"></div></div>
+              <div
+                class="p-4 rounded-xl flex-1"
+                style="
+                  background: rgba(255, 255, 255, 0.03);
+                  border: 1px solid rgba(255, 255, 255, 0.06);
+                "
+              >
+                <span class="chip chip-slate">Bac Pro</span>
+                <h3 class="font-extrabold text-slate-300 text-sm mt-2">
+                  Bac Pro Chimie — Seconde &amp; Première
+                </h3>
+                <time class="text-xs text-slate-500 font-bold"
+                  >Sept. 2018 – Jan. 2020 · Lycée J.-B. Dumas, Alès</time
+                >
+              </div>
+            </div>
+
+            <!-- Bac Pro Cuisine -->
+            <div class="tl-entry" style="padding-bottom: 0">
+              <div class="tl-spine"><div class="tl-dot dot-ghost"></div></div>
+              <div
+                class="p-4 rounded-xl flex-1"
+                style="
+                  background: rgba(255, 255, 255, 0.03);
+                  border: 1px solid rgba(255, 255, 255, 0.06);
+                "
+              >
+                <span class="chip chip-slate">Bac Pro</span>
+                <h3 class="font-extrabold text-slate-300 text-sm mt-2">
+                  Bac Pro Cuisine — Seconde professionnelle
+                </h3>
+                <time class="text-xs text-slate-500 font-bold"
+                  >Sept. 2017 – Juin 2018 · Lycée Marie Curie,
+                  Saint-Jean-du-Gard</time
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── CONTACT (infos uniquement, pas de form) ── -->
+      <section
+        id="contact"
+        aria-labelledby="contact-title"
+        class="relative py-24 px-5 md:px-8 overflow-hidden"
+        style="background: var(--bg2)"
+      >
+        <div
+          aria-hidden="true"
+          class="absolute inset-0 pointer-events-none"
+          style="
+            background: radial-gradient(
+              ellipse 60% 50% at 50% 50%,
+              rgba(59, 130, 246, 0.04),
+              transparent 70%
+            );
+          "
+        ></div>
+
+        <div class="max-w-3xl mx-auto text-center">
+          <header class="mb-12 reveal">
+            <p class="sec-label mb-2">Me joindre</p>
+            <h2 id="contact-title" class="text-3xl md:text-4xl font-black mb-4">
+              Contact
+            </h2>
+            <div class="sec-rule mx-auto mb-5"></div>
+            <p class="text-slate-400 text-sm max-w-md mx-auto leading-relaxed">
+              Disponible immédiatement. N'hésitez pas à me contacter par email
+              ou LinkedIn.
+            </p>
+          </header>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 reveal">
+            <a
+              href="mailto:mattis1dcf@gmail.com"
+              class="glass-blue p-6 rounded-2xl flex items-center gap-4 hover:-translate-y-1 transition-transform group text-left"
+            >
+              <div
+                class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                style="
+                  background: rgba(59, 130, 246, 0.15);
+                  border: 1px solid rgba(96, 165, 250, 0.25);
+                "
+              >
+                <i
+                  class="fa-solid fa-envelope text-blue-400 text-lg"
+                  aria-hidden="true"
+                ></i>
+              </div>
+              <div>
+                <p
+                  class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                >
+                  Email
+                </p>
+                <p
+                  class="text-white font-bold text-sm group-hover:text-blue-300 transition-colors"
+                >
+                  mattis1dcf@gmail.com
+                </p>
+              </div>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/mattis-da-costa-faro/"
+              rel="noopener"
+              class="glass-blue p-6 rounded-2xl flex items-center gap-4 hover:-translate-y-1 transition-transform group text-left"
+            >
+              <div
+                class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                style="
+                  background: rgba(59, 130, 246, 0.15);
+                  border: 1px solid rgba(96, 165, 250, 0.25);
+                "
+              >
+                <i
+                  class="fa-brands fa-linkedin text-blue-400 text-lg"
+                  aria-hidden="true"
+                ></i>
+              </div>
+              <div>
+                <p
+                  class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                >
+                  LinkedIn
+                </p>
+                <p
+                  class="text-white font-bold text-sm group-hover:text-blue-300 transition-colors"
+                >
+                  Mattis Da Costa Faro
+                </p>
+              </div>
+            </a>
+
+            <div
+              class="glass p-6 rounded-2xl flex items-center gap-4 text-left"
+            >
+              <div
+                class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                style="
+                  background: rgba(59, 130, 246, 0.12);
+                  border: 1px solid rgba(96, 165, 250, 0.2);
+                "
+              >
+                <i
+                  class="fa-solid fa-location-dot text-blue-400 text-lg"
+                  aria-hidden="true"
+                ></i>
+              </div>
+              <div>
+                <p
+                  class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                >
+                  Localisation
+                </p>
+                <p class="text-white font-bold text-sm">Alès (30), France 🇫🇷</p>
+              </div>
+            </div>
+
+            <div
+              class="glass p-6 rounded-2xl flex items-center gap-4 text-left"
+            >
+              <div
+                class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                style="
+                  background: rgba(59, 130, 246, 0.12);
+                  border: 1px solid rgba(96, 165, 250, 0.2);
+                "
+              >
+                <i
+                  class="fa-solid fa-circle-check text-blue-400 text-lg"
+                  aria-hidden="true"
+                ></i>
+              </div>
+              <div>
+                <p
+                  class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                >
+                  Disponibilité
+                </p>
+                <p class="text-white font-bold text-sm">
+                  Immédiate · Tous types de contrats
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+    <footer
+      role="contentinfo"
+      class="py-10 px-5 md:px-8"
+      style="background: var(--bg)"
+    >
+      <div
+        class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 rounded-lg flex items-center justify-center"
+            style="
+              background: linear-gradient(135deg, var(--blue), var(--indigo));
+            "
+          >
+            <span
+              style="
+                color: #fff;
+                font-family: &quot;Nunito&quot;, sans-serif;
+                font-weight: 900;
+                font-size: 0.8rem;
+              "
+              >M</span
+            >
+          </div>
+          <div>
+            <p
+              class="font-extrabold text-white text-sm"
+              style="font-family: &quot;Nunito&quot;, sans-serif"
+            >
+              Mattis Da Costa Faro
+            </p>
+            <p class="text-xs text-slate-600">
+              En recherche d'emploi · Alès (30)
+            </p>
+          </div>
+        </div>
+        <nav
+          aria-label="Navigation pied de page"
+          class="flex flex-wrap justify-center gap-5 text-xs font-bold"
+          style="color: #475569; font-family: &quot;Nunito&quot;, sans-serif"
+        >
+          <a href="#profil" class="hover:text-blue-400 transition-colors"
+            >Profil</a
+          >
+          <a href="#competences" class="hover:text-blue-400 transition-colors"
+            >Compétences</a
+          >
+          <a href="#experiences" class="hover:text-blue-400 transition-colors"
+            >Expériences</a
+          >
+          <a href="#formations" class="hover:text-blue-400 transition-colors"
+            >Formations</a
+          >
+          <a href="#contact" class="hover:text-blue-400 transition-colors"
+            >Contact</a
+          >
+        </nav>
+        <p class="text-xs font-mono" style="color: #334155">
+          © 2026 Mattis Da Costa Faro
+        </p>
+      </div>
+    </footer>
+
+    <!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+    <script>
+      /* ── Navbar scroll ── */
+      const topbar = document.getElementById("topbar");
+      window.addEventListener(
+        "scroll",
+        () => {
+          topbar.classList.toggle("scrolled", window.scrollY > 20);
+        },
+        { passive: true },
+      );
+
+      /* ── Active nav ── */
+      const navLinks = document.querySelectorAll(".nav-link");
+      const allSections = document.querySelectorAll("section[id]");
+      window.addEventListener(
+        "scroll",
+        () => {
+          let cur = "";
+          allSections.forEach((s) => {
+            if (window.scrollY >= s.offsetTop - 130) cur = s.id;
+          });
+          navLinks.forEach((l) => {
+            const href = l.getAttribute("href");
+            l.classList.toggle("active", href === "#" + cur);
+          });
+        },
+        { passive: true },
+      );
+
+      /* ── Burger menu ── */
+      const burger = document.getElementById("burger");
+      const mobNav = document.getElementById("mob-nav");
+      const b1 = document.getElementById("b1"),
+        b2 = document.getElementById("b2"),
+        b3 = document.getElementById("b3");
+      let menuOpen = false;
+
+      function closeMob() {
+        menuOpen = false;
+        mobNav.classList.remove("open");
+        burger.setAttribute("aria-expanded", "false");
+        b1.style.cssText = b3.style.cssText = "";
+        b2.style.opacity = "1";
+      }
+
+      burger.addEventListener("click", () => {
+        menuOpen = !menuOpen;
+        mobNav.classList.toggle("open", menuOpen);
+        burger.setAttribute("aria-expanded", String(menuOpen));
+        b1.style.cssText = menuOpen
+          ? "transform:translateY(6px) rotate(45deg)"
+          : "";
+        b2.style.opacity = menuOpen ? "0" : "1";
+        b3.style.cssText = menuOpen
+          ? "transform:translateY(-6px) rotate(-45deg);width:20px"
+          : "";
+      });
+      mobNav
+        .querySelectorAll("a")
+        .forEach((a) => a.addEventListener("click", closeMob));
+
+      /* ── Reveal scroll ── */
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("vis");
+          });
+        },
+        { threshold: 0.08 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
