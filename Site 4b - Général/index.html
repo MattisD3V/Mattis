@@ -14,22 +14,16 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <style>
-      /* ─── VARIABLES ─────────────────────────── */
       :root {
         --bg: #060d1f;
         --bg2: #080f26;
-        --bg3: #0b1433;
         --blue: #3b82f6;
         --blue2: #60a5fa;
         --blue3: #93c5fd;
         --indigo: #6366f1;
         --txt: #e2e8f0;
         --muted: #64748b;
-        --card: rgba(255, 255, 255, 0.04);
-        --bdr: rgba(255, 255, 255, 0.08);
       }
-
-      /* ─── BASE ──────────────────────────────── */
       html {
         scroll-behavior: smooth;
       }
@@ -60,7 +54,6 @@
         text-decoration: none;
         color: inherit;
       }
-
       ::-webkit-scrollbar {
         width: 4px;
       }
@@ -71,8 +64,6 @@
         background: var(--blue);
         border-radius: 99px;
       }
-
-      /* ─── ANIMATIONS ────────────────────────── */
       @keyframes fadeUp {
         from {
           opacity: 0;
@@ -118,16 +109,6 @@
           width: var(--w);
         }
       }
-      @keyframes floatY {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-
       .anim-in {
         animation: fadeUp 0.65s cubic-bezier(0.22, 0.68, 0, 1.15) both;
       }
@@ -146,13 +127,9 @@
       .d5 {
         animation-delay: 0.38s;
       }
-      .d6 {
-        animation-delay: 0.46s;
-      }
       .glow-dot {
         animation: glowPulse 2s ease-in-out infinite;
       }
-
       .shimmer-blue {
         background: linear-gradient(90deg, #60a5fa, #a5b4fc, #818cf8, #60a5fa);
         background-size: 200% auto;
@@ -161,8 +138,6 @@
         background-clip: text;
         animation: shimmer 4s linear infinite;
       }
-
-      /* ─── NAVBAR ─────────────────────────────── */
       #topbar {
         transition:
           background 0.3s,
@@ -188,8 +163,6 @@
       .nav-link.active {
         color: var(--blue2);
       }
-
-      /* ─── MOBILE NAV ─────────────────────────── */
       #mob-nav {
         max-height: 0;
         overflow: hidden;
@@ -202,8 +175,6 @@
         max-height: 400px;
         opacity: 1;
       }
-
-      /* ─── HERO ───────────────────────────────── */
       .hero-grid {
         background-image:
           linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
@@ -217,8 +188,6 @@
         filter: blur(90px);
         opacity: 0.18;
       }
-
-      /* ─── GLASS CARDS ────────────────────────── */
       .glass {
         background: rgba(255, 255, 255, 0.04);
         border: 1px solid rgba(255, 255, 255, 0.08);
@@ -241,8 +210,6 @@
         border: 1px solid transparent;
         border-radius: 18px;
       }
-
-      /* ─── SECTION LABELS ─────────────────────── */
       .sec-label {
         color: var(--blue2);
         font-family: "Nunito", sans-serif;
@@ -257,8 +224,6 @@
         border-radius: 99px;
         background: linear-gradient(to right, var(--blue), var(--indigo));
       }
-
-      /* ─── SKILL BARS ─────────────────────────── */
       .bar-track {
         height: 5px;
         border-radius: 99px;
@@ -272,8 +237,6 @@
         animation: barGrow 0.85s cubic-bezier(0.22, 0.68, 0, 1.1) 0.3s both;
         background: linear-gradient(to right, var(--blue), var(--indigo));
       }
-
-      /* ─── TAGS ───────────────────────────────── */
       .tag-blue {
         display: inline-flex;
         align-items: center;
@@ -310,8 +273,7 @@
         border: 1px solid rgba(52, 211, 153, 0.2);
         color: #6ee7b7;
       }
-
-      /* ─── XP CARDS ───────────────────────────── */
+      /* XP cards */
       .xp-card {
         border-left: 2px solid rgba(59, 130, 246, 0.22);
         padding-left: 22px;
@@ -323,8 +285,29 @@
       .xp-card.pinned {
         border-color: var(--blue);
       }
-
-      /* ─── CHIP ───────────────────────────────── */
+      /* year divider */
+      .year-div {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 8px 0 4px;
+      }
+      .year-div span {
+        font-family: "Nunito", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 900;
+        letter-spacing: 0.14em;
+        color: var(--blue2);
+        white-space: nowrap;
+      }
+      .year-div::before,
+      .year-div::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: rgba(59, 130, 246, 0.15);
+      }
+      /* chips */
       .chip {
         display: inline-block;
         padding: 2px 9px;
@@ -343,8 +326,15 @@
         background: rgba(255, 255, 255, 0.07);
         color: #94a3b8;
       }
-
-      /* ─── TECH GRID ──────────────────────────── */
+      .chip-amber {
+        background: rgba(245, 158, 11, 0.15);
+        color: #fcd34d;
+      }
+      .chip-violet {
+        background: rgba(139, 92, 246, 0.15);
+        color: #c4b5fd;
+      }
+      /* tech items */
       .tech-item {
         padding: 6px 12px;
         border-radius: 10px;
@@ -363,8 +353,7 @@
         border-color: rgba(96, 165, 250, 0.3);
         color: var(--blue2);
       }
-
-      /* ─── TIMELINE ───────────────────────────── */
+      /* timeline formations */
       .tl-list {
         display: flex;
         flex-direction: column;
@@ -418,8 +407,7 @@
         background: linear-gradient(135deg, var(--blue), var(--indigo));
         box-shadow: 0 0 18px rgba(59, 130, 246, 0.55);
       }
-
-      /* ─── REVEAL ─────────────────────────────── */
+      /* reveal */
       .reveal {
         opacity: 0;
         transform: translateY(20px);
@@ -431,18 +419,12 @@
         opacity: 1;
         transform: translateY(0);
       }
-
-      /* ─── FOOTER ─────────────────────────────── */
       footer {
         border-top: 1px solid rgba(59, 130, 246, 0.08);
       }
     </style>
   </head>
-
   <body>
-    <!-- ══════════════════════════════════════
-     HEADER
-══════════════════════════════════════ -->
     <header id="topbar" role="banner" class="fixed top-0 inset-x-0 z-50">
       <div
         class="max-w-5xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between"
@@ -476,7 +458,6 @@
             Mattis<span style="color: var(--blue2)">·DCF</span>
           </span>
         </a>
-
         <nav
           role="navigation"
           aria-label="Navigation principale"
@@ -495,11 +476,9 @@
               color: #fff;
               box-shadow: 0 4px 14px rgba(59, 130, 246, 0.28);
             "
+            >Contact</a
           >
-            Contact
-          </a>
         </nav>
-
         <button
           id="burger"
           aria-label="Ouvrir le menu"
@@ -521,7 +500,6 @@
           ></span>
         </button>
       </div>
-
       <div
         id="mob-nav"
         role="navigation"
@@ -560,7 +538,6 @@
               >Formations</a
             >
           </li>
-          <li></li>
           <li>
             <a
               href="#contact"
@@ -572,11 +549,8 @@
       </div>
     </header>
 
-    <!-- ══════════════════════════════════════
-     MAIN
-══════════════════════════════════════ -->
     <main id="main-content">
-      <!-- ── HERO ──────────────────────────────────── -->
+      <!-- HERO -->
       <section
         id="hero"
         aria-label="Présentation"
@@ -605,7 +579,6 @@
             );
           "
         ></div>
-
         <div
           aria-hidden="true"
           class="absolute top-20 right-12 w-72 h-72 rounded-full border border-blue-500/[0.07] pointer-events-none hidden lg:block"
@@ -619,7 +592,6 @@
 
         <div class="relative z-10 max-w-5xl mx-auto px-5 md:px-8 w-full py-20">
           <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            <!-- Photo -->
             <aside
               aria-label="Photo de profil"
               class="flex flex-col items-center gap-5 shrink-0"
@@ -651,7 +623,6 @@
                   />
                 </div>
               </div>
-              <!-- Badge dispo -->
               <div
                 class="anim-in d2 flex items-center gap-2 px-4 py-2 rounded-full border"
                 style="
@@ -672,7 +643,6 @@
                   >Disponible</span
                 >
               </div>
-              <!-- Réseaux -->
               <div class="anim-in d3 flex gap-2.5">
                 <a
                   href="https://github.com/MattisD3V"
@@ -680,36 +650,26 @@
                   rel="noopener"
                   class="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 text-slate-400 hover:text-blue-400 hover:border-blue-400/40 transition-all"
                   style="background: rgba(255, 255, 255, 0.03)"
-                >
-                  <i class="fa-brands fa-github text-sm" aria-hidden="true"></i>
-                </a>
+                  ><i class="fa-brands fa-github text-sm"></i
+                ></a>
                 <a
                   href="https://www.linkedin.com/in/mattis-da-costa-faro/"
                   title="LinkedIn"
                   rel="noopener"
                   class="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 text-slate-400 hover:text-blue-400 hover:border-blue-400/40 transition-all"
                   style="background: rgba(255, 255, 255, 0.03)"
-                >
-                  <i
-                    class="fa-brands fa-linkedin text-sm"
-                    aria-hidden="true"
-                  ></i>
-                </a>
+                  ><i class="fa-brands fa-linkedin text-sm"></i
+                ></a>
                 <a
                   href="mailto:mattis1dcf@gmail.com"
                   title="Email"
                   class="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 text-slate-400 hover:text-blue-400 hover:border-blue-400/40 transition-all"
                   style="background: rgba(255, 255, 255, 0.03)"
-                >
-                  <i
-                    class="fa-solid fa-envelope text-sm"
-                    aria-hidden="true"
-                  ></i>
-                </a>
+                  ><i class="fa-solid fa-envelope text-sm"></i
+                ></a>
               </div>
             </aside>
 
-            <!-- Texte hero -->
             <div class="flex flex-col gap-5 text-center lg:text-left max-w-2xl">
               <div class="anim-in d1">
                 <span
@@ -721,20 +681,15 @@
                     color: var(--blue3);
                   "
                 >
-                  <i
-                    class="fa-solid fa-briefcase text-[10px]"
-                    aria-hidden="true"
-                  ></i>
-                  Recherche active d'emploi
+                  <i class="fa-solid fa-briefcase text-[10px]"></i>Recherche
+                  active d'emploi
                 </span>
               </div>
-
               <h1
                 class="anim-in d2 text-4xl sm:text-5xl md:text-6xl font-black leading-[1.08]"
               >
                 Mattis<br /><span class="shimmer-blue">Da Costa Faro</span>
               </h1>
-
               <p
                 class="anim-in d3 text-slate-300 text-base leading-relaxed max-w-xl"
               >
@@ -745,15 +700,12 @@
                 <strong class="text-white">informatique</strong>. Je m'adapte
                 vite et je m'investis à fond dans chaque mission.
               </p>
-
-              <!-- Infos clés -->
               <div
                 class="anim-in d4 grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-xl mx-auto lg:mx-0"
               >
                 <div class="glass p-3 flex items-center gap-2.5">
                   <i
                     class="fa-solid fa-location-dot text-blue-400 text-sm shrink-0"
-                    aria-hidden="true"
                   ></i>
                   <div>
                     <p
@@ -768,7 +720,6 @@
                 <div class="glass p-3 flex items-center gap-2.5">
                   <i
                     class="fa-solid fa-user text-blue-400 text-sm shrink-0"
-                    aria-hidden="true"
                   ></i>
                   <div>
                     <p
@@ -781,10 +732,7 @@
                   </div>
                 </div>
                 <div class="glass p-3 flex items-center gap-2.5">
-                  <i
-                    class="fa-solid fa-car text-blue-400 text-sm shrink-0"
-                    aria-hidden="true"
-                  ></i>
+                  <i class="fa-solid fa-car text-blue-400 text-sm shrink-0"></i>
                   <div>
                     <p
                       class="text-[10px] text-slate-500 font-extrabold tracking-widest uppercase"
@@ -798,7 +746,6 @@
                 <div class="glass p-3 flex items-center gap-2.5">
                   <i
                     class="fa-solid fa-clock text-blue-400 text-sm shrink-0"
-                    aria-hidden="true"
                   ></i>
                   <div>
                     <p
@@ -813,7 +760,6 @@
                 <div class="glass p-3 flex items-center gap-2.5">
                   <i
                     class="fa-solid fa-envelope text-blue-400 text-sm shrink-0"
-                    aria-hidden="true"
                   ></i>
                   <div>
                     <p
@@ -832,7 +778,6 @@
                 <div class="glass p-3 flex items-center gap-2.5">
                   <i
                     class="fa-solid fa-graduation-cap text-blue-400 text-sm shrink-0"
-                    aria-hidden="true"
                   ></i>
                   <div>
                     <p
@@ -845,7 +790,6 @@
                   </div>
                 </div>
               </div>
-
               <div
                 class="anim-in d5 flex flex-wrap gap-3 justify-center lg:justify-start pt-1"
               >
@@ -860,10 +804,7 @@
                   "
                 >
                   Voir mes expériences
-                  <i
-                    class="fa-solid fa-arrow-right text-xs"
-                    aria-hidden="true"
-                  ></i>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
                 <a
                   href="#contact"
@@ -881,7 +822,6 @@
             </div>
           </div>
         </div>
-
         <div
           class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
           aria-hidden="true"
@@ -897,7 +837,7 @@
         </div>
       </section>
 
-      <!-- ── PROFIL ────────────────────────────────── -->
+      <!-- PROFIL -->
       <section
         id="profil"
         aria-labelledby="profil-title"
@@ -915,7 +855,6 @@
             );
           "
         ></div>
-
         <div class="max-w-5xl mx-auto">
           <header class="text-center mb-12 reveal">
             <p class="sec-label mb-2">À propos</p>
@@ -924,7 +863,6 @@
             </h2>
             <div class="sec-rule mx-auto"></div>
           </header>
-
           <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
             <article class="reveal gb-card p-6 flex flex-col gap-3">
               <div
@@ -934,10 +872,7 @@
                   border: 1px solid rgba(96, 165, 250, 0.2);
                 "
               >
-                <i
-                  class="fa-solid fa-user text-blue-400"
-                  aria-hidden="true"
-                ></i>
+                <i class="fa-solid fa-user text-blue-400"></i>
               </div>
               <h3 class="font-extrabold text-white text-base">Qui je suis</h3>
               <p class="text-slate-400 text-sm leading-relaxed">
@@ -947,7 +882,6 @@
                 équipe.
               </p>
             </article>
-
             <article
               class="reveal gb-card p-6 flex flex-col gap-3"
               style="animation-delay: 0.1s"
@@ -959,10 +893,7 @@
                   border: 1px solid rgba(96, 165, 250, 0.2);
                 "
               >
-                <i
-                  class="fa-solid fa-star text-blue-400"
-                  aria-hidden="true"
-                ></i>
+                <i class="fa-solid fa-star text-blue-400"></i>
               </div>
               <h3 class="font-extrabold text-white text-base">Points forts</h3>
               <ul
@@ -971,41 +902,35 @@
                 <li class="flex items-center gap-2">
                   <i
                     class="fa-solid fa-check text-blue-400 text-xs shrink-0"
-                    aria-hidden="true"
                   ></i
                   >Polyvalence et adaptabilité
                 </li>
                 <li class="flex items-center gap-2">
                   <i
                     class="fa-solid fa-check text-blue-400 text-xs shrink-0"
-                    aria-hidden="true"
                   ></i
                   >Rigueur et sens de l'organisation
                 </li>
                 <li class="flex items-center gap-2">
                   <i
                     class="fa-solid fa-check text-blue-400 text-xs shrink-0"
-                    aria-hidden="true"
                   ></i
                   >Esprit d'équipe et communication
                 </li>
                 <li class="flex items-center gap-2">
                   <i
                     class="fa-solid fa-check text-blue-400 text-xs shrink-0"
-                    aria-hidden="true"
                   ></i
                   >Gestion du stress et réactivité
                 </li>
                 <li class="flex items-center gap-2">
                   <i
                     class="fa-solid fa-check text-blue-400 text-xs shrink-0"
-                    aria-hidden="true"
                   ></i
                   >Apprentissage rapide
                 </li>
               </ul>
             </article>
-
             <article
               class="reveal gb-card p-6 flex flex-col gap-3"
               style="animation-delay: 0.2s"
@@ -1017,49 +942,29 @@
                   border: 1px solid rgba(96, 165, 250, 0.2);
                 "
               >
-                <i
-                  class="fa-solid fa-heart text-blue-400"
-                  aria-hidden="true"
-                ></i>
+                <i class="fa-solid fa-heart text-blue-400"></i>
               </div>
               <h3 class="font-extrabold text-white text-base">
                 Centres d'intérêt
               </h3>
               <div class="flex flex-wrap gap-2">
                 <span class="tag-slate"
-                  ><i
-                    class="fa-solid fa-utensils text-amber-400"
-                    aria-hidden="true"
-                  ></i
+                  ><i class="fa-solid fa-utensils text-amber-400"></i
                   >Cuisine</span
                 >
                 <span class="tag-slate"
-                  ><i
-                    class="fa-solid fa-gamepad text-violet-400"
-                    aria-hidden="true"
-                  ></i
-                  >Jeux vidéo</span
+                  ><i class="fa-solid fa-gamepad text-violet-400"></i>Jeux
+                  vidéo</span
                 >
                 <span class="tag-slate"
-                  ><i
-                    class="fa-solid fa-code text-blue-400"
-                    aria-hidden="true"
-                  ></i
-                  >Dev web</span
+                  ><i class="fa-solid fa-code text-blue-400"></i>Dev web</span
                 >
                 <span class="tag-slate"
-                  ><i
-                    class="fa-solid fa-music text-pink-400"
-                    aria-hidden="true"
-                  ></i
-                  >Musique</span
+                  ><i class="fa-solid fa-music text-pink-400"></i>Musique</span
                 >
                 <span class="tag-slate"
-                  ><i
-                    class="fa-solid fa-book text-emerald-400"
-                    aria-hidden="true"
-                  ></i
-                  >Lecture tech</span
+                  ><i class="fa-solid fa-book text-emerald-400"></i>Lecture
+                  tech</span
                 >
               </div>
             </article>
@@ -1067,7 +972,7 @@
         </div>
       </section>
 
-      <!-- ── COMPÉTENCES ───────────────────────────── -->
+      <!-- COMPÉTENCES -->
       <section
         id="competences"
         aria-labelledby="competences-title"
@@ -1085,7 +990,6 @@
             );
           "
         ></div>
-
         <div class="max-w-5xl mx-auto">
           <header class="text-center mb-14 reveal">
             <p class="sec-label mb-2">Savoir-faire</p>
@@ -1097,12 +1001,10 @@
             </h2>
             <div class="sec-rule mx-auto"></div>
           </header>
-
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Cuisine -->
             <article
               class="reveal gb-card p-6 flex flex-col gap-4"
-              aria-label="Compétences Cuisine"
+              aria-label="Cuisine"
             >
               <div class="flex items-center gap-3">
                 <div
@@ -1112,10 +1014,7 @@
                     border: 1px solid rgba(252, 211, 77, 0.2);
                   "
                 >
-                  <i
-                    class="fa-solid fa-utensils text-amber-400 text-sm"
-                    aria-hidden="true"
-                  ></i>
+                  <i class="fa-solid fa-utensils text-amber-400 text-sm"></i>
                 </div>
                 <h3 class="font-extrabold text-white">Cuisine</h3>
               </div>
@@ -1124,8 +1023,7 @@
                   <div class="flex justify-between text-xs mb-1.5">
                     <span class="text-slate-300 font-semibold"
                       >Préparation & dressage</span
-                    >
-                    <span style="color: var(--blue2)" class="font-bold"
+                    ><span style="color: var(--blue2)" class="font-bold"
                       >80%</span
                     >
                   </div>
@@ -1137,8 +1035,7 @@
                   <div class="flex justify-between text-xs mb-1.5">
                     <span class="text-slate-300 font-semibold"
                       >Normes HACCP</span
-                    >
-                    <span style="color: var(--blue2)" class="font-bold"
+                    ><span style="color: var(--blue2)" class="font-bold"
                       >75%</span
                     >
                   </div>
@@ -1150,8 +1047,7 @@
                   <div class="flex justify-between text-xs mb-1.5">
                     <span class="text-slate-300 font-semibold"
                       >Travail en brigade</span
-                    >
-                    <span style="color: var(--blue2)" class="font-bold"
+                    ><span style="color: var(--blue2)" class="font-bold"
                       >85%</span
                     >
                   </div>
@@ -1163,8 +1059,7 @@
                   <div class="flex justify-between text-xs mb-1.5">
                     <span class="text-slate-300 font-semibold"
                       >Rapidité & organisation</span
-                    >
-                    <span style="color: var(--blue2)" class="font-bold"
+                    ><span style="color: var(--blue2)" class="font-bold"
                       >90%</span
                     >
                   </div>
@@ -1174,12 +1069,10 @@
                 </div>
               </div>
             </article>
-
-            <!-- Vente & relation client -->
             <article
               class="reveal gb-card p-6 flex flex-col gap-4"
               style="animation-delay: 0.1s"
-              aria-label="Compétences Vente"
+              aria-label="Vente"
             >
               <div class="flex items-center gap-3">
                 <div
@@ -1189,10 +1082,7 @@
                     border: 1px solid rgba(96, 165, 250, 0.2);
                   "
                 >
-                  <i
-                    class="fa-solid fa-handshake text-blue-400 text-sm"
-                    aria-hidden="true"
-                  ></i>
+                  <i class="fa-solid fa-handshake text-blue-400 text-sm"></i>
                 </div>
                 <h3 class="font-extrabold text-white">Vente & Client</h3>
               </div>
@@ -1201,8 +1091,7 @@
                   <div class="flex justify-between text-xs mb-1.5">
                     <span class="text-slate-300 font-semibold"
                       >Accueil & conseil</span
-                    >
-                    <span style="color: var(--blue2)" class="font-bold"
+                    ><span style="color: var(--blue2)" class="font-bold"
                       >80%</span
                     >
                   </div>
@@ -1214,8 +1103,7 @@
                   <div class="flex justify-between text-xs mb-1.5">
                     <span class="text-slate-300 font-semibold"
                       >Tenue de caisse</span
-                    >
-                    <span style="color: var(--blue2)" class="font-bold"
+                    ><span style="color: var(--blue2)" class="font-bold"
                       >70%</span
                     >
                   </div>
@@ -1227,8 +1115,7 @@
                   <div class="flex justify-between text-xs mb-1.5">
                     <span class="text-slate-300 font-semibold"
                       >Mise en rayon</span
-                    >
-                    <span style="color: var(--blue2)" class="font-bold"
+                    ><span style="color: var(--blue2)" class="font-bold"
                       >75%</span
                     >
                   </div>
@@ -1240,8 +1127,7 @@
                   <div class="flex justify-between text-xs mb-1.5">
                     <span class="text-slate-300 font-semibold"
                       >Communication client</span
-                    >
-                    <span style="color: var(--blue2)" class="font-bold"
+                    ><span style="color: var(--blue2)" class="font-bold"
                       >85%</span
                     >
                   </div>
@@ -1251,12 +1137,10 @@
                 </div>
               </div>
             </article>
-
-            <!-- Transversal -->
             <article
               class="reveal gb-card p-6 flex flex-col gap-4"
               style="animation-delay: 0.2s"
-              aria-label="Compétences transversales"
+              aria-label="Transversal"
             >
               <div class="flex items-center gap-3">
                 <div
@@ -1266,30 +1150,24 @@
                     border: 1px solid rgba(129, 140, 248, 0.2);
                   "
                 >
-                  <i
-                    class="fa-solid fa-gear text-indigo-400 text-sm"
-                    aria-hidden="true"
-                  ></i>
+                  <i class="fa-solid fa-gear text-indigo-400 text-sm"></i>
                 </div>
                 <h3 class="font-extrabold text-white">Transversal</h3>
               </div>
               <div class="flex flex-wrap gap-2">
-                <span class="tech-item">Travail en équipe</span>
-                <span class="tech-item">Ponctualité</span>
-                <span class="tech-item">Fiabilité</span>
-                <span class="tech-item">Gestion du stress</span>
-                <span class="tech-item">Polyvalence</span>
-                <span class="tech-item">Sens du service</span>
-                <span class="tech-item">Pack Office</span>
-                <span class="tech-item">Outils numériques</span>
+                <span class="tech-item">Travail en équipe</span
+                ><span class="tech-item">Ponctualité</span>
+                <span class="tech-item">Fiabilité</span
+                ><span class="tech-item">Gestion du stress</span>
+                <span class="tech-item">Polyvalence</span
+                ><span class="tech-item">Sens du service</span>
+                <span class="tech-item">Pack Office</span
+                ><span class="tech-item">Outils numériques</span>
               </div>
               <p
                 class="text-xs text-slate-500 mt-auto pt-3 border-t border-white/[0.04] leading-relaxed"
               >
-                <i
-                  class="fa-solid fa-info-circle text-blue-500/50 mr-1"
-                  aria-hidden="true"
-                ></i>
+                <i class="fa-solid fa-info-circle text-blue-500/50 mr-1"></i>
                 Également à l'aise en informatique : un atout pour tous les
                 postes impliquant de l'outil numérique.
               </p>
@@ -1298,7 +1176,9 @@
         </div>
       </section>
 
-      <!-- ── EXPÉRIENCES (anti-chrono) ─────────────── -->
+      <!-- ══════════════════════════════════════════
+       EXPÉRIENCES — ordre anti-chronologique strict
+       ══════════════════════════════════════════ -->
       <section
         id="experiences"
         aria-labelledby="xp-title"
@@ -1316,7 +1196,6 @@
             );
           "
         ></div>
-
         <div class="max-w-4xl mx-auto">
           <header class="text-center mb-14 reveal">
             <p class="sec-label mb-2">Parcours professionnel</p>
@@ -1329,14 +1208,16 @@
             </p>
           </header>
 
-          <div class="flex flex-col gap-8">
-            <!-- Nexys-Dev -->
+          <div class="flex flex-col gap-6">
+            <!-- ── 2026 ── -->
+            <div class="year-div reveal"><span>2026</span></div>
+
             <article
               class="reveal xp-card pinned"
-              aria-label="Fondateur Nexys-Dev"
+              aria-label="Fondateur NX-DEV"
             >
               <div
-                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+                class="flex flex-wrap items-start justify-between gap-2 mb-1"
               >
                 <div>
                   <span class="chip chip-blue mr-2">Présent</span>
@@ -1366,14 +1247,12 @@
               </div>
             </article>
 
-            <!-- Formation CDA -->
-            <article
-              class="reveal xp-card"
-              style="animation-delay: 0.06s"
-              aria-label="Formation CDA ALT"
-            >
+            <!-- ── 2024–2025 ── -->
+            <div class="year-div reveal"><span>2024 – 2025</span></div>
+
+            <article class="reveal xp-card" aria-label="Formation CDA ALT">
               <div
-                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+                class="flex flex-wrap items-start justify-between gap-2 mb-1"
               >
                 <div>
                   <span class="chip chip-blue mr-2">Formation BAC+3</span>
@@ -1398,17 +1277,16 @@
               </p>
             </article>
 
-            <!-- Dynamic Cloud Studios -->
             <article
               class="reveal xp-card"
-              style="animation-delay: 0.06s"
-              aria-label="Développeur Full Stack Dynamic Cloud"
+              style="animation-delay: 0.04s"
+              aria-label="Développeur Full Stack Dynamic Cloud Studios"
             >
               <div
-                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+                class="flex flex-wrap items-start justify-between gap-2 mb-1"
               >
                 <div>
-                  <span class="chip chip-blue mr-2">CDD</span>
+                  <span class="chip chip-blue mr-2">CDD · 6 mois</span>
                   <h3 class="inline font-extrabold text-white text-base">
                     Développeur Full Stack
                   </h3>
@@ -1435,14 +1313,12 @@
               </div>
             </article>
 
-            <!-- E2C -->
-            <article
-              class="reveal xp-card"
-              style="animation-delay: 0.06s"
-              aria-label="École de la Deuxième Chance"
-            >
+            <!-- ── 2023 ── -->
+            <div class="year-div reveal"><span>2023</span></div>
+
+            <article class="reveal xp-card" aria-label="E2C">
               <div
-                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+                class="flex flex-wrap items-start justify-between gap-2 mb-1"
               >
                 <div>
                   <span class="chip chip-slate mr-2">Dispositif</span>
@@ -1451,21 +1327,59 @@
                   </h3>
                 </div>
                 <time
-                  datetime="2023-09/2023-12"
+                  datetime="2023-08/2024-02"
                   class="text-xs font-extrabold whitespace-nowrap"
                   style="color: var(--blue2)"
-                  >Sept. – Déc. 2023</time
+                  >Août 2023 – Fév. 2024</time
                 >
               </div>
               <p class="text-sm font-bold mb-2" style="color: var(--blue3)">
                 E2C · Alès
               </p>
               <p class="text-sm text-slate-400 leading-relaxed mb-3">
-                Remise à niveau, ateliers pro et stages en entreprise.
-                Expériences en vente (Inter Dépôt), fleuriste (Casa di Fiori,
-                Myosotis Flora) et son & lumière (Pelousse Paradise).
-                Compétences relationnelles et sens du service renforcés.
+                Remise à niveau et ateliers professionnels avec plusieurs stages
+                en entreprise :
               </p>
+              <ul
+                class="text-sm text-slate-400 flex flex-col gap-1 mb-3 list-none"
+              >
+                <li class="flex items-start gap-2">
+                  <i
+                    class="fa-solid fa-circle-dot text-blue-500/50 text-xs mt-1 shrink-0"
+                  ></i
+                  ><span
+                    ><strong class="text-slate-300">Sept. 2023</strong> — Vente,
+                    ameublement · Inter Dépôt, Alès</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    class="fa-solid fa-circle-dot text-blue-500/50 text-xs mt-1 shrink-0"
+                  ></i
+                  ><span
+                    ><strong class="text-slate-300">Oct. 2023</strong> —
+                    Fleuriste · Casa di Fiori, Alès</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    class="fa-solid fa-circle-dot text-blue-500/50 text-xs mt-1 shrink-0"
+                  ></i
+                  ><span
+                    ><strong class="text-slate-300">Nov. 2023</strong> —
+                    Régisseur son &amp; lumière · Pelousse Paradise, Alès</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    class="fa-solid fa-circle-dot text-blue-500/50 text-xs mt-1 shrink-0"
+                  ></i
+                  ><span
+                    ><strong class="text-slate-300">Déc. 2023</strong> —
+                    Fleuriste · Myosotis Flora, Alès</span
+                  >
+                </li>
+              </ul>
               <div class="flex flex-wrap gap-1.5">
                 <span class="tag-slate">Vente</span>
                 <span class="tag-slate">Service client</span>
@@ -1473,26 +1387,25 @@
               </div>
             </article>
 
-            <!-- Tacos Avenue -->
             <article
               class="reveal xp-card"
-              style="animation-delay: 0.06s"
-              aria-label="Emploi Cuisine Tacos Avenue"
+              style="animation-delay: 0.04s"
+              aria-label="Cuisine Tacos Avenue"
             >
               <div
-                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+                class="flex flex-wrap items-start justify-between gap-2 mb-1"
               >
                 <div>
-                  <span class="chip chip-blue mr-2">Emploi</span>
+                  <span class="chip chip-amber mr-2">Emploi</span>
                   <h3 class="inline font-extrabold text-white text-base">
                     Équipier cuisine
                   </h3>
                 </div>
                 <time
-                  datetime="2023-08/2024-02"
+                  datetime="2023-08"
                   class="text-xs font-extrabold whitespace-nowrap"
                   style="color: var(--blue2)"
-                  >Août 2023</time
+                  >Août 2023 · 2 semaines</time
                 >
               </div>
               <p class="text-sm font-bold mb-2" style="color: var(--blue3)">
@@ -1510,37 +1423,63 @@
               </div>
             </article>
 
-            <!-- Garantie Jeunes + divers (condensé) -->
+            <!-- ── 2020–2023 ── -->
+            <div class="year-div reveal"><span>2020 – 2023</span></div>
+
             <article
               class="reveal xp-card"
-              style="animation-delay: 0.06s"
-              aria-label="Expériences vente et insertion"
+              aria-label="Garantie Jeunes 2021-2023"
             >
               <div
-                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+                class="flex flex-wrap items-start justify-between gap-2 mb-1"
               >
                 <div>
-                  <span class="chip chip-slate mr-2">2020–2023</span>
+                  <span class="chip chip-slate mr-2">Dispositif</span>
                   <h3 class="inline font-extrabold text-white text-base">
-                    Stages vente &amp; insertion professionnelle
+                    Dispositif Garantie Jeunes — Stages vente
                   </h3>
                 </div>
                 <time
-                  datetime="2020/2023"
+                  datetime="2021/2023"
                   class="text-xs font-extrabold whitespace-nowrap"
                   style="color: var(--blue2)"
-                  >Oct. 2020 – Juil. 2023</time
+                  >Oct. 2021 – Juil. 2023</time
                 >
               </div>
               <p class="text-sm font-bold mb-2" style="color: var(--blue3)">
-                Mission Locale Garantie Jeunes · Alès
+                Mission Locale · Alès
               </p>
-              <p class="text-sm text-slate-400 leading-relaxed mb-3">
-                Plusieurs stages en vente : Le Panthéon (cartes, 2× 2021), Le
-                Hangar (friperie, janv. 2022), So Frip (juil. 2022). Accueil
-                client, conseil, encaissement, mise en rayon. Mission intérim
-                cuisine (La Cuisine Solidaire, nov. 2022).
-              </p>
+              <ul
+                class="text-sm text-slate-400 flex flex-col gap-1 mb-3 list-none"
+              >
+                <li class="flex items-start gap-2">
+                  <i
+                    class="fa-solid fa-circle-dot text-blue-500/50 text-xs mt-1 shrink-0"
+                  ></i
+                  ><span
+                    ><strong class="text-slate-300">Juil. 2022</strong> — Vente,
+                    friperie · So Frip, Alès</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    class="fa-solid fa-circle-dot text-blue-500/50 text-xs mt-1 shrink-0"
+                  ></i
+                  ><span
+                    ><strong class="text-slate-300">Jan. 2022</strong> — Vente,
+                    friperie · Le Hangar, Alès</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    class="fa-solid fa-circle-dot text-blue-500/50 text-xs mt-1 shrink-0"
+                  ></i
+                  ><span
+                    ><strong class="text-slate-300">Nov. 2022</strong> — Intérim
+                    cuisine · La Cuisine Solidaire, Alès (3 jours)</span
+                  >
+                </li>
+              </ul>
               <div class="flex flex-wrap gap-1.5">
                 <span class="tag-slate">Vente</span>
                 <span class="tag-slate">Accueil client</span>
@@ -1549,14 +1488,13 @@
               </div>
             </article>
 
-            <!-- Formation Dev Web -->
             <article
               class="reveal xp-card"
-              style="animation-delay: 0.06s"
-              aria-label="Formation Développeur Web ADRAR"
+              style="animation-delay: 0.04s"
+              aria-label="Formation Dev Web ADRAR"
             >
               <div
-                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+                class="flex flex-wrap items-start justify-between gap-2 mb-1"
               >
                 <div>
                   <span class="chip chip-blue mr-2">Formation</span>
@@ -1575,22 +1513,108 @@
                 ADRAR Formation · Montpellier
               </p>
               <p class="text-sm text-slate-400 leading-relaxed">
-                Reconversion dans le développement web. Discipline, assiduité,
-                progression rapide.
+                Reconversion dans le développement web. HTML/CSS, JavaScript,
+                PHP, MySQL. Discipline, assiduité, progression rapide.
               </p>
             </article>
 
-            <!-- Stages cuisine (condensé) -->
             <article
               class="reveal xp-card"
-              style="animation-delay: 0.06s"
-              aria-label="Stages cuisine"
+              style="animation-delay: 0.08s"
+              aria-label="Garantie Jeunes 2020-2021"
             >
               <div
-                class="flex flex-wrap items-start justify-between gap-2 mb-2"
+                class="flex flex-wrap items-start justify-between gap-2 mb-1"
               >
                 <div>
-                  <span class="chip chip-slate mr-2">2016–2018</span>
+                  <span class="chip chip-slate mr-2">Dispositif</span>
+                  <h3 class="inline font-extrabold text-white text-base">
+                    Dispositif Garantie Jeunes — Stages vente
+                  </h3>
+                </div>
+                <time
+                  datetime="2020-10/2021-10"
+                  class="text-xs font-extrabold whitespace-nowrap"
+                  style="color: var(--blue2)"
+                  >Oct. 2020 – Oct. 2021</time
+                >
+              </div>
+              <p class="text-sm font-bold mb-2" style="color: var(--blue3)">
+                Mission Locale · Alès
+              </p>
+              <ul class="text-sm text-slate-400 flex flex-col gap-1 list-none">
+                <li class="flex items-start gap-2">
+                  <i
+                    class="fa-solid fa-circle-dot text-blue-500/50 text-xs mt-1 shrink-0"
+                  ></i
+                  ><span
+                    ><strong class="text-slate-300">Mars 2021</strong> — Vente,
+                    magasin de cartes · Le Panthéon, Alès (4 sem.)</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    class="fa-solid fa-circle-dot text-blue-500/50 text-xs mt-1 shrink-0"
+                  ></i
+                  ><span
+                    ><strong class="text-slate-300">Nov. 2020</strong> — Vente,
+                    magasin de cartes · Le Panthéon, Alès (2 sem.)</span
+                  >
+                </li>
+              </ul>
+            </article>
+
+            <!-- ── 2018–2020 ── -->
+            <div class="year-div reveal"><span>2018 – 2020</span></div>
+
+            <article class="reveal xp-card" aria-label="Stages Chimie">
+              <div
+                class="flex flex-wrap items-start justify-between gap-2 mb-1"
+              >
+                <div>
+                  <span class="chip chip-slate mr-2">Stages</span>
+                  <h3 class="inline font-extrabold text-white text-base">
+                    Stages — Chimie
+                  </h3>
+                </div>
+                <time
+                  datetime="2019/2020"
+                  class="text-xs font-extrabold whitespace-nowrap"
+                  style="color: var(--blue2)"
+                  >2019 – 2020</time
+                >
+              </div>
+              <ul class="text-sm text-slate-400 flex flex-col gap-1 list-none">
+                <li class="flex items-start gap-2">
+                  <i
+                    class="fa-solid fa-circle-dot text-blue-500/50 text-xs mt-1 shrink-0"
+                  ></i
+                  ><span
+                    ><strong class="text-slate-300">Jan. 2020</strong> — Lycée
+                    Jean-Baptiste Dumas, Alès (2 sem.)</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    class="fa-solid fa-circle-dot text-blue-500/50 text-xs mt-1 shrink-0"
+                  ></i
+                  ><span
+                    ><strong class="text-slate-300">Mai – Juin 2019</strong> —
+                    Sika, Les Salles-du-Gardon (6 sem.)</span
+                  >
+                </li>
+              </ul>
+            </article>
+
+            <!-- ── 2016–2018 ── -->
+            <div class="year-div reveal"><span>2016 – 2018</span></div>
+
+            <article class="reveal xp-card" aria-label="Stages Cuisine">
+              <div
+                class="flex flex-wrap items-start justify-between gap-2 mb-1"
+              >
+                <div>
+                  <span class="chip chip-slate mr-2">Stages</span>
                   <h3 class="inline font-extrabold text-white text-base">
                     Stages — Cuisine
                   </h3>
@@ -1602,18 +1626,41 @@
                   >2016 – 2018</time
                 >
               </div>
-              <p class="text-sm text-slate-400 leading-relaxed">
-                Trois stages en restauration : Le Mandajors (déc. 2016),
-                L'Atelier des Épicuriens (déc. 2017), Le Bistrot Alès (mai–juin
-                2018). Découverte du métier, initiation aux normes d'hygiène et
-                au travail en brigade.
-              </p>
+              <ul class="text-sm text-slate-400 flex flex-col gap-1 list-none">
+                <li class="flex items-start gap-2">
+                  <i
+                    class="fa-solid fa-circle-dot text-blue-500/50 text-xs mt-1 shrink-0"
+                  ></i
+                  ><span
+                    ><strong class="text-slate-300">Mai – Juin 2018</strong> —
+                    Le Bistrot, Alès (6 sem.)</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    class="fa-solid fa-circle-dot text-blue-500/50 text-xs mt-1 shrink-0"
+                  ></i
+                  ><span
+                    ><strong class="text-slate-300">Déc. 2017</strong> —
+                    L'Atelier des Épicuriens, Saint-Paul-la-Coste (2 sem.)</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    class="fa-solid fa-circle-dot text-blue-500/50 text-xs mt-1 shrink-0"
+                  ></i
+                  ><span
+                    ><strong class="text-slate-300">Déc. 2016</strong> — Le
+                    Mandajors, Alès (2 sem.)</span
+                  >
+                </li>
+              </ul>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- ── FORMATIONS ────────────────────────────── -->
+      <!-- FORMATIONS -->
       <section
         id="formations"
         aria-labelledby="formations-title"
@@ -1631,7 +1678,6 @@
             );
           "
         ></div>
-
         <div class="max-w-4xl mx-auto">
           <header class="text-center mb-14 reveal">
             <p class="sec-label mb-2">Parcours scolaire</p>
@@ -1643,9 +1689,7 @@
             </h2>
             <div class="sec-rule mx-auto"></div>
           </header>
-
           <div class="tl-list reveal">
-            <!-- CDA -->
             <div class="tl-entry">
               <div class="tl-spine"><div class="tl-dot dot-now"></div></div>
               <div
@@ -1668,8 +1712,6 @@
                 </p>
               </div>
             </div>
-
-            <!-- Dev Web -->
             <div class="tl-entry">
               <div class="tl-spine"><div class="tl-dot dot-blue"></div></div>
               <div
@@ -1688,8 +1730,6 @@
                 >
               </div>
             </div>
-
-            <!-- Bac Pro Chimie -->
             <div class="tl-entry">
               <div class="tl-spine"><div class="tl-dot dot-ghost"></div></div>
               <div
@@ -1704,12 +1744,11 @@
                   Bac Pro Chimie — Seconde &amp; Première
                 </h3>
                 <time class="text-xs text-slate-500 font-bold"
-                  >Sept. 2018 – Jan. 2020 · Lycée J.-B. Dumas, Alès</time
+                  >Sept. 2018 – Jan. 2020 · Lycée Jean-Baptiste Dumas,
+                  Alès</time
                 >
               </div>
             </div>
-
-            <!-- Bac Pro Cuisine -->
             <div class="tl-entry" style="padding-bottom: 0">
               <div class="tl-spine"><div class="tl-dot dot-ghost"></div></div>
               <div
@@ -1733,7 +1772,7 @@
         </div>
       </section>
 
-      <!-- ── CONTACT (infos uniquement, pas de form) ── -->
+      <!-- CONTACT -->
       <section
         id="contact"
         aria-labelledby="contact-title"
@@ -1751,7 +1790,6 @@
             );
           "
         ></div>
-
         <div class="max-w-3xl mx-auto text-center">
           <header class="mb-12 reveal">
             <p class="sec-label mb-2">Me joindre</p>
@@ -1763,7 +1801,6 @@
               Disponible immédiatement. N'hésitez pas à me contacter.
             </p>
           </header>
-
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 reveal">
             <a
               href="mailto:mattis1dcf@gmail.com"
@@ -1776,10 +1813,7 @@
                   border: 1px solid rgba(96, 165, 250, 0.25);
                 "
               >
-                <i
-                  class="fa-solid fa-envelope text-blue-400 text-lg"
-                  aria-hidden="true"
-                ></i>
+                <i class="fa-solid fa-envelope text-blue-400 text-lg"></i>
               </div>
               <div>
                 <p
@@ -1795,7 +1829,6 @@
                 </p>
               </div>
             </a>
-
             <a
               href="tel:+33669433031"
               class="glass-blue p-6 rounded-2xl flex items-center gap-4 hover:-translate-y-1 transition-transform group text-left"
@@ -1807,10 +1840,7 @@
                   border: 1px solid rgba(96, 165, 250, 0.25);
                 "
               >
-                <i
-                  class="fa-solid fa-phone text-blue-400 text-lg"
-                  aria-hidden="true"
-                ></i>
+                <i class="fa-solid fa-phone text-blue-400 text-lg"></i>
               </div>
               <div>
                 <p
@@ -1826,7 +1856,6 @@
                 </p>
               </div>
             </a>
-
             <a
               href="https://www.linkedin.com/in/mattis-da-costa-faro/"
               rel="noopener"
@@ -1839,10 +1868,7 @@
                   border: 1px solid rgba(96, 165, 250, 0.25);
                 "
               >
-                <i
-                  class="fa-brands fa-linkedin text-blue-400 text-lg"
-                  aria-hidden="true"
-                ></i>
+                <i class="fa-brands fa-linkedin text-blue-400 text-lg"></i>
               </div>
               <div>
                 <p
@@ -1858,7 +1884,6 @@
                 </p>
               </div>
             </a>
-
             <div
               class="glass p-6 rounded-2xl flex items-center gap-4 text-left"
             >
@@ -1869,10 +1894,7 @@
                   border: 1px solid rgba(96, 165, 250, 0.2);
                 "
               >
-                <i
-                  class="fa-solid fa-location-dot text-blue-400 text-lg"
-                  aria-hidden="true"
-                ></i>
+                <i class="fa-solid fa-location-dot text-blue-400 text-lg"></i>
               </div>
               <div>
                 <p
@@ -1884,7 +1906,6 @@
                 <p class="text-white font-bold text-sm">Alès (30), France 🇫🇷</p>
               </div>
             </div>
-
             <div
               class="glass p-6 rounded-2xl flex items-center gap-4 text-left sm:col-span-2"
             >
@@ -1895,10 +1916,7 @@
                   border: 1px solid rgba(96, 165, 250, 0.2);
                 "
               >
-                <i
-                  class="fa-solid fa-circle-check text-blue-400 text-lg"
-                  aria-hidden="true"
-                ></i>
+                <i class="fa-solid fa-circle-check text-blue-400 text-lg"></i>
               </div>
               <div>
                 <p
@@ -1917,9 +1935,6 @@
       </section>
     </main>
 
-    <!-- ══════════════════════════════════════
-     FOOTER
-══════════════════════════════════════ -->
     <footer
       role="contentinfo"
       class="py-10 px-5 md:px-8"
@@ -1974,9 +1989,6 @@
           <a href="#formations" class="hover:text-blue-400 transition-colors"
             >Formations</a
           >
-          <a href="#nxdev" class="hover:text-blue-400 transition-colors"
-            >NX-DEV</a
-          >
           <a href="#contact" class="hover:text-blue-400 transition-colors"
             >Contact</a
           >
@@ -1987,11 +1999,7 @@
       </div>
     </footer>
 
-    <!-- ══════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════ -->
     <script>
-      /* ── Navbar scroll ── */
       const topbar = document.getElementById("topbar");
       window.addEventListener(
         "scroll",
@@ -2001,7 +2009,6 @@
         { passive: true },
       );
 
-      /* ── Active nav ── */
       const navLinks = document.querySelectorAll(".nav-link");
       const allSections = document.querySelectorAll("section[id]");
       window.addEventListener(
@@ -2012,21 +2019,19 @@
             if (window.scrollY >= s.offsetTop - 130) cur = s.id;
           });
           navLinks.forEach((l) => {
-            const href = l.getAttribute("href");
-            l.classList.toggle("active", href === "#" + cur);
+            const h = l.getAttribute("href");
+            l.classList.toggle("active", h === "#" + cur);
           });
         },
         { passive: true },
       );
 
-      /* ── Burger menu ── */
       const burger = document.getElementById("burger");
       const mobNav = document.getElementById("mob-nav");
       const b1 = document.getElementById("b1"),
         b2 = document.getElementById("b2"),
         b3 = document.getElementById("b3");
       let menuOpen = false;
-
       function closeMob() {
         menuOpen = false;
         mobNav.classList.remove("open");
@@ -2034,7 +2039,6 @@
         b1.style.cssText = b3.style.cssText = "";
         b2.style.opacity = "1";
       }
-
       burger.addEventListener("click", () => {
         menuOpen = !menuOpen;
         mobNav.classList.toggle("open", menuOpen);
@@ -2051,7 +2055,6 @@
         .querySelectorAll("a")
         .forEach((a) => a.addEventListener("click", closeMob));
 
-      /* ── Reveal scroll ── */
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
