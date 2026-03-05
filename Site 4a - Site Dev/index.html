@@ -147,6 +147,15 @@
           opacity: 1;
         }
       }
+      @keyframes floatY {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
       .anim-in {
         animation: fadeUp 0.65s cubic-bezier(0.22, 0.68, 0, 1.15) both;
       }
@@ -557,6 +566,10 @@
       footer {
         border-top: 1px solid rgba(16, 185, 129, 0.08);
       }
+      /* NX-DEV float */
+      .float-nxdev {
+        animation: floatY 5s ease-in-out infinite;
+      }
     </style>
   </head>
   <body>
@@ -598,6 +611,7 @@
           <a href="#projects" class="nav-link">Projets</a>
           <a href="#xp" class="nav-link">Expérience</a>
           <a href="#about" class="nav-link">À propos</a>
+          <a href="#nxdev" class="nav-link">NX-DEV</a>
           <button
             onclick="openCV()"
             class="nav-link border border-white/10 px-4 py-1.5 rounded-xl hover:border-emerald-400/40 hover:text-emerald-300 transition-all"
@@ -674,6 +688,13 @@
               href="#about"
               class="nav-link block py-2.5 px-3 rounded-lg hover:bg-white/5"
               >À propos</a
+            >
+          </li>
+          <li>
+            <a
+              href="#nxdev"
+              class="nav-link block py-2.5 px-3 rounded-lg hover:bg-white/5"
+              >NX-DEV</a
             >
           </li>
           <li>
@@ -1996,6 +2017,156 @@
         </div>
       </section>
 
+      <!-- ── NX-DEV ─────────────────────────────────── -->
+      <section
+        id="nxdev"
+        aria-labelledby="nxdev-title"
+        class="relative py-24 px-5 md:px-8 overflow-hidden"
+        style="background: var(--bg2)"
+      >
+        <div
+          aria-hidden="true"
+          class="absolute inset-0 pointer-events-none"
+          style="
+            background: radial-gradient(
+              ellipse 70% 50% at 50% 50%,
+              rgba(16, 185, 129, 0.05),
+              transparent 70%
+            );
+          "
+        ></div>
+
+        <div class="max-w-5xl mx-auto">
+          <header class="text-center mb-12 reveal">
+            <p class="sec-label mb-2">Depuis février 2026</p>
+            <h2 id="nxdev-title" class="text-3xl md:text-4xl font-black mb-4">
+              Mon Entreprise
+            </h2>
+            <div class="sec-rule mx-auto"></div>
+          </header>
+
+          <div
+            class="reveal flex flex-col md:flex-row items-center gap-10 md:gap-14 p-8 md:p-12 rounded-3xl"
+            style="
+              background:
+                linear-gradient(#0d1f14, #0d1f14) padding-box,
+                linear-gradient(
+                    135deg,
+                    rgba(52, 211, 153, 0.28),
+                    rgba(20, 184, 166, 0.08)
+                  )
+                  border-box;
+              border: 1px solid transparent;
+            "
+          >
+            <!-- Logo flottant -->
+            <div class="shrink-0 flex flex-col items-center gap-4">
+              <div
+                class="w-28 h-28 rounded-3xl flex items-center justify-center shadow-2xl float-nxdev"
+                style="
+                  background: linear-gradient(135deg, var(--em), var(--teal));
+                  box-shadow: 0 20px 60px rgba(16, 185, 129, 0.3);
+                "
+              >
+                <div class="text-center" style="color: #020c07">
+                  <div
+                    class="font-black text-xl leading-tight"
+                    style="font-family: &quot;Nunito&quot;, sans-serif"
+                  >
+                    Nexys
+                  </div>
+                  <div
+                    class="font-black text-sm tracking-widest"
+                    style="font-family: &quot;Nunito&quot;, sans-serif"
+                  >
+                    DEV
+                  </div>
+                  <div
+                    class="font-bold text-xs tracking-widest opacity-75"
+                    style="font-family: &quot;Nunito&quot;, sans-serif"
+                  >
+                    NX-DEV
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex items-center gap-2 px-3.5 py-1.5 rounded-full border"
+                style="
+                  background: rgba(16, 185, 129, 0.08);
+                  border-color: rgba(52, 211, 153, 0.28);
+                "
+              >
+                <span
+                  class="w-2 h-2 rounded-full bg-emerald-400 glow-dot"
+                  aria-hidden="true"
+                ></span>
+                <span
+                  class="text-emerald-300 text-xs font-extrabold tracking-widest uppercase"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                  >Active</span
+                >
+              </div>
+            </div>
+
+            <!-- Texte -->
+            <div class="flex flex-col gap-5 text-center md:text-left">
+              <h3 class="text-2xl md:text-3xl font-black text-white">
+                Nexys-Dev <span style="color: var(--em2)">(NX-DEV)</span>
+              </h3>
+              <p class="text-slate-300 leading-relaxed text-sm">
+                Créée en
+                <strong style="color: var(--em2)">février 2026</strong>,
+                Nexys-Dev est mon entreprise de développement informatique. Je
+                propose des solutions web sur mesure : sites vitrines,
+                applications web, dashboards, e-commerce — de la conception à la
+                mise en ligne.
+              </p>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                Que vous soyez une startup, une PME ou un particulier, je vous
+                accompagne de A à Z dans votre projet digital avec sérieux et
+                passion.
+              </p>
+              <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                <span class="tag tag-em"
+                  ><i class="fa-solid fa-globe text-xs"></i>Sites vitrines</span
+                >
+                <span class="tag tag-em"
+                  ><i class="fa-solid fa-laptop-code text-xs"></i>Applications
+                  web</span
+                >
+                <span class="tag tag-teal"
+                  ><i class="fa-solid fa-chart-bar text-xs"></i>Dashboards</span
+                >
+                <span class="tag tag-teal"
+                  ><i class="fa-solid fa-cart-shopping text-xs"></i
+                  >E-commerce</span
+                >
+              </div>
+              <div
+                class="flex flex-wrap gap-3 justify-center md:justify-start pt-1"
+              >
+                <a
+                  href="404.html"
+                  class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl font-extrabold text-sm transition-all hover:-translate-y-0.5 shadow-xl"
+                  style="
+                    font-family: &quot;Nunito&quot;, sans-serif;
+                    background: var(--em);
+                    color: #020c07;
+                    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.22);
+                  "
+                >
+                  Discutons de votre projet
+                  <i
+                    class="fa-solid fa-arrow-right text-xs"
+                    aria-hidden="true"
+                  ></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- CONTACT -->
       <section
         id="contact"
@@ -2036,213 +2207,178 @@
               Un projet ? Une mission ? N'hésitez pas, je réponds rapidement.
             </p>
           </header>
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-            <aside
-              aria-label="Informations de contact"
-              class="reveal flex flex-col gap-4"
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 reveal">
+            <!-- Email -->
+            <a
+              href="mailto:mattis1dcf@gmail.com"
+              class="p-6 rounded-2xl flex items-center gap-4 hover:-translate-y-1 transition-transform group"
+              style="
+                background: rgba(16, 185, 129, 0.06);
+                border: 1px solid rgba(52, 211, 153, 0.2);
+              "
             >
               <div
-                class="flex items-center gap-4 p-5 rounded-2xl"
+                class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
                 style="
-                  background: var(--card-bg);
-                  border: 1px solid var(--card-br);
+                  background: rgba(16, 185, 129, 0.15);
+                  border: 1px solid rgba(52, 211, 153, 0.25);
                 "
               >
-                <div
-                  class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-                  style="
-                    background: rgba(16, 185, 129, 0.12);
-                    border: 1px solid rgba(52, 211, 153, 0.2);
-                  "
-                >
-                  <i class="fa-solid fa-envelope text-emerald-400 text-sm"></i>
-                </div>
-                <div>
-                  <p
-                    class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
-                    style="font-family: &quot;Nunito&quot;, sans-serif"
-                  >
-                    Email
-                  </p>
-                  <a
-                    href="mailto:mattis1dcf@gmail.com"
-                    class="text-slate-200 font-semibold text-sm hover:text-emerald-400 transition-colors"
-                    >mattis1dcf@gmail.com</a
-                  >
-                </div>
+                <i
+                  class="fa-solid fa-envelope text-emerald-400 text-lg"
+                  aria-hidden="true"
+                ></i>
               </div>
+              <div>
+                <p
+                  class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                >
+                  Email
+                </p>
+                <p
+                  class="text-white font-bold text-sm group-hover:text-emerald-300 transition-colors"
+                >
+                  mattis1dcf@gmail.com
+                </p>
+              </div>
+            </a>
+
+            <!-- Téléphone -->
+            <a
+              href="tel:+33669433031"
+              class="p-6 rounded-2xl flex items-center gap-4 hover:-translate-y-1 transition-transform group"
+              style="
+                background: rgba(16, 185, 129, 0.06);
+                border: 1px solid rgba(52, 211, 153, 0.2);
+              "
+            >
               <div
-                class="flex items-center gap-4 p-5 rounded-2xl"
+                class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
                 style="
-                  background: var(--card-bg);
-                  border: 1px solid var(--card-br);
+                  background: rgba(16, 185, 129, 0.15);
+                  border: 1px solid rgba(52, 211, 153, 0.25);
                 "
               >
-                <div
-                  class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-                  style="
-                    background: rgba(16, 185, 129, 0.12);
-                    border: 1px solid rgba(52, 211, 153, 0.2);
-                  "
-                >
-                  <i
-                    class="fa-solid fa-location-dot text-emerald-400 text-sm"
-                  ></i>
-                </div>
-                <div>
-                  <p
-                    class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
-                    style="font-family: &quot;Nunito&quot;, sans-serif"
-                  >
-                    Localisation
-                  </p>
-                  <p class="text-slate-200 font-semibold text-sm">
-                    Alès, France 🇫🇷
-                  </p>
-                </div>
+                <i
+                  class="fa-solid fa-phone text-emerald-400 text-lg"
+                  aria-hidden="true"
+                ></i>
               </div>
+              <div>
+                <p
+                  class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                >
+                  Téléphone
+                </p>
+                <p
+                  class="text-white font-bold text-sm group-hover:text-emerald-300 transition-colors"
+                >
+                  06 69 43 30 31
+                </p>
+              </div>
+            </a>
+
+            <!-- LinkedIn -->
+            <a
+              href="https://www.linkedin.com/in/mattis-da-costa-faro/"
+              rel="noopener"
+              class="p-6 rounded-2xl flex items-center gap-4 hover:-translate-y-1 transition-transform group"
+              style="
+                background: rgba(16, 185, 129, 0.06);
+                border: 1px solid rgba(52, 211, 153, 0.2);
+              "
+            >
               <div
-                class="flex items-center gap-4 p-5 rounded-2xl"
+                class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
                 style="
-                  background: var(--card-bg);
-                  border: 1px solid var(--card-br);
+                  background: rgba(16, 185, 129, 0.15);
+                  border: 1px solid rgba(52, 211, 153, 0.25);
                 "
               >
-                <div
-                  class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-                  style="
-                    background: rgba(16, 185, 129, 0.12);
-                    border: 1px solid rgba(52, 211, 153, 0.2);
-                  "
-                >
-                  <i
-                    class="fa-solid fa-circle-check text-emerald-400 text-sm"
-                  ></i>
-                </div>
-                <div>
-                  <p
-                    class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
-                    style="font-family: &quot;Nunito&quot;, sans-serif"
-                  >
-                    Disponibilité
-                  </p>
-                  <p class="text-slate-200 font-semibold text-sm">
-                    Disponible dès maintenant
-                  </p>
-                </div>
+                <i
+                  class="fa-brands fa-linkedin text-emerald-400 text-lg"
+                  aria-hidden="true"
+                ></i>
               </div>
-              <div class="flex gap-3 pt-1">
-                <a
-                  href="https://github.com/MattisD3V"
-                  rel="noopener"
-                  class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-slate-400 text-sm font-extrabold hover:text-emerald-400 transition-all"
-                  style="
-                    font-family: &quot;Nunito&quot;, sans-serif;
-                    background: var(--card-bg);
-                    border: 1px solid var(--card-br);
-                  "
-                  ><i class="fa-brands fa-github"></i>GitHub</a
+              <div>
+                <p
+                  class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
                 >
-                <a
-                  href="https://www.linkedin.com/in/mattis-da-costa-faro/"
-                  rel="noopener"
-                  class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-slate-400 text-sm font-extrabold hover:text-emerald-400 transition-all"
-                  style="
-                    font-family: &quot;Nunito&quot;, sans-serif;
-                    background: var(--card-bg);
-                    border: 1px solid var(--card-br);
-                  "
-                  ><i class="fa-brands fa-linkedin"></i>LinkedIn</a
+                  LinkedIn
+                </p>
+                <p
+                  class="text-white font-bold text-sm group-hover:text-emerald-300 transition-colors"
                 >
+                  Mattis Da Costa Faro
+                </p>
               </div>
-            </aside>
-            <div class="reveal" style="animation-delay: 0.12s">
-              <form
-                name="contact-form"
-                action="https://formspree.io/f/xaqdkzlw"
-                method="POST"
-                class="flex flex-col gap-4"
-                aria-label="Formulaire de contact"
+            </a>
+
+            <!-- Localisation -->
+            <div
+              class="p-6 rounded-2xl flex items-center gap-4"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+              "
+            >
+              <div
+                class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                style="
+                  background: rgba(16, 185, 129, 0.12);
+                  border: 1px solid rgba(52, 211, 153, 0.2);
+                "
               >
-                <div class="grid grid-cols-2 gap-4">
-                  <div class="flex flex-col gap-1.5">
-                    <label
-                      for="prenom"
-                      class="text-[10px] font-extrabold tracking-widest uppercase text-slate-500"
-                      style="font-family: &quot;Nunito&quot;, sans-serif"
-                      >Prénom</label
-                    >
-                    <input
-                      type="text"
-                      id="prenom"
-                      name="prenom"
-                      placeholder="Votre prénom"
-                      class="c-input"
-                      autocomplete="given-name"
-                    />
-                  </div>
-                  <div class="flex flex-col gap-1.5">
-                    <label
-                      for="email"
-                      class="text-[10px] font-extrabold tracking-widest uppercase text-slate-500"
-                      style="font-family: &quot;Nunito&quot;, sans-serif"
-                      >Email</label
-                    >
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder="votre@email.com"
-                      class="c-input"
-                      autocomplete="email"
-                      required
-                    />
-                  </div>
-                </div>
-                <div class="flex flex-col gap-1.5">
-                  <label
-                    for="sujet"
-                    class="text-[10px] font-extrabold tracking-widest uppercase text-slate-500"
-                    style="font-family: &quot;Nunito&quot;, sans-serif"
-                    >Sujet</label
-                  >
-                  <input
-                    type="text"
-                    id="sujet"
-                    name="sujet"
-                    placeholder="Votre sujet"
-                    class="c-input"
-                  />
-                </div>
-                <div class="flex flex-col gap-1.5">
-                  <label
-                    for="message"
-                    class="text-[10px] font-extrabold tracking-widest uppercase text-slate-500"
-                    style="font-family: &quot;Nunito&quot;, sans-serif"
-                    >Message</label
-                  >
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="5"
-                    placeholder="Décrivez votre projet..."
-                    class="c-input resize-none"
-                    required
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  class="w-full py-4 rounded-xl font-extrabold text-sm tracking-wide transition-all hover:-translate-y-0.5 active:scale-95 shadow-xl"
-                  style="
-                    font-family: &quot;Nunito&quot;, sans-serif;
-                    background: var(--em);
-                    color: #020c07;
-                    box-shadow: 0 8px 32px rgba(16, 185, 129, 0.25);
-                  "
+                <i
+                  class="fa-solid fa-location-dot text-emerald-400 text-lg"
+                  aria-hidden="true"
+                ></i>
+              </div>
+              <div>
+                <p
+                  class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
                 >
-                  Envoyer <i class="fa-solid fa-paper-plane ml-1.5 text-xs"></i>
-                </button>
-              </form>
+                  Localisation
+                </p>
+                <p class="text-white font-bold text-sm">Alès (30), France 🇫🇷</p>
+              </div>
+            </div>
+
+            <!-- Disponibilité -->
+            <div
+              class="p-6 rounded-2xl flex items-center gap-4 sm:col-span-2"
+              style="
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+              "
+            >
+              <div
+                class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                style="
+                  background: rgba(16, 185, 129, 0.12);
+                  border: 1px solid rgba(52, 211, 153, 0.2);
+                "
+              >
+                <i
+                  class="fa-solid fa-circle-check text-emerald-400 text-lg"
+                  aria-hidden="true"
+                ></i>
+              </div>
+              <div>
+                <p
+                  class="text-[10px] text-slate-500 uppercase font-extrabold tracking-widest mb-0.5"
+                  style="font-family: &quot;Nunito&quot;, sans-serif"
+                >
+                  Disponibilité
+                </p>
+                <p class="text-white font-bold text-sm">
+                  Disponible dès maintenant · Tous types de missions
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -2300,6 +2436,9 @@
           >
           <a href="#about" class="hover:text-emerald-400 transition-colors"
             >À propos</a
+          >
+          <a href="#nxdev" class="hover:text-emerald-400 transition-colors"
+            >NX-DEV</a
           >
           <button
             onclick="openCV()"
